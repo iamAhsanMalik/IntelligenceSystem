@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="610" height="267" viewBox="0 0 610 267">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.729" cy="0.311" r="1.165" gradientTransform="matrix(0.609, 0.793, -0.615, 0.472, 0.503, -0.133)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#535353"/>
+      <stop offset="1" stop-color="#383636"/>
+    </radialGradient>
+  </defs>
+  <g id="box" transform="translate(-466 -517)">
+    <g id="spent" transform="translate(466.25 516.994)">
+      <g id="bg">
+        <rect id="bg-2" data-name="bg" width="610" height="267" rx="15" transform="translate(-0.25 0.006)" fill="url(#radial-gradient)"/>
+      </g>
+      <g id="chart" transform="translate(344.478 12.436)" opacity="0.55">
+        <g id="Group_8511" data-name="Group 8511" transform="translate(0 0)" opacity="0.58">
+          <g id="bg-3" data-name="bg" transform="translate(83.272 88.57)" fill="rgba(0,0,0,0)" stroke="#5e5c59" stroke-width="3">
+            <ellipse cx="81" cy="80" rx="81" ry="80" stroke="none"/>
+            <ellipse cx="81" cy="80" rx="79.5" ry="78.5" fill="none"/>
+          </g>
+          <g id="bg-4" data-name="bg" transform="translate(98.272 -0.43)" fill="rgba(0,0,0,0)" stroke="#5e5c59" stroke-width="3">
+            <ellipse cx="81.5" cy="79" rx="81.5" ry="79" stroke="none"/>
+            <ellipse cx="81.5" cy="79" rx="80" ry="77.5" fill="none"/>
+          </g>
+          <g id="bg-5" data-name="bg" transform="translate(0.272 44.57)" fill="rgba(0,0,0,0)" stroke="#5e5c59" stroke-width="3">
+            <ellipse cx="80.5" cy="78" rx="80.5" ry="78" stroke="none"/>
+            <ellipse cx="80.5" cy="78" rx="79" ry="76.5" fill="none"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
