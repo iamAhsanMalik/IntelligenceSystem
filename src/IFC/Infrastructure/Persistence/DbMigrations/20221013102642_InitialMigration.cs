@@ -222,5 +222,5 @@ public partial class InitialMigration : Migration
         migrationBuilder.DropTable(
             name: "Users");
     }
-}
+
 }

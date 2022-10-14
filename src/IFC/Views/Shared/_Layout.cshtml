@@ -7,35 +7,24 @@
     <title>@ViewData["Title"] - IFC</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/IFC.styles.css" asp-append-version="true" />
+    <link href="~/admintheme/Bootstrap4.1.0.min.css" rel="stylesheet" />
+    <link href="~/admintheme/css/style.css" rel="stylesheet" />
+    <script defer src="~/admintheme/Scripts/solid.js"></script>
+    <script defer src="admintheme/Scripts/fontawesome.js"></script>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">IFC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
-                                asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <partial name="_Sidebar" />
+        <!-- Page Content  -->
+        <div id="content">
+            <partial name="_Navbar" />
+            <div class="container-fluid body-content">
+                @RenderBody()
+
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
@@ -45,6 +34,18 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/admintheme/Scripts/jquery-slim.min.js"></script>
+    <script src="~/admintheme/Scripts/Bootstrap4.1.0.js"></script>
+    <script src="~/admintheme/Scripts/Popper.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
