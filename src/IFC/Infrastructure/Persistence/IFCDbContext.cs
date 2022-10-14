@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-namespace IFC.Infrastructure.Persistence;
 
-public class IFCDbContext
-{
-
-}
-=======
 using IFC.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -36,4 +29,3 @@ public class IFCDbContext : IdentityDbContext<ApplicationUser>
         modelBuilder.Entity<IdentityUserRole<string>>(b => b.ToTable("UserRoles"));
     }
 }
->>>>>>> Feature_AhsanJoyia
