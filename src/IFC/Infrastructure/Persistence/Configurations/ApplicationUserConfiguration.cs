@@ -1,4 +1,4 @@
-using IFC.Infrastructure.Identity.Models;
+using IFC.Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

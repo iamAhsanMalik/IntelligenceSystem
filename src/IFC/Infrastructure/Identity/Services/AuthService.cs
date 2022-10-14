@@ -6,18 +6,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 
 namespace IFC.Infrastructure.Identity.Services;
-
-internal interface IAuthService
-{
-    Task LoginAsync(ApplicationUser user, bool isPersistence = false);
-    Task LogoutAsync();
-    Task<Microsoft.AspNetCore.Identity.SignInResult?> PasswordLoginAsync(LoginDTO model, bool lockoutUserOnFailure = false);
-    Task<string> PasswordResetTokenGeneratorAsync(ApplicationUser user);
-    Task<IdentityResult?> RegisterAsync(ApplicationUser user);
-    Task<IdentityResult?> RegisterWithPasswordAsync(RegisterDTO model);
-}
-
-internal class AuthService : IAuthService
+internal class AuthService
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;

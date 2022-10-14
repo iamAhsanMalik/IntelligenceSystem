@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -221,4 +222,5 @@ public partial class InitialMigration : Migration
         migrationBuilder.DropTable(
             name: "Users");
     }
+
 }
