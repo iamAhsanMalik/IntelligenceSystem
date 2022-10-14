@@ -1,7 +1,5 @@
-﻿using IFC.Domain.Constants;
-using IFC.Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using IFC.Domain.Enums;
+using IFC.Infrastructure.Persistence.Seeding;
 
 namespace IFC.Infrastructure.Persistence;
 internal static class PersistenceServices
@@ -10,8 +8,9 @@ internal static class PersistenceServices
     {
         // DB Context Setting
         services.AddDbContext<IFCDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString(ConnectionStrings.DefaultConnection)));
-
+           options.UseSqlServer(configuration.GetConnectionString(nameof(ConnectionStrings.DefaultConnection))));
+        // services.AddDbContext<IFCDbContext>(options =>
+        //    options.UseSqlite(configuration.GetConnectionString(nameof(ConnectionStrings.SqliteConnection))));
         // Authentication Configurations Options
         services.Configure<IdentityOptions>(options =>
         {
@@ -37,5 +36,18 @@ internal static class PersistenceServices
         services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IFCDbContext>().AddDefaultTokenProviders();
 
         return services;
+    }
+
+    public static async Task<WebApplication> ApplyMigrationAndSeedingAsync(this WebApplication request)
+    {
+        using (var scope = request.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            var dbContext = services.GetRequiredService<IFCDbContext>();
+            var dbSeeder = services.GetRequiredService<ISeedDatabase>();
+            await dbContext.Database.MigrateAsync();
+            await dbSeeder.DatabaseSeederAsync();
+        }
+        return request;
     }
 }

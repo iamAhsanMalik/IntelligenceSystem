@@ -22,7 +22,1055 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("IFC.Infrastructure.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("IFC.Domain.Entities.Address", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("CityId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DistrictId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Streat")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("DistrictId");
+
+                    b.ToTable("Address", (string)null);
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Affiliate", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("ForiegnAffiliate")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("LocalAffiliate")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Affiliates");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Approval", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("ApprovalRequestTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool?>("ApprovalStatus")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<DateTime?>("InitiatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApprovalRequestTypeId");
+
+                    b.ToTable("Approvals");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.ApprovalRequestType", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("RequestType")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ApprovalRequestTypes");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.City", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("City", (string)null);
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.CoreHeadQuarter", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<long?>("SectorHeadQuarterId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SectorHeadQuarterId");
+
+                    b.ToTable("CoreHeadQuarter", (string)null);
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.District", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("District", (string)null);
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Funder", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("FundingSource")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Funders");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Incident", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("IncidentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<long?>("LocationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("OrganizationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("SuspectsProfileId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("WingId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("OrganizationId");
+
+                    b.HasIndex("SuspectsProfileId");
+
+                    b.HasIndex("WingId");
+
+                    b.ToTable("Incidents");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Involvement", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Involvements");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Location", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<decimal?>("Latitude")
+                        .HasColumnType("decimal(8,6)");
+
+                    b.Property<decimal?>("Longitude")
+                        .HasColumnType("decimal(9,6)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Location", (string)null);
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.OperationalBase", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OperationalBases");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Organization", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("AffiliateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("InvolvementId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<long?>("OperationalBaseId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("SocialMediaProfileId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("TerroristProfileId")
+                        .HasColumnType("bigint");
+
+                    b.Property<byte?>("ThreatLevel")
+                        .HasColumnType("tinyint");
+
+                    b.Property<long?>("TotalMembers")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("YearFounded")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AffiliateId");
+
+                    b.HasIndex("InvolvementId");
+
+                    b.HasIndex("OperationalBaseId");
+
+                    b.HasIndex("SocialMediaProfileId");
+
+                    b.HasIndex("TerroristProfileId");
+
+                    b.ToTable("Organizations");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.OrganizationFunder", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("FunderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("OrganizationId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FunderId");
+
+                    b.HasIndex("OrganizationId");
+
+                    b.ToTable("OrganizationFunders");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.RelationType", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RelationTypes");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SectorHeadQuarter", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SectorHeadQuarter", (string)null);
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SocialMediaProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("SocialMediaProfile");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SocialMediaProfiles");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SuspectFamilyDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("CNIC")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)")
+                        .HasColumnName("CNIC");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("date");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool?>("MaritalStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Passport")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long?>("RelationTypeId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RelationTypeId");
+
+                    b.ToTable("SuspectFamilyDetails");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SuspectProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("AddressId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CNIC")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)")
+                        .HasColumnName("CNIC");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("date");
+
+                    b.Property<string>("FatherName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("GeneralRemarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool?>("MaritalStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("OrgnizationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Passport")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Sect")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<long?>("SuspectFamilyDetailsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("TribeOrCast")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("OrgnizationId");
+
+                    b.HasIndex("SuspectFamilyDetailsId");
+
+                    b.ToTable("SuspectProfiles");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristFacilitatorsDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("AddressId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CNIC")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)")
+                        .HasColumnName("CNIC");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("date");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool?>("MaritalStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Passport")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long?>("RelationTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Sect")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("TribeOrCast")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("RelationTypeId");
+
+                    b.ToTable("TerroristFacilitatorsDetails");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristFamilyDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("AddressId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CNIC")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)")
+                        .HasColumnName("CNIC");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("date");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool?>("MaritalStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Passport")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long?>("RelationTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Sect")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("TribeOrCast")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("RelationTypeId");
+
+                    b.ToTable("TerroristFamilyDetails");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristInvolvement", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("Involvement")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TerroristInvolvements");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("AddressId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CNIC")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)")
+                        .HasColumnName("CNIC");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("date");
+
+                    b.Property<string>("FatherName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("GeneralRemarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<bool?>("IsFounder")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool?>("MaritalStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NameAlias")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<long?>("OrgnizationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Passport")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Sect")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<long?>("TerroristFacilitatorsDetailsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("TerroristFamilyDetailsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("TerroristInvolvementId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("TribeOrCast")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("OrgnizationId");
+
+                    b.HasIndex("TerroristFacilitatorsDetailsId");
+
+                    b.HasIndex("TerroristFamilyDetailsId");
+
+                    b.HasIndex("TerroristInvolvementId");
+
+                    b.ToTable("TerroristProfiles");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Threat", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("IncidentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<long?>("LocationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("OrganizationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("SuspectsProfileId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ThreatDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte?>("ThreatLevel")
+                        .HasColumnType("tinyint");
+
+                    b.Property<long?>("WingId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IncidentId");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("OrganizationId");
+
+                    b.HasIndex("SuspectsProfileId");
+
+                    b.HasIndex("WingId");
+
+                    b.ToTable("Threats");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Wing", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("CoreHeadQuarterId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<bool?>("IsSacaapplied")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsSACAApplied");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int?>("Sacatype")
+                        .HasColumnType("int")
+                        .HasColumnName("SACAType");
+
+                    b.Property<int?>("WingType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CoreHeadQuarterId");
+
+                    b.ToTable("Wing", (string)null);
+                });
+
+            modelBuilder.Entity("IFC.Infrastructure.Identity.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -50,10 +1098,15 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         .HasMaxLength(125)
                         .HasColumnType("nvarchar(125)");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<bool?>("IsDelete")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("((0))");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(125)
@@ -81,6 +1134,10 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProfileImage")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -238,6 +1295,313 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("IFC.Domain.Entities.Address", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.City", "City")
+                        .WithMany("Addresses")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Address_City");
+
+                    b.HasOne("IFC.Domain.Entities.District", "District")
+                        .WithMany("Addresses")
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Address_District");
+
+                    b.Navigation("City");
+
+                    b.Navigation("District");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Approval", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.ApprovalRequestType", "ApprovalRequestType")
+                        .WithMany("Approvals")
+                        .HasForeignKey("ApprovalRequestTypeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasConstraintName("FK_Approvals_ApprovalRequestTypes");
+
+                    b.Navigation("ApprovalRequestType");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.CoreHeadQuarter", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.SectorHeadQuarter", "SectorHeadQuarter")
+                        .WithMany("CoreHeadQuarters")
+                        .HasForeignKey("SectorHeadQuarterId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_CoreHeadQuarter_SectorHeadQuarter");
+
+                    b.Navigation("SectorHeadQuarter");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Incident", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.Location", "Location")
+                        .WithMany("Incidents")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Incidents_Location");
+
+                    b.HasOne("IFC.Domain.Entities.Organization", "Organization")
+                        .WithMany("Incidents")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Incidents_Organizations");
+
+                    b.HasOne("IFC.Domain.Entities.SuspectProfile", "SuspectsProfile")
+                        .WithMany("Incidents")
+                        .HasForeignKey("SuspectsProfileId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Incidents_SuspectProfiles");
+
+                    b.HasOne("IFC.Domain.Entities.Wing", "Wing")
+                        .WithMany("Incidents")
+                        .HasForeignKey("WingId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Incidents_Wing");
+
+                    b.Navigation("Location");
+
+                    b.Navigation("Organization");
+
+                    b.Navigation("SuspectsProfile");
+
+                    b.Navigation("Wing");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Organization", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.Affiliate", "Affiliate")
+                        .WithMany("Organizations")
+                        .HasForeignKey("AffiliateId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Organizations_Affiliates");
+
+                    b.HasOne("IFC.Domain.Entities.Involvement", "Involvement")
+                        .WithMany("Organizations")
+                        .HasForeignKey("InvolvementId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Organizations_Involvements");
+
+                    b.HasOne("IFC.Domain.Entities.OperationalBase", "OperationalBase")
+                        .WithMany("Organizations")
+                        .HasForeignKey("OperationalBaseId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Organizations_OperationalBases");
+
+                    b.HasOne("IFC.Domain.Entities.SocialMediaProfile", "SocialMediaProfile")
+                        .WithMany("Organizations")
+                        .HasForeignKey("SocialMediaProfileId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Organizations_SocialMediaProfiles");
+
+                    b.HasOne("IFC.Domain.Entities.TerroristProfile", null)
+                        .WithMany("Organizations")
+                        .HasForeignKey("TerroristProfileId");
+
+                    b.Navigation("Affiliate");
+
+                    b.Navigation("Involvement");
+
+                    b.Navigation("OperationalBase");
+
+                    b.Navigation("SocialMediaProfile");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.OrganizationFunder", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.Funder", "Funder")
+                        .WithMany("OrganizationFunders")
+                        .HasForeignKey("FunderId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_OrganizationFunders_Funders");
+
+                    b.HasOne("IFC.Domain.Entities.Organization", "Organization")
+                        .WithMany("OrganizationFunders")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_OrganizationFunders_Organizations");
+
+                    b.Navigation("Funder");
+
+                    b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SuspectFamilyDetail", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.RelationType", "RelationType")
+                        .WithMany("SuspectFamilyDetails")
+                        .HasForeignKey("RelationTypeId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_SuspectFamilyDetails_RelationTypes");
+
+                    b.Navigation("RelationType");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SuspectProfile", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.Address", "Address")
+                        .WithMany("SuspectProfiles")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_SuspectProfiles_Address");
+
+                    b.HasOne("IFC.Domain.Entities.Organization", "Orgnization")
+                        .WithMany("SuspectProfiles")
+                        .HasForeignKey("OrgnizationId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_SuspectProfiles_Organizations");
+
+                    b.HasOne("IFC.Domain.Entities.SuspectFamilyDetail", "SuspectFamilyDetails")
+                        .WithMany("SuspectProfiles")
+                        .HasForeignKey("SuspectFamilyDetailsId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_SuspectProfiles_SuspectFamilyDetails");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Orgnization");
+
+                    b.Navigation("SuspectFamilyDetails");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristFacilitatorsDetail", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.Address", "Address")
+                        .WithMany("TerroristFacilitatorsDetails")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_TerroristFacilitatorsDetails_Address");
+
+                    b.HasOne("IFC.Domain.Entities.RelationType", "RelationType")
+                        .WithMany("TerroristFacilitatorsDetails")
+                        .HasForeignKey("RelationTypeId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_TerroristFacilitatorsDetails_RelationTypes");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("RelationType");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristFamilyDetail", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.Address", "Address")
+                        .WithMany("TerroristFamilyDetails")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_TerroristFamilyDetails_Address");
+
+                    b.HasOne("IFC.Domain.Entities.RelationType", "RelationType")
+                        .WithMany("TerroristFamilyDetails")
+                        .HasForeignKey("RelationTypeId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_TerroristFamilyDetails_RelationTypes");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("RelationType");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristProfile", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.Address", "Address")
+                        .WithMany("TerroristProfiles")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_TerroristProfiles_Address");
+
+                    b.HasOne("IFC.Domain.Entities.Organization", "Orgnization")
+                        .WithMany("TerroristProfiles")
+                        .HasForeignKey("OrgnizationId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_TerroristProfiles_Organizations");
+
+                    b.HasOne("IFC.Domain.Entities.TerroristFacilitatorsDetail", "TerroristFacilitatorsDetails")
+                        .WithMany("TerroristProfiles")
+                        .HasForeignKey("TerroristFacilitatorsDetailsId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_TerroristProfiles_TerroristFacilitatorsDetails");
+
+                    b.HasOne("IFC.Domain.Entities.TerroristFamilyDetail", "TerroristFamilyDetails")
+                        .WithMany("TerroristProfiles")
+                        .HasForeignKey("TerroristFamilyDetailsId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_TerroristProfiles_TerroristFamilyDetails");
+
+                    b.HasOne("IFC.Domain.Entities.TerroristInvolvement", "TerroristInvolvement")
+                        .WithMany("TerroristProfiles")
+                        .HasForeignKey("TerroristInvolvementId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_TerroristProfiles_TerroristInvolvements");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Orgnization");
+
+                    b.Navigation("TerroristFacilitatorsDetails");
+
+                    b.Navigation("TerroristFamilyDetails");
+
+                    b.Navigation("TerroristInvolvement");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Threat", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.Incident", "Incident")
+                        .WithMany("Threats")
+                        .HasForeignKey("IncidentId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Threats_Incidents");
+
+                    b.HasOne("IFC.Domain.Entities.Location", "Location")
+                        .WithMany("Threats")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Threats_Location");
+
+                    b.HasOne("IFC.Domain.Entities.Organization", "Organization")
+                        .WithMany("Threats")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Threats_Organizations");
+
+                    b.HasOne("IFC.Domain.Entities.SuspectProfile", "SuspectsProfile")
+                        .WithMany("Threats")
+                        .HasForeignKey("SuspectsProfileId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Threats_SuspectProfiles");
+
+                    b.HasOne("IFC.Domain.Entities.Wing", "Wing")
+                        .WithMany("Threats")
+                        .HasForeignKey("WingId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Threats_Wing");
+
+                    b.Navigation("Incident");
+
+                    b.Navigation("Location");
+
+                    b.Navigation("Organization");
+
+                    b.Navigation("SuspectsProfile");
+
+                    b.Navigation("Wing");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Wing", b =>
+                {
+                    b.HasOne("IFC.Domain.Entities.CoreHeadQuarter", "CoreHeadQuarter")
+                        .WithMany("Wings")
+                        .HasForeignKey("CoreHeadQuarterId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Wing_CoreHeadQuarter");
+
+                    b.Navigation("CoreHeadQuarter");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -249,7 +1613,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("IFC.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("IFC.Infrastructure.Identity.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -258,7 +1622,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("IFC.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("IFC.Infrastructure.Identity.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -273,7 +1637,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IFC.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("IFC.Infrastructure.Identity.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -282,11 +1646,145 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("IFC.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("IFC.Infrastructure.Identity.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Address", b =>
+                {
+                    b.Navigation("SuspectProfiles");
+
+                    b.Navigation("TerroristFacilitatorsDetails");
+
+                    b.Navigation("TerroristFamilyDetails");
+
+                    b.Navigation("TerroristProfiles");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Affiliate", b =>
+                {
+                    b.Navigation("Organizations");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.ApprovalRequestType", b =>
+                {
+                    b.Navigation("Approvals");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.City", b =>
+                {
+                    b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.CoreHeadQuarter", b =>
+                {
+                    b.Navigation("Wings");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.District", b =>
+                {
+                    b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Funder", b =>
+                {
+                    b.Navigation("OrganizationFunders");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Incident", b =>
+                {
+                    b.Navigation("Threats");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Involvement", b =>
+                {
+                    b.Navigation("Organizations");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Location", b =>
+                {
+                    b.Navigation("Incidents");
+
+                    b.Navigation("Threats");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.OperationalBase", b =>
+                {
+                    b.Navigation("Organizations");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Organization", b =>
+                {
+                    b.Navigation("Incidents");
+
+                    b.Navigation("OrganizationFunders");
+
+                    b.Navigation("SuspectProfiles");
+
+                    b.Navigation("TerroristProfiles");
+
+                    b.Navigation("Threats");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.RelationType", b =>
+                {
+                    b.Navigation("SuspectFamilyDetails");
+
+                    b.Navigation("TerroristFacilitatorsDetails");
+
+                    b.Navigation("TerroristFamilyDetails");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SectorHeadQuarter", b =>
+                {
+                    b.Navigation("CoreHeadQuarters");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SocialMediaProfile", b =>
+                {
+                    b.Navigation("Organizations");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SuspectFamilyDetail", b =>
+                {
+                    b.Navigation("SuspectProfiles");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.SuspectProfile", b =>
+                {
+                    b.Navigation("Incidents");
+
+                    b.Navigation("Threats");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristFacilitatorsDetail", b =>
+                {
+                    b.Navigation("TerroristProfiles");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristFamilyDetail", b =>
+                {
+                    b.Navigation("TerroristProfiles");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristInvolvement", b =>
+                {
+                    b.Navigation("TerroristProfiles");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.TerroristProfile", b =>
+                {
+                    b.Navigation("Organizations");
+                });
+
+            modelBuilder.Entity("IFC.Domain.Entities.Wing", b =>
+                {
+                    b.Navigation("Incidents");
+
+                    b.Navigation("Threats");
                 });
 #pragma warning restore 612, 618
         }

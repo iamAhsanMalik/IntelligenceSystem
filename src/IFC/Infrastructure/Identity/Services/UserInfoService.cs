@@ -15,9 +15,10 @@ public interface IUserInfoService
     Task<string> GetUserEmailAsync(ApplicationUser user);
     Task<string> GetUserPhoneNumberAsync(ApplicationUser user);
     Task<bool> IsUserEmailConfirmedAsync(ApplicationUser user);
+    Task<IList<string>> GetCurrentLoginUserRolesListAsync();
 }
 
-public class UserInfoService : IUserInfoService
+public sealed class UserInfoService : IUserInfoService
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IHttpContextAccessor _httpContext;
@@ -41,6 +42,11 @@ public class UserInfoService : IUserInfoService
     {
         var user = await _userManager.GetUserAsync(_httpContext.HttpContext?.User);
         return $"{user.FirstName} {user.LastName}";
+    }
+    public async Task<IList<string>> GetCurrentLoginUserRolesListAsync()
+    {
+        var user = await _userManager.GetUserAsync(_httpContext.HttpContext?.User);
+        return await _userManager.GetRolesAsync(user);
     }
     public async Task<string> FindUserFullNameAsync(string userId)
     {

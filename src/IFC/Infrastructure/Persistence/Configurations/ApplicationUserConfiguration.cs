@@ -1,17 +1,14 @@
-using IFC.Infrastructure.Identity.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace IFC.Infrastructure.Persistence.Configurations;
 
 public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {
-    public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+    public void Configure(EntityTypeBuilder<ApplicationUser> entity)
     {
-        builder.Property(a => a.FirstName).HasMaxLength(125);
-        builder.Property(a => a.LastName).HasMaxLength(125);
-        builder.Property(a => a.CNIC).HasMaxLength(15).IsRequired();
-        builder.Property(a => a.ProfileImage).HasMaxLength(100);
-        builder.Property(a => a.IsActive).HasDefaultValue(false).IsRequired();
+        entity.Property(a => a.FirstName).HasMaxLength(125);
+        entity.Property(a => a.LastName).HasMaxLength(125);
+        entity.Property(a => a.CNIC).HasMaxLength(15).IsRequired();
+        entity.Property(a => a.ProfileImage).HasMaxLength(100);
+        entity.Property(a => a.IsDelete).HasDefaultValueSql("((0))");
+        entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
     }
 }

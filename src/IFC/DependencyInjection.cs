@@ -1,5 +1,5 @@
 using IFC.Infrastructure.Persistence;
-using System.Collections.Immutable;
+using IFC.Infrastructure.Persistence.Seeding;
 
 namespace IFC;
 
@@ -11,6 +11,7 @@ public static class DependencyInjection
         services.AddControllersWithViews().AddJsonOptions(options =>
                 options.JsonSerializerOptions.PropertyNamingPolicy = null);
         // services.AddDistributedMemoryCache();
+        services.AddScoped<ISeedDatabase, SeedDatabase>();
         services.AddSession(options =>
         {
             options.IdleTimeout = TimeSpan.FromSeconds(10);

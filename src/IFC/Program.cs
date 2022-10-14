@@ -8,7 +8,6 @@ builder.Services.AddIFCServices(builder.Configuration);
 var app = builder.Build();
 {
     // Configure the HTTP request pipeline.
-    app.AddRequestPipeline();
-
+    await app.AddRequestPipelineAsync();
     app.Run();
 }

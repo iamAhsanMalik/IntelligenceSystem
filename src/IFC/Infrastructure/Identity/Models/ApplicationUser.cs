@@ -8,6 +8,6 @@ public class ApplicationUser : IdentityUser
     public string? LastName { get; set; }
     public string? CNIC { get; set; }
     public string? ProfileImage { get; set; }
-    public bool IsActive { get; set; }
-    // public long Desi { get; set; }
+    public bool? IsDelete { get; set; }
+    public bool? IsActive { get; set; }
 }
