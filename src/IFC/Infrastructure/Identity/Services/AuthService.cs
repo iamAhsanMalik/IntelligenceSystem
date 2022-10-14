@@ -7,17 +7,21 @@ using System.Text;
 
 namespace IFC.Infrastructure.Identity.Services;
 
-internal interface IAuthService
+public interface IAuthService
 {
+    Task<IdentityResult?> EmailConfirmationAsync(string userId, string code);
+    Task<string> EmailConfirmationTokenGeneratorAsync(ApplicationUser user);
     Task LoginAsync(ApplicationUser user, bool isPersistence = false);
     Task LogoutAsync();
     Task<Microsoft.AspNetCore.Identity.SignInResult?> PasswordLoginAsync(LoginDTO model, bool lockoutUserOnFailure = false);
+    Task<IdentityResult?> PasswordResetAsync(ApplicationUser user, string code, string newPassword);
     Task<string> PasswordResetTokenGeneratorAsync(ApplicationUser user);
     Task<IdentityResult?> RegisterAsync(ApplicationUser user);
     Task<IdentityResult?> RegisterWithPasswordAsync(RegisterDTO model);
+    Task<bool> UserTokenVerificationAsync(ApplicationUser applicationUser, string token);
 }
 
-internal class AuthService : IAuthService
+internal sealed class AuthService : IAuthService
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
@@ -49,5 +53,12 @@ internal class AuthService : IAuthService
 
     #region Password Reset Token Generator
     public async Task<string> PasswordResetTokenGeneratorAsync(ApplicationUser user) => WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(await _userManager.GeneratePasswordResetTokenAsync(user)));
+    public async Task<string> EmailConfirmationTokenGeneratorAsync(ApplicationUser user) => WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(await _userManager.GenerateEmailConfirmationTokenAsync(user)));
+    public async Task<bool> UserTokenVerificationAsync(ApplicationUser applicationUser, string token)
+    {
+        return await _userManager.VerifyUserTokenAsync(applicationUser, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", token);
+    }
+    public async Task<IdentityResult?> PasswordResetAsync(ApplicationUser user, string code, string newPassword) => user != null && !string.IsNullOrEmpty(code) && !string.IsNullOrEmpty(newPassword) ? await _userManager.ResetPasswordAsync(user, code, newPassword) : default;
+    public async Task<IdentityResult?> EmailConfirmationAsync(string userId, string code) => !string.IsNullOrEmpty(userId) || !string.IsNullOrEmpty(code) ? await _userManager.ConfirmEmailAsync(await _userManager.FindByIdAsync(userId), code) : default;
     #endregion
 }

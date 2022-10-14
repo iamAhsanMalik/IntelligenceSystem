@@ -1,5 +1,5 @@
 ﻿using IFC.Domain.Constants;
-using IFC.Infrastructure.Identity;
+using IFC.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

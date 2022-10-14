@@ -17,7 +17,7 @@ public interface IUserInfoService
     Task<bool> IsUserEmailConfirmedAsync(ApplicationUser user);
 }
 
-public class UserInfoService : IUserInfoService
+public sealed class UserInfoService : IUserInfoService
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IHttpContextAccessor _httpContext;

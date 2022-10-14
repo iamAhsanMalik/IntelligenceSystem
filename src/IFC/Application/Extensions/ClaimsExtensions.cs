@@ -1,3 +1,4 @@
+using IFC.Infrastructure.Identity.Helpers;
 using IFC.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Reflection;
@@ -14,12 +15,16 @@ public static class ClaimsExtensions
             allPermissions.Add(new RoleClaim { Value = field.GetValue(null)?.ToString(), Type = "Permissions" });
         }
     }
-    public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string permission)
+    public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, string role, string moduleName)
     {
-        var allClaims = await roleManager.GetClaimsAsync(role);
-        if (!allClaims.Any(a => a.Type == "Permission" && a.Value == permission))
+        IdentityRole? adminRole = await roleManager.FindByNameAsync(role);
+        var allClaims = await roleManager.GetClaimsAsync(adminRole);
+        foreach (var permission in GeneratePermissions.GeneratePermissionsForModule(moduleName))
         {
-            await roleManager.AddClaimAsync(role, new Claim("Permission", permission));
+            if (!allClaims.Any(a => a.Type == "Permission" && a.Value == permission))
+            {
+                await roleManager.AddClaimAsync(adminRole, new Claim("Permission", permission));
+            }
         }
     }
 }

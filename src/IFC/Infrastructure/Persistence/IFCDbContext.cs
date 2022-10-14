@@ -1,4 +1,4 @@
-using IFC.Infrastructure.Identity;
+using IFC.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
