@@ -15,7 +15,7 @@
 
                 </div>
                 <div class="col-md-2 col-sm-6">
-                    <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius">Add New </button>
+                    <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius" data-toggle="modal" data-target="#AddterroristModal">Add New Terrorist</button>
                 </div>
                      <div class="col-md-2 col-sm-6">
                     <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius">Export to Excel</button>
@@ -44,11 +44,393 @@
                         <td>700</td>
                         <td>10</td>
                         <td>10</td>
-                        <td> <button type="button" class="btn btn-danger  mt-2 mb-2 btn-radius">View  Map</button></td>
-                        <td><i class="fa fa-edit"></i><i class="fa fa-view"></i><i class="fa fa-trashdotnet watch --project src/IFC"></i></td>
+                        <td> <button type="button" class="btn btn-danger  mt-2 mb-2 btn-radius" >View  Map</button></td>
+                        <td>
+
+                            <button><i class="fa fa-edit"></i></button>
+                            <button><i class="fa fa-eye" data-toggle="modal" data-target="#AddterroristmapModal"></i></button>
+                            <button><i class="fa fa-trash"></i></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </section>
+<div class=" Modalgeneralclass modal" id="AddterroristModal" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="col-md-12 text-center">
+                    <div class="modal_header">
+                        <h4 class="modal-title">ADD TERRORIST</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div><label> NAME</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>ORGANIZATION </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>  FATHER NAME</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" readonly id="Ava_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> GRADING</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> RESIDENCY</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> DETAILS</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-6 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label> DATE OF APPREHENSION</label></div><br />
+                            <div>
+                                <input class="form-control" type="date" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" id="BtnMove" onclick="AddMovement();" style="  margin-left:10px;">Send For Approval</button>
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" data-dismiss="modal">Cancel</button>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class=" Modalgeneralclass modal" id="AddterroristmapModal" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div><label> NAME</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>EDUCATION </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>  PASSPORT </label></div><br />
+                            <div>
+                                <input type="file" class="form-control" readonly id="Ava_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> OTHER FAMILY MEMBERS</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> DATE OF BIRTH</label></div><br />
+                            <div>
+                                <input type="number" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> HEIGHT</label></div><br />
+                            <div>
+                                <input type="number" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-3 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label>   PRIMARY FAMILY</label></div><br />
+                            <div>
+                                <input class="form-control" type="text" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div><label> INCL IN SVAS LIST</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>FATHER NAME </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>  COMPLEXTION </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" readonly id="Ava_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> EXTENDED FAMILY </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> WEAKNESS IDG TO SRR  </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> MOTHER NAME</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-3 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label>    ORGANIZATION</label></div><br />
+                            <div>
+                                <input class="form-control" type="text" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div><label> CURRENT LOCATION</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>NO OF FIRs REDG AGAINST </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>  TRIBE/CAST </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" readonly id="Ava_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> BOOK</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> BOOK</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> NAME INCLUDED IN RED</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-3 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label>   SECT</label></div><br />
+                            <div>
+                                <input class="form-control" type="text" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div><label> MOBILE NO.</label></div><br />
+                            <div>
+                                <input type="number" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>FOREIGN CITY LINKAGES </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>  GENERAL REMARKS </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" readonly id="Ava_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> INVOLMED</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> CNIC </label></div><br />
+                            <div>
+                                <input type="number" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> SOCIAL MEDIA PROFILE</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-6 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label>   PRIMARY FAMILY</label></div><br />
+                            <div>
+                                <input class="form-control" type="text" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" id="BtnMove" onclick="AddMovement();" style="  margin-left:10px;">Send For Approval</button>
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" data-dismiss="modal">Cancel</button>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

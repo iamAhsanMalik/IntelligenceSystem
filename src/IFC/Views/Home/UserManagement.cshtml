@@ -1,16 +1,22 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "USER OVERVIEW";
 }
 
 <section>
     <div class="panel panel-default panel-bg p-2">
         <div class="panel-header border-bottom">
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                <div class="row">
+                <div class="col-md-4 col-sm-6">
                     <i class="fa fa-search"></i>
-                    <input type="search" class="form-control bg-transparent border-0 w-90 d-inline mt-2" name="search" placeholder="Search" value="" />
+                    <input type="search" class="form-control bg-transparent border-0 w-90 d-inline mt-2" name="search" placeholder="Search" value="" ; style="border:1px solid #fff !important; border-radius:20px;" />
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-4 col-sm-6">
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius" data-toggle="modal" data-target="#AdduserModal">Add New User </button>
+                </div>
+                <div class="col-md-2 col-sm-6">
                     <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius">Export to Excel</button>
                 </div>
             </div>
@@ -33,13 +39,137 @@
                         <td>CBT</td>
                         <td>100</td>
                         <td>700</td>
-                        <td>10</td>
-                        <td>10</td>
                         <td><button type="button" class="btn btn-danger  mt-2 mb-2 btn-radius">Upload</button></td>
-                        <td><i class="fa fa-edit"></i><i class="fa fa-view"></i><i class="fa fa-trashdotnet watch --project src/IFC"></i></td>
+                        <td>
+
+                                <button><i class="fa fa-edit"></i></button>
+                                <button><i class="fa fa-eye"></i></button>
+                                <button><i class="fa fa-trash"></i></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </section>
+
+<div class=" Modalgeneralclass modal" id="AdduserModal" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="col-md-12 text-center">
+                    <div class="modal_header">
+                        <h4 class="modal-title">ADD NEW USER</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div><label> NAME</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> SECTOR ID</label></div><br />
+                            <div>
+                                <input type="number" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> SOURCE OF FUNDING</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" readonly id="Ava_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> USER TYPE</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> WING ID</label></div><br />
+                            <div>
+                                <input type="number" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> LAST INVOLVEMENT</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> EMAIL</label></div><br />
+                            <div>
+                                <input type="email" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> IMAGE</label></div><br />
+                            <div>
+                                <input type="file" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>DETAILS</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>THREATE LEVEL</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                   
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" id="BtnMove" onclick="AddMovement();" style="  margin-left:10px;">Send For Approval</button>
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" data-dismiss="modal">Cancel</button>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
