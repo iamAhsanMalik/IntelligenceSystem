@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section>
+    <div class="panel panel-default panel-bg p-2">
+        <div class="panel-header border-bottom">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <i class="fa fa-search"></i>
+                    <input type="search" class="form-control bg-transparent border-0 w-90 d-inline mt-2" name="search" placeholder="Search" value="" />
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius">Export to Excel</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table id="DashboardTable" class="table border-none">
+                <thead>
+                    <tr class="bg_Brown border-radius" style="color:white !important">
+                        <th>Approval request ID</th>
+                        <th>Request Type</th>
+                        <th>Initiated On</th>
+                        <th > Status</th>
+                        
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>CBT</td>
+                        <td>100</td>
+                        <td>700</td>
+                        <td><i class="fa fa-edit"></i><i class="fa fa-view"></i><i class="fa fa-trashdotnet watch --project src/IFC"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
