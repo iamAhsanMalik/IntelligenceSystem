@@ -53,3 +53,4 @@ public class IFCDbContext : IdentityDbContext<ApplicationUser>
 }
 
 // dotnet ef dbcontext scaffold Name=ConnectionStrings:DefaultConnection Microsoft.EntityFrameworkCore.SqlServer -c IFCDbContext -p src/IFC -o Infrastructure/Persistence/Models
+// dotnet ef dbcontext scaffold Name=ConnectionStrings:TestConnection Microsoft.EntityFrameworkCore.SqlServer -c IFCDbContext -p src/IFC -o Infrastructure/Persistence/TestModels

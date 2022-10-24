@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IFC.Infrastructure.Persistence.DbMigrations
 {
     [DbContext(typeof(IFCDbContext))]
-    [Migration("20221024062226_SetCascadeToNull")]
-    partial class SetCascadeToNull
+    [Migration("20221024070625_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

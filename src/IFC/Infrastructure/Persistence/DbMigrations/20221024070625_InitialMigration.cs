@@ -280,12 +280,14 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_Address_City",
                         column: x => x.CityId,
                         principalTable: "City",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Address_District",
                         column: x => x.DistrictId,
                         principalTable: "District",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -311,7 +313,8 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_SuspectFamilyDetails_RelationTypes",
                         column: x => x.RelationTypeId,
                         principalTable: "RelationTypes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -355,7 +358,8 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_CoreHeadQuarter_SectorHeadQuarter",
                         column: x => x.SectorHeadQuarterId,
                         principalTable: "SectorHeadQuarter",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -469,12 +473,14 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_TerroristFacilitatorsDetails_Address",
                         column: x => x.AddressId,
                         principalTable: "Address",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_TerroristFacilitatorsDetails_RelationTypes",
                         column: x => x.RelationTypeId,
                         principalTable: "RelationTypes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -503,12 +509,14 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_TerroristFamilyDetails_Address",
                         column: x => x.AddressId,
                         principalTable: "Address",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_TerroristFamilyDetails_RelationTypes",
                         column: x => x.RelationTypeId,
                         principalTable: "RelationTypes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -534,7 +542,8 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_Wing_CoreHeadQuarter",
                         column: x => x.CoreHeadQuarterId,
                         principalTable: "CoreHeadQuarter",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -558,12 +567,14 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_Incidents_Location",
                         column: x => x.LocationId,
                         principalTable: "Location",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Incidents_Wing",
                         column: x => x.WingId,
                         principalTable: "Wing",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -584,7 +595,8 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_OrganizationFunders_Funders",
                         column: x => x.FunderId,
                         principalTable: "Funders",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -613,22 +625,26 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_Organizations_Affiliates",
                         column: x => x.AffiliateId,
                         principalTable: "Affiliates",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Organizations_Involvements",
                         column: x => x.InvolvementId,
                         principalTable: "Involvements",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Organizations_OperationalBases",
                         column: x => x.OperationalBaseId,
                         principalTable: "OperationalBases",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Organizations_SocialMediaProfiles",
                         column: x => x.SocialMediaProfileId,
                         principalTable: "SocialMediaProfiles",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -660,17 +676,20 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_SuspectProfiles_Address",
                         column: x => x.AddressId,
                         principalTable: "Address",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_SuspectProfiles_Organizations",
                         column: x => x.OrgnizationId,
                         principalTable: "Organizations",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_SuspectProfiles_SuspectFamilyDetails",
                         column: x => x.SuspectFamilyDetailsId,
                         principalTable: "SuspectFamilyDetails",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -706,27 +725,32 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_TerroristProfiles_Address",
                         column: x => x.AddressId,
                         principalTable: "Address",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_TerroristProfiles_Organizations",
                         column: x => x.OrgnizationId,
                         principalTable: "Organizations",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_TerroristProfiles_TerroristFacilitatorsDetails",
                         column: x => x.TerroristFacilitatorsDetailsId,
                         principalTable: "TerroristFacilitatorsDetails",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_TerroristProfiles_TerroristFamilyDetails",
                         column: x => x.TerroristFamilyDetailsId,
                         principalTable: "TerroristFamilyDetails",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_TerroristProfiles_TerroristInvolvements",
                         column: x => x.TerroristInvolvementId,
                         principalTable: "TerroristInvolvements",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -752,27 +776,32 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         name: "FK_Threats_Incidents",
                         column: x => x.IncidentId,
                         principalTable: "Incidents",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Threats_Location",
                         column: x => x.LocationId,
                         principalTable: "Location",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Threats_Organizations",
                         column: x => x.OrganizationId,
                         principalTable: "Organizations",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Threats_SuspectProfiles",
                         column: x => x.SuspectsProfileId,
                         principalTable: "SuspectProfiles",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Threats_Wing",
                         column: x => x.WingId,
                         principalTable: "Wing",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(
@@ -989,21 +1018,24 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 table: "Incidents",
                 column: "OrganizationId",
                 principalTable: "Organizations",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.SetNull);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Incidents_SuspectProfiles",
                 table: "Incidents",
                 column: "SuspectsProfileId",
                 principalTable: "SuspectProfiles",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.SetNull);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_OrganizationFunders_Organizations",
                 table: "OrganizationFunders",
                 column: "OrganizationId",
                 principalTable: "Organizations",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.SetNull);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Organizations_TerroristProfiles_TerroristProfileId",

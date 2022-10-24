@@ -1,3 +1,7 @@
+using IFC.Infrastructure.Identity.Helpers;
+using System.Reflection;
+using System.Security.Claims;
+
 namespace IFC.Application.Extensions;
 
 public static class ClaimsExtensions
