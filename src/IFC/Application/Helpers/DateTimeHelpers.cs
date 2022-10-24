@@ -1,4 +1,6 @@
-﻿namespace IFC.Application.Helpers;
+﻿using System.Globalization;
+
+namespace IFC.Application.Helpers;
 
 public interface IDateTimeHelpers
 {
@@ -47,7 +49,7 @@ internal sealed class DateTimeHelpers : IDateTimeHelpers
     {
         DateTime weekStart;
         int monday = 1;
-        int crtDay = (int)date.DayOfWeek;
+        int crtDay = (int) date.DayOfWeek;
         if (date.DayOfWeek == DayOfWeek.Sunday)
         {
             crtDay = 7;
@@ -61,7 +63,7 @@ internal sealed class DateTimeHelpers : IDateTimeHelpers
     {
         DateTime weekStart;
         int sunday = 7;
-        int crtDay = (int)date.DayOfWeek;
+        int crtDay = (int) date.DayOfWeek;
         if (date.DayOfWeek == DayOfWeek.Sunday)
         {
             crtDay = 7;
