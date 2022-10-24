@@ -1,7 +1,4 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
-
-namespace IFC.Application.Helpers;
+﻿namespace IFC.Application.Helpers;
 
 public interface IEscaperHelpers
 {
@@ -36,7 +33,7 @@ public sealed class EscaperHelpers : IEscaperHelpers
     public string EncodePath(string fullPath)
     {
         string escapestring = GetEscaperChar().Replace(fullPath,
-             m => _escapeChar + ((short) m.Value[0]).ToString("X4"));
+             m => _escapeChar + ((short)m.Value[0]).ToString("X4"));
         byte[] stringToEncode = Encoding.UTF8.GetBytes(escapestring);
         return Convert.ToBase64String(stringToEncode);
     }
@@ -45,7 +42,7 @@ public sealed class EscaperHelpers : IEscaperHelpers
         byte[] decodeKey = Convert.FromBase64String(token);
         string escapestring = Encoding.UTF8.GetString(decodeKey);
         return GetUnescaperChar().Replace(escapestring,
-            m => ((char) Convert.ToInt16(m.Groups[1].Value, 16)).ToString());
+            m => ((char)Convert.ToInt16(m.Groups[1].Value, 16)).ToString());
     }
     public string GetSecureUrl(string fullPath, string fileName)
     {
