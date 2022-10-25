@@ -1,6 +1,4 @@
-﻿using MapsterMapper;
-
-namespace IFC.Infrastructure.Identity;
+﻿namespace IFC.Infrastructure.Identity;
 
 public static class IdentityServices
 {
@@ -26,6 +24,9 @@ public static class IdentityServices
             //options.User.AllowedUserNameCharacters = AppConstants.AllowedUserNameCharacters;
             options.User.RequireUniqueEmail = true;
         });
+
+        // Identity Services
+        services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IFCDbContext>().AddDefaultTokenProviders();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserInfoService, UserInfoService>();
         services.AddScoped<IMapper, Mapper>();
