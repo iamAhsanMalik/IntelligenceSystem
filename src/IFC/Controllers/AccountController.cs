@@ -2,8 +2,6 @@ using Application.DTOs.Account;
 using IFC.Application.DTOs;
 using IFC.Application.Helpers;
 using IFC.Infrastructure.Identity.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 
