@@ -1,5 +1,6 @@
-using IFC.Infrastructure.Persistence;
+using IFC.Infrastructure.Identity;
 using IFC.Infrastructure.Persistence.Seeding;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace IFC;
 
@@ -7,8 +8,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddIFCServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddPersistenceServices(configuration);
-        services.AddControllersWithViews().AddJsonOptions(options =>
+        services.AddPersistenceServices(configuration).AddIdentityServices();
+        services.AddControllersWithViews(options => options.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()))).AddJsonOptions(options =>
                 options.JsonSerializerOptions.PropertyNamingPolicy = null);
         // services.AddDistributedMemoryCache();
         services.AddScoped<ISeedDatabase, SeedDatabase>();

@@ -1,9 +1,4 @@
-using IFC.Application.DTOs;
-using IFC.Infrastructure.Identity.Models;
 using MapsterMapper;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.WebUtilities;
-using System.Text;
 
 namespace IFC.Infrastructure.Identity.Services;
 
