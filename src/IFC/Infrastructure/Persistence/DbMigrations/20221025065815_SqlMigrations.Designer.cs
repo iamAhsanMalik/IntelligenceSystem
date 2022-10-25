@@ -3,6 +3,7 @@ using System;
 using IFC.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,12 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IFC.Infrastructure.Persistence.DbMigrations
 {
     [DbContext(typeof(IFCDbContext))]
-    partial class IFCDbContextModelSnapshot : ModelSnapshot
+
+
+    [Migration("20221024070625_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
