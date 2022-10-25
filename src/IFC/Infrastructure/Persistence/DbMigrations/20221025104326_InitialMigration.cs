@@ -13,12 +13,12 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Affiliates",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    LocalAffiliate = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    ForiegnAffiliate = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LocalAffiliate = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    ForiegnAffiliate = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -29,11 +29,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "ApprovalRequestTypes",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    RequestType = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RequestType = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -44,11 +44,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "City",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -59,11 +59,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "District",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -74,12 +74,12 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Funders",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    FundingSource = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    FundingSource = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -90,11 +90,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Involvements",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -105,13 +105,13 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Location",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    Latitude = table.Column<decimal>(type: "decimal(8, 6)", nullable: true),
-                    Longitude = table.Column<decimal>(type: "decimal(9, 6)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Latitude = table.Column<decimal>(type: "decimal(8,6)", nullable: true),
+                    Longitude = table.Column<decimal>(type: "decimal(9,6)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -122,11 +122,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "OperationalBases",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -137,11 +137,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "RelationTypes",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -152,10 +152,10 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Roles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -166,12 +166,12 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "SectorHeadQuarter",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 30, nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))")
                 },
                 constraints: table =>
                 {
@@ -182,11 +182,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "SocialMediaProfiles",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    SocialMediaProfile = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SocialMediaProfile = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -197,11 +197,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "TerroristInvolvements",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Involvement = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Involvement = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -212,27 +212,27 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 125, nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 125, nullable: true),
-                    CNIC = table.Column<string>(type: "TEXT", maxLength: 15, nullable: false),
-                    ProfileImage = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
-                    IsDelete = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(125)", maxLength: 125, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(125)", maxLength: 125, nullable: true),
+                    CNIC = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    ProfileImage = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -243,13 +243,13 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Approvals",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ApprovalRequestTypeId = table.Column<long>(type: "INTEGER", nullable: true),
-                    InitiatedOn = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    ApprovalStatus = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApprovalRequestTypeId = table.Column<long>(type: "bigint", nullable: true),
+                    InitiatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ApprovalStatus = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
@@ -265,13 +265,13 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Address",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Streat = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    CityId = table.Column<long>(type: "INTEGER", nullable: true),
-                    DistrictId = table.Column<long>(type: "INTEGER", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Streat = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    CityId = table.Column<long>(type: "bigint", nullable: true),
+                    DistrictId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -294,17 +294,17 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "SuspectFamilyDetails",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: true),
-                    CNIC = table.Column<string>(type: "TEXT", maxLength: 15, nullable: true),
-                    Passport = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
-                    MaritalStatus = table.Column<bool>(type: "INTEGER", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    RelationTypeId = table.Column<long>(type: "INTEGER", nullable: true)
+                    CNIC = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    Passport = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MaritalStatus = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    RelationTypeId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -321,11 +321,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "RoleClaims",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    RoleId = table.Column<string>(type: "TEXT", nullable: false),
-                    ClaimType = table.Column<string>(type: "TEXT", nullable: true),
-                    ClaimValue = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -342,14 +342,14 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "CoreHeadQuarter",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    DisplayName = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    SectorHeadQuarterId = table.Column<long>(type: "INTEGER", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))")
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    DisplayName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    SectorHeadQuarterId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))")
                 },
                 constraints: table =>
                 {
@@ -366,11 +366,11 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "UserClaims",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    ClaimType = table.Column<string>(type: "TEXT", nullable: true),
-                    ClaimValue = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -387,10 +387,10 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "UserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "TEXT", nullable: false),
-                    ProviderKey = table.Column<string>(type: "TEXT", nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "TEXT", nullable: true),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false)
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -407,8 +407,8 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "UserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    RoleId = table.Column<string>(type: "TEXT", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -431,10 +431,10 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "UserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    LoginProvider = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Value = table.Column<string>(type: "TEXT", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -451,20 +451,20 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "TerroristFacilitatorsDetails",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: true),
-                    TribeOrCast = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    Sect = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    CNIC = table.Column<string>(type: "TEXT", maxLength: 15, nullable: true),
-                    Passport = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
-                    MaritalStatus = table.Column<bool>(type: "INTEGER", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    AddressId = table.Column<long>(type: "INTEGER", nullable: true),
-                    RelationTypeId = table.Column<long>(type: "INTEGER", nullable: true)
+                    TribeOrCast = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Sect = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    CNIC = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    Passport = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MaritalStatus = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    AddressId = table.Column<long>(type: "bigint", nullable: true),
+                    RelationTypeId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -487,20 +487,20 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "TerroristFamilyDetails",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: true),
-                    TribeOrCast = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    Sect = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    CNIC = table.Column<string>(type: "TEXT", maxLength: 15, nullable: true),
-                    Passport = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
-                    MaritalStatus = table.Column<bool>(type: "INTEGER", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    AddressId = table.Column<long>(type: "INTEGER", nullable: true),
-                    RelationTypeId = table.Column<long>(type: "INTEGER", nullable: true)
+                    TribeOrCast = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Sect = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    CNIC = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    Passport = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MaritalStatus = table.Column<bool>(type: "bit", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    AddressId = table.Column<long>(type: "bigint", nullable: true),
+                    RelationTypeId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -523,17 +523,17 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Wing",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    IsSACAApplied = table.Column<bool>(type: "INTEGER", nullable: true),
-                    SACAType = table.Column<int>(type: "INTEGER", nullable: true),
-                    WingType = table.Column<int>(type: "INTEGER", nullable: true),
-                    DisplayName = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    CoreHeadQuarterId = table.Column<long>(type: "INTEGER", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsSACAApplied = table.Column<bool>(type: "bit", nullable: true),
+                    SACAType = table.Column<int>(type: "int", nullable: true),
+                    WingType = table.Column<int>(type: "int", nullable: true),
+                    DisplayName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    CoreHeadQuarterId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -550,15 +550,15 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Incidents",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    IncidentDate = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    SuspectsProfileId = table.Column<long>(type: "INTEGER", nullable: true),
-                    OrganizationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    WingId = table.Column<long>(type: "INTEGER", nullable: true),
-                    LocationId = table.Column<long>(type: "INTEGER", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IncidentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    SuspectsProfileId = table.Column<long>(type: "bigint", nullable: true),
+                    OrganizationId = table.Column<long>(type: "bigint", nullable: true),
+                    WingId = table.Column<long>(type: "bigint", nullable: true),
+                    LocationId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -581,12 +581,12 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "OrganizationFunders",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FunderId = table.Column<long>(type: "INTEGER", nullable: true),
-                    OrganizationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FunderId = table.Column<long>(type: "bigint", nullable: true),
+                    OrganizationId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -603,20 +603,20 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Organizations",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    TotalMembers = table.Column<long>(type: "INTEGER", nullable: true),
-                    YearFounded = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    ThreatLevel = table.Column<byte>(type: "INTEGER", nullable: true),
-                    Details = table.Column<string>(type: "TEXT", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    AffiliateId = table.Column<long>(type: "INTEGER", nullable: true),
-                    OperationalBaseId = table.Column<long>(type: "INTEGER", nullable: true),
-                    InvolvementId = table.Column<long>(type: "INTEGER", nullable: true),
-                    SocialMediaProfileId = table.Column<long>(type: "INTEGER", nullable: true),
-                    TerroristProfileId = table.Column<long>(type: "INTEGER", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    TotalMembers = table.Column<long>(type: "bigint", nullable: true),
+                    YearFounded = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ThreatLevel = table.Column<byte>(type: "tinyint", nullable: true),
+                    Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    AffiliateId = table.Column<long>(type: "bigint", nullable: true),
+                    OperationalBaseId = table.Column<long>(type: "bigint", nullable: true),
+                    InvolvementId = table.Column<long>(type: "bigint", nullable: true),
+                    SocialMediaProfileId = table.Column<long>(type: "bigint", nullable: true),
+                    TerroristProfileId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -651,23 +651,23 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "SuspectProfiles",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
-                    FatherName = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    FatherName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: true),
-                    TribeOrCast = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    Sect = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    CNIC = table.Column<string>(type: "TEXT", maxLength: 15, nullable: true),
-                    Passport = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
-                    MaritalStatus = table.Column<bool>(type: "INTEGER", nullable: true),
-                    GeneralRemarks = table.Column<string>(type: "TEXT", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    AddressId = table.Column<long>(type: "INTEGER", nullable: true),
-                    OrgnizationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    SuspectFamilyDetailsId = table.Column<long>(type: "INTEGER", nullable: true)
+                    TribeOrCast = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Sect = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    CNIC = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    Passport = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MaritalStatus = table.Column<bool>(type: "bit", nullable: true),
+                    GeneralRemarks = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    AddressId = table.Column<long>(type: "bigint", nullable: true),
+                    OrgnizationId = table.Column<long>(type: "bigint", nullable: true),
+                    SuspectFamilyDetailsId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -696,27 +696,27 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "TerroristProfiles",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 150, nullable: true),
-                    NameAlias = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    FatherName = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    NameAlias = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    FatherName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: true),
-                    TribeOrCast = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    Sect = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
-                    CNIC = table.Column<string>(type: "TEXT", maxLength: 15, nullable: true),
-                    Passport = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
-                    MaritalStatus = table.Column<bool>(type: "INTEGER", nullable: true),
-                    IsFounder = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    GeneralRemarks = table.Column<string>(type: "TEXT", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    AddressId = table.Column<long>(type: "INTEGER", nullable: true),
-                    OrgnizationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    TerroristInvolvementId = table.Column<long>(type: "INTEGER", nullable: true),
-                    TerroristFamilyDetailsId = table.Column<long>(type: "INTEGER", nullable: true),
-                    TerroristFacilitatorsDetailsId = table.Column<long>(type: "INTEGER", nullable: true)
+                    TribeOrCast = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Sect = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    CNIC = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    Passport = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MaritalStatus = table.Column<bool>(type: "bit", nullable: true),
+                    IsFounder = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    GeneralRemarks = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    AddressId = table.Column<long>(type: "bigint", nullable: true),
+                    OrgnizationId = table.Column<long>(type: "bigint", nullable: true),
+                    TerroristInvolvementId = table.Column<long>(type: "bigint", nullable: true),
+                    TerroristFamilyDetailsId = table.Column<long>(type: "bigint", nullable: true),
+                    TerroristFacilitatorsDetailsId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -757,17 +757,17 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "Threats",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ThreatDate = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    ThreatLevel = table.Column<byte>(type: "INTEGER", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((0))"),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: true, defaultValueSql: "((1))"),
-                    WingId = table.Column<long>(type: "INTEGER", nullable: true),
-                    OrganizationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    SuspectsProfileId = table.Column<long>(type: "INTEGER", nullable: true),
-                    IncidentId = table.Column<long>(type: "INTEGER", nullable: true),
-                    LocationId = table.Column<long>(type: "INTEGER", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ThreatDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ThreatLevel = table.Column<byte>(type: "tinyint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((1))"),
+                    WingId = table.Column<long>(type: "bigint", nullable: true),
+                    OrganizationId = table.Column<long>(type: "bigint", nullable: true),
+                    SuspectsProfileId = table.Column<long>(type: "bigint", nullable: true),
+                    IncidentId = table.Column<long>(type: "bigint", nullable: true),
+                    LocationId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -888,7 +888,8 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "RoleNameIndex",
                 table: "Roles",
                 column: "NormalizedName",
-                unique: true);
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SuspectFamilyDetails_RelationTypeId",
@@ -1004,7 +1005,8 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                 name: "UserNameIndex",
                 table: "Users",
                 column: "NormalizedUserName",
-                unique: true);
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Wing_CoreHeadQuarterId",
