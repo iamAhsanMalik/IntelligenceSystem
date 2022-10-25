@@ -11,8 +11,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IFC.Infrastructure.Persistence.DbMigrations
 {
     [DbContext(typeof(IFCDbContext))]
+<<<<<<<< HEAD:src/IFC/Infrastructure/Persistence/DbMigrations/20221025065815_SqlMigrations.Designer.cs
     [Migration("20221025065815_SqlMigrations")]
     partial class SqlMigrations
+========
+    [Migration("20221024070625_InitialMigration")]
+    partial class InitialMigration
+>>>>>>>> 2fa0eeef20bf775e12e51d41e395c2f979a5aef0:src/IFC/Infrastructure/Persistence/DbMigrations/20221024070625_InitialMigration.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
