@@ -1,83 +1,350 @@
-﻿@model IEnumerable<IFC.Domain.Entities.Threat>
-
+﻿@*@model IEnumerable<IFC.Domain.Entities.Threat>
+*@
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Threat";
 }
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ThreatDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ThreatLevel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Incident)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Organization)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SuspectsProfile)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Wing)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThreatDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThreatLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Incident.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Organization.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SuspectsProfile.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Wing.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<section>
+   
+    <div class="panel panel-default panel-bg p-2">
+        <div class="panel-header border-bottom">
+              <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <i class="fa fa-search"></i>
+                    <input type="search" class="form-control bg-transparent border-0 w-90 d-inline mt-2" name="search"  id="searchfield" placeholder="Search" value="" ; style="border:1px solid #fff !important; border-radius:20px;"/>
+                </div>
+                <div  class="col-md-4 col-sm-6">
+
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius " data-toggle="modal" data-target="#AddthreatModal">Add New Threats</button>
+                </div>
+                     <div class="col-md-2 col-sm-6">
+                    <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius">Export to Excel</button>
+                </div>
+       
+            </div>
+        </div>
+        <div class="panel-body">
+            <table id="DashboardTable" class="table border-none">
+                <thead>
+                    <tr class="bg_Brown border-radius" style="color:white !important">
+                        <th>Incident ID</th>
+                        <th>Location</th>
+                        <th>Target Win</th>
+                        <th>Organization</th>
+                        <th>Date</th>
+                        <th>Suspect Name</th>
+                        <th>Threat Level</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*<tr>
+                        <td>1</td>
+                        <td>CBT</td>
+                        <td>100</td>
+                        <td>700</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>
+
+                            <button><i class="fa fa-edit"></i></button>
+                            <button><i class="fa fa-eye"></i></button>
+                            <button><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>*@
+                </tbody>
+            </table>
+            <div class="col-sm-12" id="AreaUnderTable" >
+                <div class="pull-right">
+                    <input type="hidden" name="LastRowId" id="LastRowId" />
+                    <input type="hidden" id="TotalRecord" />
+                    <input type="hidden" name="Direction" id="hdnDirection" value="" />
+                    <select id="pageSize" name="PageSize" class="form-control pull-left mr10" style="width:75px;">
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="75">75</option>
+                        <option value="100">100</option>
+                    </select>
+                    <div class="pull-left mt10 pagercustom" style="padding-top:6px;padding-left:19px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+    $(document).ready(function () {
+        LoadTable();
+    });
+
+    function LoadTable() {
+        var search = $("#searchfield").val();
+        $('#pageSize').val("25");
+        $.ajax({
+            url: '../Threats/LoadData',
+            type: "GET",
+            data: { SearchCriteria: search },
+            dataType: "JSON",
+            success: function (response) {
+                if (response.Status) {
+                    debugger
+                    GetRecords(response.Data);
+                    $('#LastRowId').val(response.LastRowID);
+                    $('#PageSize').val(response.PageSize);
+                    $('#TotalRecord').val(response.TotalRecord);
+                    $('#AreaUnderTable').removeAttr("hidden");
+                    pagination(response);
+                }
+                else {
+                    $('#myTable').DataTable().destroy();
+                    $('#myTable tbody').empty();
+                    $('#myTable').DataTable();
+                    $('#AreaUnderTable').attr("hidden", "true");
+                    $('.pagercustom #DynamicRecord').empty();
+                    //alert("No Record Found");
+                }
+            },
+            error: function (result) {
+                swal({
+                    title: "System is unable to perform this action. Please Try again later load",
+                    type: "warning",
+                    showCancelButton: false,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "OK",
+                    closeOnConfirm: true
+                })
+            }
+        });
+
+    }
+
+    $('#searchfield').on('input', function (e) {
+        if ('' == this.value) {
+            LoadTable();
+        }
+    });
+
+    $("#searchfield").keyup(function (event) {
+        if (event.keyCode === 13) {
+            SearchUser();
+        }
+    });
+
+    function SearchUser() {
+        var search = $("#searchfield").val();
+        if (search.length >= 3) {
+            var PageSize = $('#pageSize').val();
+            $.ajax({
+            url: '../Threats/LoadData',
+            type: "GET",
+                data: { SearchCriteria: search, PageSize: PageSize },
+            dataType: "JSON",
+            success: function (response) {
+                if (response.Status) {
+                    debugger
+                    GetRecords(response.Data);
+                    $('#LastRowId').val(response.LastRowID);
+                    $('#PageSize').val(response.PageSize);
+                    $('#TotalRecord').val(response.TotalRecord);
+                    $('#AreaUnderTable').removeAttr("hidden");
+                    pagination(response);
+                }
+                else {
+                    $('#myTable').DataTable().destroy();
+                    $('#myTable tbody').empty();
+                    $('#myTable').DataTable();
+                    $('#AreaUnderTable').attr("hidden", "true");
+                    $('.pagercustom #DynamicRecord').empty();
+                    //alert("No Record Found");
+                }
+            },
+            error: function (result) {
+                swal({
+                    title: "System is unable to perform this action. Please Try again later",
+                    type: "warning",
+                    showCancelButton: false,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "OK",
+                    closeOnConfirm: true
+                })
+            }
+        });
+    }
+        else {
+        swal({
+            title: "Atleast write 3 letters to search",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "OK",
+            closeOnConfirm: true
+        })
+    }
+    }
+
+    function ChangePage(direction) {
+        var search = $("#searchfield").val();
+        var LastRowID = $('#LastRowId').val();
+        var PageSize = $('#pageSize').val();
+        $.ajax({
+            type: 'POST',
+            url: "/Threats/Index",
+            data: JSON.stringify({ LastRowID: LastRowID, PageSize: PageSize, Direction: direction, SearchCriteria: search }),
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            success: function (response) {
+                debugger
+                if (response.Status) {
+                    GetRecords(response.Data);
+                    $('.pagercustom #DynamicRecord').empty();
+
+                    $('#LastRowId').val(response.LastRowID);
+                    //$('#PageSize').val(response.PageSize);
+                    $('#TotalRecord').val(response.TotalRecord);
+                    $('#AreaUnderTable').removeAttr("hidden");
+
+                    pagination(response);
+
+                } else {
+                    $('#myTable').DataTable().destroy();
+                    $('#myTable tbody').empty();
+                    $('#myTable').DataTable();
+                    $('#AreaUnderTable').attr("hidden", "true");
+                    $('.pagercustom #DynamicRecord').empty();
+                    //alert("No Record Found");
+
+                }
+            },
+            error: function (result) {
+                swal({
+                    title: "System is unable to perform this action. Please Try again later",
+                    type: "warning",
+                    showCancelButton: false,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "OK",
+                    closeOnConfirm: true
+                })
+            }
+        });
+    }
+
+    $("#pageSize").change(function () {
+        var pagesize = $("#pageSize").val();
+        ChangePage(0);
+    });
+
+    function GetRecords(response) {
+        debugger
+        if (response.length != 0) {
+
+            table = $('#myTable').DataTable({
+                "aLengthMenu": [[25, 50, 75, 100], [25, 50, 75, 100]],
+                "pagingType": "simple",
+                dom: 'rt',
+                searching: false,
+                'destroy': true,
+                data: response,
+                pageLength: 100,
+ 
+                "columns": [
+                    {
+                        "data": "Location",
+                        "class": "background",
+                        "render": function (data, type, row) {
+                            return '<span>' + row.Location+'<span>';
+
+                        }
+                    },
+                    {
+                        "data": "Organization",
+                        "class": "background",
+                        "render": function (data, type, row) {
+
+                            return '<span>' + row.Organization + '</span>';
+
+                        }
+
+                    },
+                    {
+                        "data": "Date",
+                        "class": "background",
+                        "render": function (data, type, row) {
+
+                            return '<span>' + row.Date + '</span>';
+
+                        }
+
+                    },
+                    {
+                        "data": "SuspectName",
+                        "class": "background",
+                        "render": function (data, type, row) {
+
+                            return '<span>' + row.SuspectName + '</span>';
+
+                        }
+
+                    },
+                    {
+                        "data": "ThreatLevel",//data=id
+                        "class": "background",
+                        "render": function (data, type, row) {
+                            return '<span>' + row.ThreatLevel + '</span>';
+                        }
+
+                    },
+                    {
+                        "data": "ID",//data=id
+                        "class": "background",
+                        "render": function (data, type, row) {
+                          
+                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=EditData(' + row.ID + ') class="edt"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
+                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=View(' + row.ID + ') class="fa fa-eye"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
+                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=DeleteData(' + row.ID + ') class="fa fa-trash"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
+                            
+                            
+                        }
+
+                    }
+                ]
+                //"lengthChange": false
+            });
+        }
+        else {
+            if (table != null) {
+                $("#myTable tbody tr").remove();
+            }
+        }
+    }
+
+
+    function pagination(response) {
+        $('.pagercustom').html('');
+        var cal = parseInt((parseInt(response.Count) + parseInt(response.LastRowID)));
+        var dynamicdiv = '<div id="DynamicRecord"><span>Showing records' + (response.LastRowID + 1) + '-' + cal + ' of ' + response.TotalRecord + ' </span> ' +
+            ' <span class="pink"> ';
+        if (response.LastRowID > 0) {
+            dynamicdiv += ' <a href="javascript:ChangePage(-1)" class="cursorPointer">Prev</a>';
+        } else {
+            dynamicdiv += ' <span class="">Prev</span>';
+        }
+        dynamicdiv += " | ";
+        if (response.TotalRecord > 0 && response.TotalRecord > (response.LastRowID + response.Count)) {
+
+            dynamicdiv += ' <a href="javascript:ChangePage(1)" class="cursorPointer">Next</a>';
+        } else {
+            dynamicdiv += ' <span class="cursorPointer">Next</span>';
+
+        }
+        dynamicdiv += ' </span >';
+
+        $('.pagercustom').append(dynamicdiv);
+    }
+</script>
