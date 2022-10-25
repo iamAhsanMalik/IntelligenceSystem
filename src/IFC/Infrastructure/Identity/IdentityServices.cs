@@ -26,6 +26,7 @@ public static class IdentityServices
             //options.User.AllowedUserNameCharacters = AppConstants.AllowedUserNameCharacters;
             options.User.RequireUniqueEmail = true;
         });
+
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserInfoService, UserInfoService>();
         services.AddScoped<IMapper, Mapper>();
