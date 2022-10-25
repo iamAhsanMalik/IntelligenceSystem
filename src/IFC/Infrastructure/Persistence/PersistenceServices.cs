@@ -6,11 +6,22 @@ internal static class PersistenceServices
 {
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
-        // DB Context Setting
-        services.AddDbContext<IFCDbContext>(options =>
-           options.UseSqlServer(configuration.GetConnectionString(nameof(ConnectionStrings.DefaultConnection))));
-        // services.AddDbContext<IFCDbContext>(options =>
-        //    options.UseSqlite(configuration.GetConnectionString(nameof(ConnectionStrings.SqliteConnection))));
+        switch (configuration["DatabaseProvider"])
+        {
+            case nameof(DatabaseProvider.MySql):
+                services.AddDbContext<IFCDbContext>(options =>
+                   options.UseMySql(configuration.GetConnectionString(nameof(ConnectionStrings.MySqlConnection)), ServerVersion.AutoDetect(configuration.GetConnectionString(nameof(ConnectionStrings.MySqlConnection)))));
+                break;
+            case nameof(DatabaseProvider.Sqlite):
+                services.AddDbContext<IFCDbContext>(options =>
+                options.UseSqlite(configuration.GetConnectionString(nameof(ConnectionStrings.SqliteConnection))));
+                break;
+            default:
+                services.AddDbContext<IFCDbContext>(options =>
+                options.UseSqlite(configuration.GetConnectionString(nameof(ConnectionStrings.SqlServerConnection))));
+                break;
+        }
+
         // Authentication Configurations Options
         services.Configure<IdentityOptions>(options =>
         {
