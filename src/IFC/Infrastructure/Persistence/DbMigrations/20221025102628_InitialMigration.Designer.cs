@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IFC.Infrastructure.Persistence.DbMigrations
 {
     [DbContext(typeof(IFCDbContext))]
-    [Migration("20221025065825_MySqlMigrations")]
-    partial class MySqlMigrations
+    [Migration("20221025102628_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
