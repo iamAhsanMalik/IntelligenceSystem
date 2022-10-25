@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\admintheme\vendors\**" />
+    <Content Remove="wwwroot\admintheme\vendors\**" />
+    <EmbeddedResource Remove="wwwroot\admintheme\vendors\**" />
+    <None Remove="wwwroot\admintheme\vendors\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="Mapster.Core" Version="1.2.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />

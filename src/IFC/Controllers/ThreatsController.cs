@@ -15,8 +15,17 @@ public class ThreatsController : Controller
     // GET: Threats
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing);
+        var iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
         return View(await iFCDbContext.ToListAsync());
+    }
+
+    public JsonResult LoadData( string SearchCriteriaint,int LastRowId = 0, int? PageSize = 25, int? Direction = 0 ) {
+
+
+        var iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
+
+        return Json(new { status=true,Data= iFCDbContext });
+    
     }
 
     // GET: Threats/Details/5

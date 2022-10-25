@@ -1,5 +1,5 @@
-﻿@model IEnumerable<IFC.Domain.Entities.Threat>
-
+﻿@*@model IEnumerable<IFC.Domain.Entities.Threat>
+*@
 @{
     ViewData["Title"] = "Threat";
 }
@@ -14,7 +14,7 @@
               <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <i class="fa fa-search"></i>
-                    <input type="search" class="form-control bg-transparent border-0 w-90 d-inline mt-2" name="search" placeholder="Search" value="" ; style="border:1px solid #fff !important; border-radius:20px;"/>
+                    <input type="search" class="form-control bg-transparent border-0 w-90 d-inline mt-2" name="search"  id="searchfield" placeholder="Search" value="" ; style="border:1px solid #fff !important; border-radius:20px;"/>
                 </div>
                 <div  class="col-md-4 col-sm-6">
 
@@ -25,6 +25,7 @@
                      <div class="col-md-2 col-sm-6">
                     <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius">Export to Excel</button>
                 </div>
+       
             </div>
         </div>
         <div class="panel-body">
@@ -33,7 +34,7 @@
                     <tr class="bg_Brown border-radius" style="color:white !important">
                         <th>Incident ID</th>
                         <th>Location</th>
-                        <th >Target Win</th>
+                        <th>Target Win</th>
                         <th>Organization</th>
                         <th>Date</th>
                         <th>Suspect Name</th>
@@ -42,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    @*<tr>
                         <td>1</td>
                         <td>CBT</td>
                         <td>100</td>
@@ -56,10 +57,10 @@
                             <button><i class="fa fa-eye"></i></button>
                             <button><i class="fa fa-trash"></i></button>
                         </td>
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
-            <div class="col-sm-12" id="AreaUnderTable" hidden>
+            <div class="col-sm-12" id="AreaUnderTable" >
                 <div class="pull-right">
                     <input type="hidden" name="LastRowId" id="LastRowId" />
                     <input type="hidden" id="TotalRecord" />
@@ -87,7 +88,7 @@
         var search = $("#searchfield").val();
         $('#pageSize').val("25");
         $.ajax({
-            url: '/Threats/Index',
+            url: '../Threats/LoadData',
             type: "GET",
             data: { SearchCriteria: search },
             dataType: "JSON",
@@ -112,7 +113,7 @@
             },
             error: function (result) {
                 swal({
-                    title: "System is unable to perform this action. Please Try again later",
+                    title: "System is unable to perform this action. Please Try again later load",
                     type: "warning",
                     showCancelButton: false,
                     confirmButtonColor: "#DD6B55",
@@ -141,7 +142,7 @@
         if (search.length >= 3) {
             var PageSize = $('#pageSize').val();
             $.ajax({
-            url: '/UserManagement/GetAllUsers',
+            url: '../Threats/LoadData',
             type: "GET",
                 data: { SearchCriteria: search, PageSize: PageSize },
             dataType: "JSON",
@@ -251,64 +252,51 @@
                 'destroy': true,
                 data: response,
                 pageLength: 100,
-
+ 
                 "columns": [
                     {
-                        "data": "ImagePath",
+                        "data": "Location",
                         "class": "background",
                         "render": function (data, type, row) {
-                            if (row.ImagePath != null) {
-                                return '<span><div class="imgBox"><img class="img-responsive" src="' + row.ImagePath + '" /></div></span>';
-                            }
-                            else {
-                                return '<span><div class="imgBox"><img class="img-responsive" src="/Content/img/FCLOGOB.png" /></div></span>';
-                            }
+                            return '<span>' + row.Location+'<span>';
 
                         }
                     },
                     {
-                        "data": "UserName",
+                        "data": "Organization",
                         "class": "background",
                         "render": function (data, type, row) {
 
-                            return '<span>' + row.UserName + '</span>';
+                            return '<span>' + row.Organization + '</span>';
 
                         }
 
                     },
                     {
-                        "data": "Email",
+                        "data": "Date",
                         "class": "background",
                         "render": function (data, type, row) {
 
-                            return '<span>' + row.Email + '</span>';
+                            return '<span>' + row.Date + '</span>';
 
                         }
 
                     },
                     {
-                        "data": "Phone",
+                        "data": "SuspectName",
                         "class": "background",
                         "render": function (data, type, row) {
 
-                            return '<span>' + row.Phone + '</span>';
+                            return '<span>' + row.SuspectName + '</span>';
 
                         }
 
                     },
-                    //{
-                    //    "data": "WingName",//data=id
-                    //    "class": "background",
-                    //    "render": function (data, type, row) {
-                    //        return '<span>' + row.WingName + '</span>';
-                    //    }
-
-                    //},
                     {
-                        "data": "UserType",//data=id
+                        "data": "ThreatLevel",//data=id
                         "class": "background",
                         "render": function (data, type, row) {
-                            return '<span>' + row.UserType + '</span>';
+                            return '<span>' + row.ThreatLevel + '</span>';
                         }
 
                     },
@@ -317,8 +305,10 @@
                         "class": "background",
                         "render": function (data, type, row) {
                           
-                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=EditUser(' + row.ID + ') class="edt"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
-
+                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=EditData(' + row.ID + ') class="edt"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
+                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=View(' + row.ID + ') class="fa fa-eye"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
+                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=DeleteData(' + row.ID + ') class="fa fa-trash"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
+                            
                             
                         }
 
