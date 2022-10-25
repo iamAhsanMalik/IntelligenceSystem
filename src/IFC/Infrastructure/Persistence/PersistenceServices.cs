@@ -18,7 +18,7 @@ internal static class PersistenceServices
                 break;
             default:
                 services.AddDbContext<IFCDbContext>(options =>
-                options.UseSqlite(configuration.GetConnectionString(nameof(ConnectionStrings.SqlServerConnection))));
+                options.UseSqlServer(configuration.GetConnectionString(nameof(ConnectionStrings.SqlServerConnection))));
                 break;
         }
 
