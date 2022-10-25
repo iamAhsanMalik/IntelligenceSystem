@@ -1,6 +1,4 @@
-﻿using IFC.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Mvc.Rendering;
-namespace IFC.Controllers;
+﻿namespace IFC.Controllers;
 
 public class AddressesController : Controller
 {
