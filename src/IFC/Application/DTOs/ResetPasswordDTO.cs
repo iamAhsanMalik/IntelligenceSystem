@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IFC.Application.DTOs;
+namespace Application.DTOs.Account;
 
 public class ResetPasswordDTO
 {
