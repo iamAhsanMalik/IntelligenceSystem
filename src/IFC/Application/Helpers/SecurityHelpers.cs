@@ -1,15 +1,7 @@
-﻿using System.Security.Cryptography;
-using System.Text;
+﻿using IFC.Application.Contracts.Application;
+using System.Security.Cryptography;
 
 namespace IFC.Application.Helpers;
-
-public interface ISecurityHelpers
-{
-    string Decrypt(string inputText);
-    string DecryptQueryString(string inputText);
-    string Encrypt(string inputText);
-    string EncryptQueryString(string inputText);
-}
 
 internal sealed class SecurityHelpers : ISecurityHelpers
 {

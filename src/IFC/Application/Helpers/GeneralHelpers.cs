@@ -1,11 +1,6 @@
-﻿namespace IFC.Application.Helpers;
+﻿using IFC.Application.Contracts.Application;
 
-public interface IGeneralHelpers
-{
-    decimal GetRoundDigit(string Amount);
-    string GetUserStatus(int strStatus);
-    string StringFixer(string inputValue);
-}
+namespace IFC.Application.Helpers;
 
 internal sealed class GeneralHelpers : IGeneralHelpers
 {

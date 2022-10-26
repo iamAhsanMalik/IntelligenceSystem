@@ -1,13 +1,9 @@
 ﻿using Bogus;
+using IFC.Application.Contracts.Persistence;
 using IFC.Application.Extensions;
 using IFC.Domain.Enums;
 
 namespace IFC.Infrastructure.Persistence.Seeding;
-
-public interface ISeedDatabase
-{
-    Task DatabaseSeederAsync();
-}
 
 public class SeedDatabase : ISeedDatabase
 {

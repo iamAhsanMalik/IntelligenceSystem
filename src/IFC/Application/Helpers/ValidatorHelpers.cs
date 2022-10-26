@@ -1,11 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using IFC.Application.Contracts.Application;
+using System.Text.RegularExpressions;
 
 namespace IFC.Application.Helpers;
-
-public interface IValidatorHelpers
-{
-    bool EmailValidator(string email);
-}
 
 internal sealed class ValidatorHelpers : IValidatorHelpers
 {

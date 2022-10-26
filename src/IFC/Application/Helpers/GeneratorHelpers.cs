@@ -1,11 +1,6 @@
-﻿namespace IFC.Application.Helpers;
+﻿using IFC.Application.Contracts.Application;
 
-public interface IGeneratorHelpers
-{
-    string GenerateRandomCode(int codeCount = 5);
-    string GenerateRandomDigit(int codeCount = 5);
-    string GenerateRandomString(int length = 5);
-}
+namespace IFC.Application.Helpers;
 
 internal sealed class GeneratorHelpers : IGeneratorHelpers
 {

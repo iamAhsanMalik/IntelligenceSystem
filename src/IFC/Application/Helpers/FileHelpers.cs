@@ -1,23 +1,7 @@
-﻿using IFC.Domain.Constants;
+﻿using IFC.Application.Contracts.Application;
+using IFC.Domain.Constants;
 
 namespace IFC.Application.Helpers;
-
-public interface IFileHelpers
-{
-    bool CanAccessPath(string path);
-    void DeleteDirectory(string path);
-    void DeleteFile(string path);
-    Task<string> EmailTemplatesReaderAsync(string fileNameWithExtension);
-    Task<string> FileUploaderAsync(IFormFile file, string folderName);
-    string[] ImageFilters(params string[] inputFilters);
-    bool IsAuthorizeCreateDirectory(string path, string name);
-    bool IsAuthorizeDeleteDirectory(string path);
-    bool IsAuthorizeDeleteFile(string path);
-    bool IsAuthorizeRead(string path);
-    bool IsAuthorizeUpload(string path, IFormFile file);
-    bool IsValidImage(string fileName);
-    string PathNormalizer(string path);
-}
 
 /// <summary>
 /// File Helpers methods used to work with files such as FileUploading, Path Normalization etc..
