@@ -304,7 +304,7 @@ form:after {
     border: 1px solid #c8c8c8;
     color: #777;
     margin: 0 0 20px;
-    width: 100%
+    width: 80%
 }
 
 .login_content form input[type="text"]:focus,
