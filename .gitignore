@@ -3,7 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-/src/IFC/appsettings.Development
+/src/IFC/appsettings
+src/IFC/appsettings
+
 # User-specific files
 *.rsuser
 *.suo
