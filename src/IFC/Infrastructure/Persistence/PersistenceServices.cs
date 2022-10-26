@@ -1,4 +1,6 @@
-﻿namespace IFC.Infrastructure.Persistence;
+﻿using IFC.Infrastructure.Persistence.Repositories;
+
+namespace IFC.Infrastructure.Persistence;
 internal static class PersistenceServices
 {
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
@@ -20,6 +22,10 @@ internal static class PersistenceServices
         }
         services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IFCDbContext>().AddDefaultTokenProviders();
         services.AddScoped<ISeedDatabase, SeedDatabase>();
+
+        //Repositories Registration
+        services.AddScoped<IApprovalRepo, ApprovalRepo>();
+
         return services;
     }
 

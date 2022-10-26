@@ -1,32 +1,31 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Infrastructure.Persistence.Repositories;
+
+namespace IFC.Controllers;
 
 public class ApprovalController : Controller
 {
-    private readonly IFCDbContext _context;
+    private readonly IApprovalRepo _approvalRepo;
 
-    public ApprovalController(IFCDbContext context)
+    public ApprovalController(IApprovalRepo approvalRepo)
     {
-        _context = context;
+        _approvalRepo = approvalRepo;
     }
 
     // GET: Approvals
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.Approvals.Include(a => a.ApprovalRequestType);
-        return View(await iFCDbContext.ToListAsync());
+        var result = await _approvalRepo.GetApprovalsAsync();
+        return View(result);
     }
 
     // GET: Approvals/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Approvals == null)
+        if (id == null)
         {
             return NotFound();
         }
-
-        var approval = await _context.Approvals
-            .Include(a => a.ApprovalRequestType)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var approval = await _approvalRepo.GetApprovalsAsync(id);
         if (approval == null)
         {
             return NotFound();
