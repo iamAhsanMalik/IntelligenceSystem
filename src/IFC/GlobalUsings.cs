@@ -1,4 +1,3 @@
-global using Application.DTOs.Account;
 global using IFC.Application.DTOs;
 global using IFC.Application.Helpers;
 global using IFC.Application.Models;

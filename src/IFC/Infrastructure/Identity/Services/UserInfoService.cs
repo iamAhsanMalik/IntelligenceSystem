@@ -1,22 +1,6 @@
-﻿using IFC.Infrastructure.Identity.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using IFC.Application.Contracts.Identity;
 
 namespace IFC.Infrastructure.Identity.Services;
-
-public interface IUserInfoService
-{
-    Task<ApplicationUser> FindUserByEmailAsync(string userEmail);
-    Task<ApplicationUser> FindUserByIdAsync(string userId);
-    Task<string> FindUserFullNameAsync(string userId);
-    Task<ApplicationUser?> GetCurrentLoginUserAsync();
-    Task<string> GetCurrentLoginUserFullNameAsync();
-    Task<string> GetCurrentLoginUserIdAsync();
-    Task<string> GetCurrentLoginUserUserNameAsync();
-    Task<string> GetUserEmailAsync(ApplicationUser user);
-    Task<string> GetUserPhoneNumberAsync(ApplicationUser user);
-    Task<bool> IsUserEmailConfirmedAsync(ApplicationUser user);
-    Task<IList<string>> GetCurrentLoginUserRolesListAsync();
-}
 
 public sealed class UserInfoService : IUserInfoService
 {

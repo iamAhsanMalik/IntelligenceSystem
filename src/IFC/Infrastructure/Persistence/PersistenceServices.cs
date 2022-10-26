@@ -1,4 +1,5 @@
-﻿using IFC.Domain.Enums;
+﻿using IFC.Application.Contracts.Persistence;
+using IFC.Domain.Enums;
 using IFC.Infrastructure.Persistence.Seeding;
 
 namespace IFC.Infrastructure.Persistence;
@@ -22,6 +23,7 @@ internal static class PersistenceServices
                 break;
         }
         services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IFCDbContext>().AddDefaultTokenProviders();
+        services.AddScoped<ISeedDatabase, SeedDatabase>();
         return services;
     }
 

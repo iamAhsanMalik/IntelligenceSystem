@@ -1,4 +1,4 @@
-using IFC.Infrastructure.Identity.Services;
+using IFC.Application.Contracts.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace IFC.Controllers;

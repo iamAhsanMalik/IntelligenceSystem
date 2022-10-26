@@ -1,4 +1,5 @@
-﻿using MapsterMapper;
+﻿using IFC.Application.Contracts.Identity;
+using MapsterMapper;
 
 namespace IFC.Infrastructure.Identity;
 
@@ -6,6 +7,7 @@ public static class IdentityServices
 {
     public static IServiceCollection AddIdentityServices(this IServiceCollection services)
     {
+
         // Authentication Configurations Options
         services.Configure<IdentityOptions>(options =>
         {
@@ -26,9 +28,9 @@ public static class IdentityServices
             //options.User.AllowedUserNameCharacters = AppConstants.AllowedUserNameCharacters;
             options.User.RequireUniqueEmail = true;
         });
-
-        services.AddScoped<IAuthService, AuthService>();
+        services.AddHttpContextAccessor();
         services.AddScoped<IUserInfoService, UserInfoService>();
+        services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IMapper, Mapper>();
         return services;
     }
