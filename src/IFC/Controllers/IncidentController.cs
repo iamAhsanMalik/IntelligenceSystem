@@ -16,6 +16,19 @@ public class IncidentController : Controller
         return View(await iFCDbContext.ToListAsync());
     }
 
+    // GET: Incidents
+    public async Task<IActionResult> LoadIncidentData()
+    {
+        var iFCDbContext = _context.Incidents.Include(i => i.Location).Include(i => i.Organization).Include(i => i.SuspectsProfile).Include(i => i.Wing);
+        var incidentsResults = await iFCDbContext.ToListAsync();
+        int recordsTotal = 0;
+        recordsTotal = incidentsResults.Count();
+        var data = incidentsResults.Skip(0).Take(0).ToList();
+        var jsonData = new { recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data };
+        return Ok(jsonData);
+        //return View();
+    }
+
     // GET: Incidents/Details/5
     public async Task<IActionResult> Details(long? id)
     {
@@ -41,10 +54,10 @@ public class IncidentController : Controller
     // GET: Incidents/Create
     public IActionResult Create()
     {
-        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id");
-        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Id");
-        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "Id");
-        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Id");
+        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
+        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Name");
+        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "FullName");
+        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Name");
         return View();
     }
 

@@ -9,13 +9,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="incidentDatatable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IncidentDate)
+                @*@Html.DisplayNameFor(model => model.IncidentDate)*@
+                IncidentDate
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.IsDeleted)
             </th>
             <th>
@@ -32,40 +33,70 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Wing)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @* @foreach (var item in Model)
+        {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IncidentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Organization.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SuspectsProfile.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Wing.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.IncidentDate)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.Location.Name)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.Organization.Name)
+        </td>
+        <td>
+        @item.SuspectsProfile.FirstName @item.SuspectsProfile.LastName
+        <td>
+        @Html.DisplayFor(modelItem => item.Wing.Id)
+        </td>
+        <td>
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
         </tr>
-}
+        }*@
     </tbody>
 </table>
+<script>
+    $(document).ready(function () {
+        $('#incidentDatatable').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "filter": true,
+            "ajax": {
+                "url": "/Incident/LoadIncidentData",
+                "type": "POST",
+                "datatype": "json"
+            },
+            "columnDefs": [{
+                "targets": [0],
+                "visible": false,
+                "searchable": false
+            }],
+            "columns": [
+                { "data": "id", "name": "Id", "autoWidth": true },
+                { "data": "IncidentDate", "name": "IncidentDate", "autoWidth": true },
+                //{ "data": "lastName", "name": "Last Name", "autoWidth": true },
+                //{ "data": "contact", "name": "Country", "autoWidth": true },
+                //{ "data": "email", "name": "Email", "autoWidth": true },
+                //{ "data": "dateOfBirth", "name": "Date Of Birth", "autoWidth": true },
+                {
+                    "render": function (data, row) { return "<a href='#' class='btn btn-danger' onclick=DeleteCustomer('" + row.id + "'); >Delete</a>"; }
+                },
+            ]
+        });
+    });
+</script>
