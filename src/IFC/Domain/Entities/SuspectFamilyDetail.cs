@@ -10,6 +10,7 @@ public class SuspectFamilyDetail
     public long Id { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
+    public string? FullName { get => $"{FirstName} {LastName}"; }
     public DateTime? DateOfBirth { get; set; }
     public string? CNIC { get; set; }
     public string? Passport { get; set; }
