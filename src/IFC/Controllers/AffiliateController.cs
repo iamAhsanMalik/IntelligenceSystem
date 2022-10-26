@@ -1,86 +1,84 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class CitiesController : Controller
+public class AffiliateController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public CitiesController(IFCDbContext context)
+    public AffiliateController(IFCDbContext context)
     {
         _context = context;
     }
 
-    // GET: Cities
+    // GET: Affiliate
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Cities.ToListAsync());
+        return View(await _context.Affiliates.ToListAsync());
     }
 
-    // GET: Cities/Details/5
+    // GET: Affiliate/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Cities == null)
+        if (id == null || _context.Affiliates == null)
         {
             return NotFound();
         }
 
-        var city = await _context.Cities
+        var affiliate = await _context.Affiliates
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (city == null)
+        if (affiliate == null)
         {
             return NotFound();
         }
 
-        return View(city);
+        return View(affiliate);
     }
 
-    // GET: Cities/Create
+    // GET: Affiliate/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: Cities/Create
+    // POST: Affiliate/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,IsActive")] City city)
+    public async Task<IActionResult> Create([Bind("Id,LocalAffiliate,ForiegnAffiliate,IsDeleted,IsActive")] Affiliate affiliate)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(city);
+            _context.Add(affiliate);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(city);
+        return View(affiliate);
     }
 
-    // GET: Cities/Edit/5
+    // GET: Affiliate/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {
-        if (id == null || _context.Cities == null)
+        if (id == null || _context.Affiliates == null)
         {
             return NotFound();
         }
 
-        var city = await _context.Cities.FindAsync(id);
-        if (city == null)
+        var affiliate = await _context.Affiliates.FindAsync(id);
+        if (affiliate == null)
         {
             return NotFound();
         }
-        return View(city);
+        return View(affiliate);
     }
 
-    // POST: Cities/Edit/5
+    // POST: Affiliate/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,IsDeleted,IsActive")] City city)
+    public async Task<IActionResult> Edit(long id, [Bind("Id,LocalAffiliate,ForiegnAffiliate,IsDeleted,IsActive")] Affiliate affiliate)
     {
-        if (id != city.Id)
+        if (id != affiliate.Id)
         {
             return NotFound();
         }
@@ -89,12 +87,12 @@ public class CitiesController : Controller
         {
             try
             {
-                _context.Update(city);
+                _context.Update(affiliate);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CityExists(city.Id))
+                if (!AffiliateExists(affiliate.Id))
                 {
                     return NotFound();
                 }
@@ -105,48 +103,48 @@ public class CitiesController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        return View(city);
+        return View(affiliate);
     }
 
-    // GET: Cities/Delete/5
+    // GET: Affiliate/Delete/5
     public async Task<IActionResult> Delete(long? id)
     {
-        if (id == null || _context.Cities == null)
+        if (id == null || _context.Affiliates == null)
         {
             return NotFound();
         }
 
-        var city = await _context.Cities
+        var affiliate = await _context.Affiliates
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (city == null)
+        if (affiliate == null)
         {
             return NotFound();
         }
 
-        return View(city);
+        return View(affiliate);
     }
 
-    // POST: Cities/Delete/5
+    // POST: Affiliate/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        if (_context.Cities == null)
+        if (_context.Affiliates == null)
         {
-            return Problem("Entity set 'IFCDbContext.Cities'  is null.");
+            return Problem("Entity set 'IFCDbContext.Affiliates'  is null.");
         }
-        var city = await _context.Cities.FindAsync(id);
-        if (city != null)
+        var affiliate = await _context.Affiliates.FindAsync(id);
+        if (affiliate != null)
         {
-            _context.Cities.Remove(city);
+            _context.Affiliates.Remove(affiliate);
         }
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
-    private bool CityExists(long id)
+    private bool AffiliateExists(long id)
     {
-        return _context.Cities.Any(e => e.Id == id);
+        return _context.Affiliates.Any(e => e.Id == id);
     }
 }

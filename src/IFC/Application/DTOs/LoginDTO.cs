@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace IFC.Application.DTOs;
+﻿namespace IFC.Application.DTOs;
 
 public class LoginDTO
 {

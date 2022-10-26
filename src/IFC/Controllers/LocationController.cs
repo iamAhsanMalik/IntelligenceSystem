@@ -1,86 +1,84 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class SectorHeadQuartersController : Controller
+public class LocationController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public SectorHeadQuartersController(IFCDbContext context)
+    public LocationController(IFCDbContext context)
     {
         _context = context;
     }
 
-    // GET: SectorHeadQuarters
+    // GET: Locations
     public async Task<IActionResult> Index()
     {
-        return View(await _context.SectorHeadQuarters.ToListAsync());
+        return View(await _context.Locations.ToListAsync());
     }
 
-    // GET: SectorHeadQuarters/Details/5
+    // GET: Locations/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.SectorHeadQuarters == null)
+        if (id == null || _context.Locations == null)
         {
             return NotFound();
         }
 
-        var sectorHeadQuarter = await _context.SectorHeadQuarters
+        var location = await _context.Locations
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (sectorHeadQuarter == null)
+        if (location == null)
         {
             return NotFound();
         }
 
-        return View(sectorHeadQuarter);
+        return View(location);
     }
 
-    // GET: SectorHeadQuarters/Create
+    // GET: Locations/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: SectorHeadQuarters/Create
+    // POST: Locations/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,Description,IsActive,IsDeleted")] SectorHeadQuarter sectorHeadQuarter)
+    public async Task<IActionResult> Create([Bind("Id,Name,Latitude,Longitude,IsDeleted,IsActive")] Location location)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(sectorHeadQuarter);
+            _context.Add(location);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(sectorHeadQuarter);
+        return View(location);
     }
 
-    // GET: SectorHeadQuarters/Edit/5
+    // GET: Locations/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {
-        if (id == null || _context.SectorHeadQuarters == null)
+        if (id == null || _context.Locations == null)
         {
             return NotFound();
         }
 
-        var sectorHeadQuarter = await _context.SectorHeadQuarters.FindAsync(id);
-        if (sectorHeadQuarter == null)
+        var location = await _context.Locations.FindAsync(id);
+        if (location == null)
         {
             return NotFound();
         }
-        return View(sectorHeadQuarter);
+        return View(location);
     }
 
-    // POST: SectorHeadQuarters/Edit/5
+    // POST: Locations/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,Description,IsActive,IsDeleted")] SectorHeadQuarter sectorHeadQuarter)
+    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,Latitude,Longitude,IsDeleted,IsActive")] Location location)
     {
-        if (id != sectorHeadQuarter.Id)
+        if (id != location.Id)
         {
             return NotFound();
         }
@@ -89,12 +87,12 @@ public class SectorHeadQuartersController : Controller
         {
             try
             {
-                _context.Update(sectorHeadQuarter);
+                _context.Update(location);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SectorHeadQuarterExists(sectorHeadQuarter.Id))
+                if (!LocationExists(location.Id))
                 {
                     return NotFound();
                 }
@@ -105,48 +103,48 @@ public class SectorHeadQuartersController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        return View(sectorHeadQuarter);
+        return View(location);
     }
 
-    // GET: SectorHeadQuarters/Delete/5
+    // GET: Locations/Delete/5
     public async Task<IActionResult> Delete(long? id)
     {
-        if (id == null || _context.SectorHeadQuarters == null)
+        if (id == null || _context.Locations == null)
         {
             return NotFound();
         }
 
-        var sectorHeadQuarter = await _context.SectorHeadQuarters
+        var location = await _context.Locations
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (sectorHeadQuarter == null)
+        if (location == null)
         {
             return NotFound();
         }
 
-        return View(sectorHeadQuarter);
+        return View(location);
     }
 
-    // POST: SectorHeadQuarters/Delete/5
+    // POST: Locations/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        if (_context.SectorHeadQuarters == null)
+        if (_context.Locations == null)
         {
-            return Problem("Entity set 'IFCDbContext.SectorHeadQuarters'  is null.");
+            return Problem("Entity set 'IFCDbContext.Locations'  is null.");
         }
-        var sectorHeadQuarter = await _context.SectorHeadQuarters.FindAsync(id);
-        if (sectorHeadQuarter != null)
+        var location = await _context.Locations.FindAsync(id);
+        if (location != null)
         {
-            _context.SectorHeadQuarters.Remove(sectorHeadQuarter);
+            _context.Locations.Remove(location);
         }
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
-    private bool SectorHeadQuarterExists(long id)
+    private bool LocationExists(long id)
     {
-        return _context.SectorHeadQuarters.Any(e => e.Id == id);
+        return _context.Locations.Any(e => e.Id == id);
     }
 }

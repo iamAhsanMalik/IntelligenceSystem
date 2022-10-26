@@ -1,6 +1,4 @@
-﻿using IFC.Application.Contracts.Application;
-
-namespace IFC.Application.Helpers;
+﻿namespace IFC.Application.Helpers;
 
 internal sealed class GeneratorHelpers : IGeneratorHelpers
 {

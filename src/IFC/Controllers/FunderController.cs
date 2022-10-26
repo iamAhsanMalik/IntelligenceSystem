@@ -1,86 +1,84 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class OperationalBasesController : Controller
+public class FunderController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public OperationalBasesController(IFCDbContext context)
+    public FunderController(IFCDbContext context)
     {
         _context = context;
     }
 
-    // GET: OperationalBases
+    // GET: Funders
     public async Task<IActionResult> Index()
     {
-        return View(await _context.OperationalBases.ToListAsync());
+        return View(await _context.Funders.ToListAsync());
     }
 
-    // GET: OperationalBases/Details/5
+    // GET: Funders/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.OperationalBases == null)
+        if (id == null || _context.Funders == null)
         {
             return NotFound();
         }
 
-        var operationalBase = await _context.OperationalBases
+        var funder = await _context.Funders
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (operationalBase == null)
+        if (funder == null)
         {
             return NotFound();
         }
 
-        return View(operationalBase);
+        return View(funder);
     }
 
-    // GET: OperationalBases/Create
+    // GET: Funders/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: OperationalBases/Create
+    // POST: Funders/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,IsActive")] OperationalBase operationalBase)
+    public async Task<IActionResult> Create([Bind("Id,Name,FundingSource,IsDeleted,IsActive")] Funder funder)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(operationalBase);
+            _context.Add(funder);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(operationalBase);
+        return View(funder);
     }
 
-    // GET: OperationalBases/Edit/5
+    // GET: Funders/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {
-        if (id == null || _context.OperationalBases == null)
+        if (id == null || _context.Funders == null)
         {
             return NotFound();
         }
 
-        var operationalBase = await _context.OperationalBases.FindAsync(id);
-        if (operationalBase == null)
+        var funder = await _context.Funders.FindAsync(id);
+        if (funder == null)
         {
             return NotFound();
         }
-        return View(operationalBase);
+        return View(funder);
     }
 
-    // POST: OperationalBases/Edit/5
+    // POST: Funders/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,IsDeleted,IsActive")] OperationalBase operationalBase)
+    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,FundingSource,IsDeleted,IsActive")] Funder funder)
     {
-        if (id != operationalBase.Id)
+        if (id != funder.Id)
         {
             return NotFound();
         }
@@ -89,12 +87,12 @@ public class OperationalBasesController : Controller
         {
             try
             {
-                _context.Update(operationalBase);
+                _context.Update(funder);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OperationalBaseExists(operationalBase.Id))
+                if (!FunderExists(funder.Id))
                 {
                     return NotFound();
                 }
@@ -105,48 +103,48 @@ public class OperationalBasesController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        return View(operationalBase);
+        return View(funder);
     }
 
-    // GET: OperationalBases/Delete/5
+    // GET: Funders/Delete/5
     public async Task<IActionResult> Delete(long? id)
     {
-        if (id == null || _context.OperationalBases == null)
+        if (id == null || _context.Funders == null)
         {
             return NotFound();
         }
 
-        var operationalBase = await _context.OperationalBases
+        var funder = await _context.Funders
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (operationalBase == null)
+        if (funder == null)
         {
             return NotFound();
         }
 
-        return View(operationalBase);
+        return View(funder);
     }
 
-    // POST: OperationalBases/Delete/5
+    // POST: Funders/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        if (_context.OperationalBases == null)
+        if (_context.Funders == null)
         {
-            return Problem("Entity set 'IFCDbContext.OperationalBases'  is null.");
+            return Problem("Entity set 'IFCDbContext.Funders'  is null.");
         }
-        var operationalBase = await _context.OperationalBases.FindAsync(id);
-        if (operationalBase != null)
+        var funder = await _context.Funders.FindAsync(id);
+        if (funder != null)
         {
-            _context.OperationalBases.Remove(operationalBase);
+            _context.Funders.Remove(funder);
         }
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
-    private bool OperationalBaseExists(long id)
+    private bool FunderExists(long id)
     {
-        return _context.OperationalBases.Any(e => e.Id == id);
+        return _context.Funders.Any(e => e.Id == id);
     }
 }

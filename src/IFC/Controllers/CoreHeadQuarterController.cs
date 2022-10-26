@@ -1,13 +1,10 @@
-﻿using IFC.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class CoreHeadQuartersController : Controller
+public class CoreHeadQuarterController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public CoreHeadQuartersController(IFCDbContext context)
+    public CoreHeadQuarterController(IFCDbContext context)
     {
         _context = context;
     }

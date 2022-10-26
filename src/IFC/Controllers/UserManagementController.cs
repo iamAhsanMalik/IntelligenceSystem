@@ -1,6 +1,3 @@
-using IFC.Application.Contracts.Identity;
-using Microsoft.EntityFrameworkCore;
-
 namespace IFC.Controllers;
 
 public class UserManagementController : Controller

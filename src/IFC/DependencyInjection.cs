@@ -1,9 +1,3 @@
-using IFC.Application;
-using IFC.Application.Contracts.Persistence;
-using IFC.Infrastructure;
-using IFC.Infrastructure.Persistence.Seeding;
-using Microsoft.AspNetCore.Mvc.Authorization;
-
 namespace IFC;
 
 public static class DependencyInjection

@@ -1,86 +1,84 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class DistrictsController : Controller
+public class RelationTypeController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public DistrictsController(IFCDbContext context)
+    public RelationTypeController(IFCDbContext context)
     {
         _context = context;
     }
 
-    // GET: Districts
+    // GET: RelationTypes
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Districts.ToListAsync());
+        return View(await _context.RelationTypes.ToListAsync());
     }
 
-    // GET: Districts/Details/5
+    // GET: RelationTypes/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Districts == null)
+        if (id == null || _context.RelationTypes == null)
         {
             return NotFound();
         }
 
-        var district = await _context.Districts
+        var relationType = await _context.RelationTypes
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (district == null)
+        if (relationType == null)
         {
             return NotFound();
         }
 
-        return View(district);
+        return View(relationType);
     }
 
-    // GET: Districts/Create
+    // GET: RelationTypes/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: Districts/Create
+    // POST: RelationTypes/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,IsActive")] District district)
+    public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,IsActive")] RelationType relationType)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(district);
+            _context.Add(relationType);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(district);
+        return View(relationType);
     }
 
-    // GET: Districts/Edit/5
+    // GET: RelationTypes/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {
-        if (id == null || _context.Districts == null)
+        if (id == null || _context.RelationTypes == null)
         {
             return NotFound();
         }
 
-        var district = await _context.Districts.FindAsync(id);
-        if (district == null)
+        var relationType = await _context.RelationTypes.FindAsync(id);
+        if (relationType == null)
         {
             return NotFound();
         }
-        return View(district);
+        return View(relationType);
     }
 
-    // POST: Districts/Edit/5
+    // POST: RelationTypes/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,IsDeleted,IsActive")] District district)
+    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,IsDeleted,IsActive")] RelationType relationType)
     {
-        if (id != district.Id)
+        if (id != relationType.Id)
         {
             return NotFound();
         }
@@ -89,12 +87,12 @@ public class DistrictsController : Controller
         {
             try
             {
-                _context.Update(district);
+                _context.Update(relationType);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DistrictExists(district.Id))
+                if (!RelationTypeExists(relationType.Id))
                 {
                     return NotFound();
                 }
@@ -105,48 +103,48 @@ public class DistrictsController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        return View(district);
+        return View(relationType);
     }
 
-    // GET: Districts/Delete/5
+    // GET: RelationTypes/Delete/5
     public async Task<IActionResult> Delete(long? id)
     {
-        if (id == null || _context.Districts == null)
+        if (id == null || _context.RelationTypes == null)
         {
             return NotFound();
         }
 
-        var district = await _context.Districts
+        var relationType = await _context.RelationTypes
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (district == null)
+        if (relationType == null)
         {
             return NotFound();
         }
 
-        return View(district);
+        return View(relationType);
     }
 
-    // POST: Districts/Delete/5
+    // POST: RelationTypes/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        if (_context.Districts == null)
+        if (_context.RelationTypes == null)
         {
-            return Problem("Entity set 'IFCDbContext.Districts'  is null.");
+            return Problem("Entity set 'IFCDbContext.RelationTypes'  is null.");
         }
-        var district = await _context.Districts.FindAsync(id);
-        if (district != null)
+        var relationType = await _context.RelationTypes.FindAsync(id);
+        if (relationType != null)
         {
-            _context.Districts.Remove(district);
+            _context.RelationTypes.Remove(relationType);
         }
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
-    private bool DistrictExists(long id)
+    private bool RelationTypeExists(long id)
     {
-        return _context.Districts.Any(e => e.Id == id);
+        return _context.RelationTypes.Any(e => e.Id == id);
     }
 }

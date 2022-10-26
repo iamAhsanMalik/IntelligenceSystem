@@ -1,13 +1,10 @@
-﻿using IFC.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class WingsController : Controller
+public class WingController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public WingsController(IFCDbContext context)
+    public WingController(IFCDbContext context)
     {
         _context = context;
     }

@@ -1,12 +1,10 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class ApprovalRequestTypesController : Controller
+public class ApprovalRequestTypeController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public ApprovalRequestTypesController(IFCDbContext context)
+    public ApprovalRequestTypeController(IFCDbContext context)
     {
         _context = context;
     }

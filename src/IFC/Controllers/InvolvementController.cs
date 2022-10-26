@@ -1,86 +1,84 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class SocialMediaProfilesController : Controller
+public class InvolvementController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public SocialMediaProfilesController(IFCDbContext context)
+    public InvolvementController(IFCDbContext context)
     {
         _context = context;
     }
 
-    // GET: SocialMediaProfiles
+    // GET: Involvements
     public async Task<IActionResult> Index()
     {
-        return View(await _context.SocialMediaProfiles.ToListAsync());
+        return View(await _context.Involvements.ToListAsync());
     }
 
-    // GET: SocialMediaProfiles/Details/5
+    // GET: Involvements/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.SocialMediaProfiles == null)
+        if (id == null || _context.Involvements == null)
         {
             return NotFound();
         }
 
-        var socialMediaProfile = await _context.SocialMediaProfiles
+        var involvement = await _context.Involvements
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (socialMediaProfile == null)
+        if (involvement == null)
         {
             return NotFound();
         }
 
-        return View(socialMediaProfile);
+        return View(involvement);
     }
 
-    // GET: SocialMediaProfiles/Create
+    // GET: Involvements/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: SocialMediaProfiles/Create
+    // POST: Involvements/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,IsActive")] SocialMediaProfile socialMediaProfile)
+    public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,IsActive")] Involvement involvement)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(socialMediaProfile);
+            _context.Add(involvement);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(socialMediaProfile);
+        return View(involvement);
     }
 
-    // GET: SocialMediaProfiles/Edit/5
+    // GET: Involvements/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {
-        if (id == null || _context.SocialMediaProfiles == null)
+        if (id == null || _context.Involvements == null)
         {
             return NotFound();
         }
 
-        var socialMediaProfile = await _context.SocialMediaProfiles.FindAsync(id);
-        if (socialMediaProfile == null)
+        var involvement = await _context.Involvements.FindAsync(id);
+        if (involvement == null)
         {
             return NotFound();
         }
-        return View(socialMediaProfile);
+        return View(involvement);
     }
 
-    // POST: SocialMediaProfiles/Edit/5
+    // POST: Involvements/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,IsDeleted,IsActive")] SocialMediaProfile socialMediaProfile)
+    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,IsDeleted,IsActive")] Involvement involvement)
     {
-        if (id != socialMediaProfile.Id)
+        if (id != involvement.Id)
         {
             return NotFound();
         }
@@ -89,12 +87,12 @@ public class SocialMediaProfilesController : Controller
         {
             try
             {
-                _context.Update(socialMediaProfile);
+                _context.Update(involvement);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SocialMediaProfileExists(socialMediaProfile.Id))
+                if (!InvolvementExists(involvement.Id))
                 {
                     return NotFound();
                 }
@@ -105,48 +103,48 @@ public class SocialMediaProfilesController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        return View(socialMediaProfile);
+        return View(involvement);
     }
 
-    // GET: SocialMediaProfiles/Delete/5
+    // GET: Involvements/Delete/5
     public async Task<IActionResult> Delete(long? id)
     {
-        if (id == null || _context.SocialMediaProfiles == null)
+        if (id == null || _context.Involvements == null)
         {
             return NotFound();
         }
 
-        var socialMediaProfile = await _context.SocialMediaProfiles
+        var involvement = await _context.Involvements
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (socialMediaProfile == null)
+        if (involvement == null)
         {
             return NotFound();
         }
 
-        return View(socialMediaProfile);
+        return View(involvement);
     }
 
-    // POST: SocialMediaProfiles/Delete/5
+    // POST: Involvements/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        if (_context.SocialMediaProfiles == null)
+        if (_context.Involvements == null)
         {
-            return Problem("Entity set 'IFCDbContext.SocialMediaProfiles'  is null.");
+            return Problem("Entity set 'IFCDbContext.Involvements'  is null.");
         }
-        var socialMediaProfile = await _context.SocialMediaProfiles.FindAsync(id);
-        if (socialMediaProfile != null)
+        var involvement = await _context.Involvements.FindAsync(id);
+        if (involvement != null)
         {
-            _context.SocialMediaProfiles.Remove(socialMediaProfile);
+            _context.Involvements.Remove(involvement);
         }
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
-    private bool SocialMediaProfileExists(long id)
+    private bool InvolvementExists(long id)
     {
-        return _context.SocialMediaProfiles.Any(e => e.Id == id);
+        return _context.Involvements.Any(e => e.Id == id);
     }
 }

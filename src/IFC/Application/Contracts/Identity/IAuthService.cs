@@ -1,6 +1,4 @@
-﻿using IFC.Infrastructure.Identity;
-
-namespace IFC.Application.Contracts.Identity;
+﻿namespace IFC.Application.Contracts.Identity;
 
 public interface IAuthService
 {

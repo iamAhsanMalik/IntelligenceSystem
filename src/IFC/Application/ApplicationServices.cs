@@ -1,6 +1,4 @@
-﻿using IFC.Application.Contracts.Application;
-
-namespace IFC.Application;
+﻿namespace IFC.Application;
 
 public static class ApplicationServices
 {

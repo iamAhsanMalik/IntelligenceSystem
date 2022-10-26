@@ -1,6 +1,3 @@
-using IFC.Application.Contracts.Application;
-using IFC.Application.Contracts.Identity;
-
 namespace IFC.Controllers;
 
 public class AccountController : Controller
@@ -149,12 +146,12 @@ public class AccountController : Controller
             }
             else
             {
-                var code = await _authService.PasswordResetTokenGeneratorAsync(user);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                // var code = await _authService.PasswordResetTokenGeneratorAsync(user);
+                // code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, passwordResetToken = code }, protocol: Request.Scheme);
+                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, passwordResetToken = code }, protocol: Request.Scheme);
                 var emailContent = await _fileHelpers.EmailTemplatesReaderAsync("PasswordReset.html");
-                var emailSubject = emailContent.Replace("$$ResetPasswordLink$$", callbackUrl).Replace("$$CurrentYear$$", DateTime.Now.Year.ToString());
+                // var emailSubject = emailContent.Replace("$$ResetPasswordLink$$", callbackUrl).Replace("$$CurrentYear$$", DateTime.Now.Year.ToString());
                 //await _emailSender.SendEmailAsync(model.Email, "Reset Password",
                 //emailSubject);
                 return View("ForgotPasswordConfirmation");
@@ -228,7 +225,6 @@ public class AccountController : Controller
         return View();
     }
     #endregion
-
 
     #region Helpers
 

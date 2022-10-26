@@ -1,12 +1,10 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class TerroristInvolvementsController : Controller
+public class TerroristInvolvementController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public TerroristInvolvementsController(IFCDbContext context)
+    public TerroristInvolvementController(IFCDbContext context)
     {
         _context = context;
     }

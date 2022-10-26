@@ -1,9 +1,4 @@
-﻿using Bogus;
-using IFC.Application.Contracts.Persistence;
-using IFC.Application.Extensions;
-using IFC.Domain.Enums;
-
-namespace IFC.Infrastructure.Persistence.Seeding;
+﻿namespace IFC.Infrastructure.Persistence.Seeding;
 
 public class SeedDatabase : ISeedDatabase
 {

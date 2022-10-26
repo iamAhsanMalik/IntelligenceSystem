@@ -1,13 +1,10 @@
-﻿using IFC.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class ThreatsController : Controller
+public class ThreatController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public ThreatsController(IFCDbContext context)
+    public ThreatController(IFCDbContext context)
     {
         _context = context;
     }
@@ -19,13 +16,14 @@ public class ThreatsController : Controller
         return View(await iFCDbContext.ToListAsync());
     }
 
-    public JsonResult LoadData( string SearchCriteriaint,int LastRowId = 0, int? PageSize = 25, int? Direction = 0 ) {
+    public JsonResult LoadData(string SearchCriteriaint, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
+    {
 
 
         var iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
 
-        return Json(new { status=true,Data= iFCDbContext });
-    
+        return Json(new { status = true, Data = iFCDbContext });
+
     }
 
     // GET: Threats/Details/5

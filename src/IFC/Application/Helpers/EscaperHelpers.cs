@@ -1,7 +1,4 @@
-﻿using IFC.Application.Contracts.Application;
-using System.Text.RegularExpressions;
-
-namespace IFC.Application.Helpers;
+﻿namespace IFC.Application.Helpers;
 
 public sealed class EscaperHelpers : IEscaperHelpers
 {
