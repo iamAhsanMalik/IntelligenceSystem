@@ -1,5 +1,4 @@
-﻿using IFC.Application.Contracts.Application;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace IFC.Application.Helpers;
 

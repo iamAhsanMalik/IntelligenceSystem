@@ -1,5 +1,3 @@
-using IFC.Infrastructure.Identity.Models;
-
 namespace IFC.Infrastructure.Identity.Helpers;
 
 public static class PermissionsHelper

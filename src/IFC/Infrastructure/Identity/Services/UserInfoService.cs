@@ -1,6 +1,4 @@
-﻿using IFC.Application.Contracts.Identity;
-
-namespace IFC.Infrastructure.Identity.Services;
+﻿namespace IFC.Infrastructure.Identity.Services;
 
 public sealed class UserInfoService : IUserInfoService
 {

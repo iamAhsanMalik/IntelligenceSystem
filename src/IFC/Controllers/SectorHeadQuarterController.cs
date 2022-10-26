@@ -1,86 +1,84 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class AffiliatesController : Controller
+public class SectorHeadQuarterController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public AffiliatesController(IFCDbContext context)
+    public SectorHeadQuarterController(IFCDbContext context)
     {
         _context = context;
     }
 
-    // GET: Affiliate
+    // GET: SectorHeadQuarters
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Affiliates.ToListAsync());
+        return View(await _context.SectorHeadQuarters.ToListAsync());
     }
 
-    // GET: Affiliate/Details/5
+    // GET: SectorHeadQuarters/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Affiliates == null)
+        if (id == null || _context.SectorHeadQuarters == null)
         {
             return NotFound();
         }
 
-        var affiliate = await _context.Affiliates
+        var sectorHeadQuarter = await _context.SectorHeadQuarters
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (affiliate == null)
+        if (sectorHeadQuarter == null)
         {
             return NotFound();
         }
 
-        return View(affiliate);
+        return View(sectorHeadQuarter);
     }
 
-    // GET: Affiliate/Create
+    // GET: SectorHeadQuarters/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: Affiliate/Create
+    // POST: SectorHeadQuarters/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,LocalAffiliate,ForiegnAffiliate,IsDeleted,IsActive")] Affiliate affiliate)
+    public async Task<IActionResult> Create([Bind("Id,Name,Description,IsActive,IsDeleted")] SectorHeadQuarter sectorHeadQuarter)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(affiliate);
+            _context.Add(sectorHeadQuarter);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(affiliate);
+        return View(sectorHeadQuarter);
     }
 
-    // GET: Affiliate/Edit/5
+    // GET: SectorHeadQuarters/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {
-        if (id == null || _context.Affiliates == null)
+        if (id == null || _context.SectorHeadQuarters == null)
         {
             return NotFound();
         }
 
-        var affiliate = await _context.Affiliates.FindAsync(id);
-        if (affiliate == null)
+        var sectorHeadQuarter = await _context.SectorHeadQuarters.FindAsync(id);
+        if (sectorHeadQuarter == null)
         {
             return NotFound();
         }
-        return View(affiliate);
+        return View(sectorHeadQuarter);
     }
 
-    // POST: Affiliate/Edit/5
+    // POST: SectorHeadQuarters/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, [Bind("Id,LocalAffiliate,ForiegnAffiliate,IsDeleted,IsActive")] Affiliate affiliate)
+    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,Description,IsActive,IsDeleted")] SectorHeadQuarter sectorHeadQuarter)
     {
-        if (id != affiliate.Id)
+        if (id != sectorHeadQuarter.Id)
         {
             return NotFound();
         }
@@ -89,12 +87,12 @@ public class AffiliatesController : Controller
         {
             try
             {
-                _context.Update(affiliate);
+                _context.Update(sectorHeadQuarter);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AffiliateExists(affiliate.Id))
+                if (!SectorHeadQuarterExists(sectorHeadQuarter.Id))
                 {
                     return NotFound();
                 }
@@ -105,48 +103,48 @@ public class AffiliatesController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        return View(affiliate);
+        return View(sectorHeadQuarter);
     }
 
-    // GET: Affiliate/Delete/5
+    // GET: SectorHeadQuarters/Delete/5
     public async Task<IActionResult> Delete(long? id)
     {
-        if (id == null || _context.Affiliates == null)
+        if (id == null || _context.SectorHeadQuarters == null)
         {
             return NotFound();
         }
 
-        var affiliate = await _context.Affiliates
+        var sectorHeadQuarter = await _context.SectorHeadQuarters
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (affiliate == null)
+        if (sectorHeadQuarter == null)
         {
             return NotFound();
         }
 
-        return View(affiliate);
+        return View(sectorHeadQuarter);
     }
 
-    // POST: Affiliate/Delete/5
+    // POST: SectorHeadQuarters/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        if (_context.Affiliates == null)
+        if (_context.SectorHeadQuarters == null)
         {
-            return Problem("Entity set 'IFCDbContext.Affiliates'  is null.");
+            return Problem("Entity set 'IFCDbContext.SectorHeadQuarters'  is null.");
         }
-        var affiliate = await _context.Affiliates.FindAsync(id);
-        if (affiliate != null)
+        var sectorHeadQuarter = await _context.SectorHeadQuarters.FindAsync(id);
+        if (sectorHeadQuarter != null)
         {
-            _context.Affiliates.Remove(affiliate);
+            _context.SectorHeadQuarters.Remove(sectorHeadQuarter);
         }
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
-    private bool AffiliateExists(long id)
+    private bool SectorHeadQuarterExists(long id)
     {
-        return _context.Affiliates.Any(e => e.Id == id);
+        return _context.SectorHeadQuarters.Any(e => e.Id == id);
     }
 }

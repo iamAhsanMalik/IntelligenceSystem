@@ -1,7 +1,4 @@
-﻿using IFC.Application.Contracts.Application;
-using IFC.Infrastructure.Identity;
-
-namespace IFC.Infrastructure;
+﻿namespace IFC.Infrastructure;
 
 public static class InfrastructureServices
 {

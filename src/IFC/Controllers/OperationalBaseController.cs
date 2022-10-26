@@ -1,86 +1,84 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class LocationsController : Controller
+public class OperationalBaseController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public LocationsController(IFCDbContext context)
+    public OperationalBaseController(IFCDbContext context)
     {
         _context = context;
     }
 
-    // GET: Locations
+    // GET: OperationalBases
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Locations.ToListAsync());
+        return View(await _context.OperationalBases.ToListAsync());
     }
 
-    // GET: Locations/Details/5
+    // GET: OperationalBases/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Locations == null)
+        if (id == null || _context.OperationalBases == null)
         {
             return NotFound();
         }
 
-        var location = await _context.Locations
+        var operationalBase = await _context.OperationalBases
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (location == null)
+        if (operationalBase == null)
         {
             return NotFound();
         }
 
-        return View(location);
+        return View(operationalBase);
     }
 
-    // GET: Locations/Create
+    // GET: OperationalBases/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: Locations/Create
+    // POST: OperationalBases/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,Latitude,Longitude,IsDeleted,IsActive")] Location location)
+    public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,IsActive")] OperationalBase operationalBase)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(location);
+            _context.Add(operationalBase);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(location);
+        return View(operationalBase);
     }
 
-    // GET: Locations/Edit/5
+    // GET: OperationalBases/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {
-        if (id == null || _context.Locations == null)
+        if (id == null || _context.OperationalBases == null)
         {
             return NotFound();
         }
 
-        var location = await _context.Locations.FindAsync(id);
-        if (location == null)
+        var operationalBase = await _context.OperationalBases.FindAsync(id);
+        if (operationalBase == null)
         {
             return NotFound();
         }
-        return View(location);
+        return View(operationalBase);
     }
 
-    // POST: Locations/Edit/5
+    // POST: OperationalBases/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,Latitude,Longitude,IsDeleted,IsActive")] Location location)
+    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,IsDeleted,IsActive")] OperationalBase operationalBase)
     {
-        if (id != location.Id)
+        if (id != operationalBase.Id)
         {
             return NotFound();
         }
@@ -89,12 +87,12 @@ public class LocationsController : Controller
         {
             try
             {
-                _context.Update(location);
+                _context.Update(operationalBase);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LocationExists(location.Id))
+                if (!OperationalBaseExists(operationalBase.Id))
                 {
                     return NotFound();
                 }
@@ -105,48 +103,48 @@ public class LocationsController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        return View(location);
+        return View(operationalBase);
     }
 
-    // GET: Locations/Delete/5
+    // GET: OperationalBases/Delete/5
     public async Task<IActionResult> Delete(long? id)
     {
-        if (id == null || _context.Locations == null)
+        if (id == null || _context.OperationalBases == null)
         {
             return NotFound();
         }
 
-        var location = await _context.Locations
+        var operationalBase = await _context.OperationalBases
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (location == null)
+        if (operationalBase == null)
         {
             return NotFound();
         }
 
-        return View(location);
+        return View(operationalBase);
     }
 
-    // POST: Locations/Delete/5
+    // POST: OperationalBases/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        if (_context.Locations == null)
+        if (_context.OperationalBases == null)
         {
-            return Problem("Entity set 'IFCDbContext.Locations'  is null.");
+            return Problem("Entity set 'IFCDbContext.OperationalBases'  is null.");
         }
-        var location = await _context.Locations.FindAsync(id);
-        if (location != null)
+        var operationalBase = await _context.OperationalBases.FindAsync(id);
+        if (operationalBase != null)
         {
-            _context.Locations.Remove(location);
+            _context.OperationalBases.Remove(operationalBase);
         }
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
-    private bool LocationExists(long id)
+    private bool OperationalBaseExists(long id)
     {
-        return _context.Locations.Any(e => e.Id == id);
+        return _context.OperationalBases.Any(e => e.Id == id);
     }
 }

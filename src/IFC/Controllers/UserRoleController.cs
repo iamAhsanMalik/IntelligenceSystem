@@ -1,16 +1,13 @@
-﻿using IFC.Domain.Enums;
-using IFC.Infrastructure.Identity.Models;
-
-namespace IFC.Controllers;
+﻿namespace IFC.Controllers;
 
 [Authorize(Roles = nameof(AppRoles.SuperAdmin))]
-public class UserRolesController : Controller
+public class UserRoleController : Controller
 {
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
 
-    public UserRolesController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
+    public UserRoleController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -47,6 +44,6 @@ public class UserRolesController : Controller
         result = await _userManager.AddToRolesAsync(user, model.UserRoles?.Where(x => x.Selected).Select(y => y.RoleName));
         var currentUser = await _userManager.GetUserAsync(User);
         await _signInManager.RefreshSignInAsync(currentUser);
-        return RedirectToAction(nameof(UserRolesController.Index), new { userId = id });
+        return RedirectToAction(nameof(UserRoleController.Index), new { userId = id });
     }
 }

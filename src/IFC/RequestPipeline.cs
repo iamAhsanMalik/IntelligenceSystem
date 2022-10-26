@@ -1,4 +1,3 @@
-using IFC.Infrastructure.Persistence;
 namespace IFC;
 
 public static class RequestPipeline

@@ -1,86 +1,84 @@
-﻿using IFC.Infrastructure.Persistence;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class FundersController : Controller
+public class CityController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public FundersController(IFCDbContext context)
+    public CityController(IFCDbContext context)
     {
         _context = context;
     }
 
-    // GET: Funders
+    // GET: Cities
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Funders.ToListAsync());
+        return View(await _context.Cities.ToListAsync());
     }
 
-    // GET: Funders/Details/5
+    // GET: Cities/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Funders == null)
+        if (id == null || _context.Cities == null)
         {
             return NotFound();
         }
 
-        var funder = await _context.Funders
+        var city = await _context.Cities
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (funder == null)
+        if (city == null)
         {
             return NotFound();
         }
 
-        return View(funder);
+        return View(city);
     }
 
-    // GET: Funders/Create
+    // GET: Cities/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: Funders/Create
+    // POST: Cities/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,FundingSource,IsDeleted,IsActive")] Funder funder)
+    public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,IsActive")] City city)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(funder);
+            _context.Add(city);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(funder);
+        return View(city);
     }
 
-    // GET: Funders/Edit/5
+    // GET: Cities/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {
-        if (id == null || _context.Funders == null)
+        if (id == null || _context.Cities == null)
         {
             return NotFound();
         }
 
-        var funder = await _context.Funders.FindAsync(id);
-        if (funder == null)
+        var city = await _context.Cities.FindAsync(id);
+        if (city == null)
         {
             return NotFound();
         }
-        return View(funder);
+        return View(city);
     }
 
-    // POST: Funders/Edit/5
+    // POST: Cities/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,FundingSource,IsDeleted,IsActive")] Funder funder)
+    public async Task<IActionResult> Edit(long id, [Bind("Id,Name,IsDeleted,IsActive")] City city)
     {
-        if (id != funder.Id)
+        if (id != city.Id)
         {
             return NotFound();
         }
@@ -89,12 +87,12 @@ public class FundersController : Controller
         {
             try
             {
-                _context.Update(funder);
+                _context.Update(city);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FunderExists(funder.Id))
+                if (!CityExists(city.Id))
                 {
                     return NotFound();
                 }
@@ -105,48 +103,48 @@ public class FundersController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        return View(funder);
+        return View(city);
     }
 
-    // GET: Funders/Delete/5
+    // GET: Cities/Delete/5
     public async Task<IActionResult> Delete(long? id)
     {
-        if (id == null || _context.Funders == null)
+        if (id == null || _context.Cities == null)
         {
             return NotFound();
         }
 
-        var funder = await _context.Funders
+        var city = await _context.Cities
             .FirstOrDefaultAsync(m => m.Id == id);
-        if (funder == null)
+        if (city == null)
         {
             return NotFound();
         }
 
-        return View(funder);
+        return View(city);
     }
 
-    // POST: Funders/Delete/5
+    // POST: Cities/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        if (_context.Funders == null)
+        if (_context.Cities == null)
         {
-            return Problem("Entity set 'IFCDbContext.Funders'  is null.");
+            return Problem("Entity set 'IFCDbContext.Cities'  is null.");
         }
-        var funder = await _context.Funders.FindAsync(id);
-        if (funder != null)
+        var city = await _context.Cities.FindAsync(id);
+        if (city != null)
         {
-            _context.Funders.Remove(funder);
+            _context.Cities.Remove(city);
         }
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
-    private bool FunderExists(long id)
+    private bool CityExists(long id)
     {
-        return _context.Funders.Any(e => e.Id == id);
+        return _context.Cities.Any(e => e.Id == id);
     }
 }

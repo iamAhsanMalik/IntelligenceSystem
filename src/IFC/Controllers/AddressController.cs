@@ -1,10 +1,10 @@
 ﻿namespace IFC.Controllers;
 
-public class AddressesController : Controller
+public class AddressController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public AddressesController(IFCDbContext context)
+    public AddressController(IFCDbContext context)
     {
         _context = context;
     }

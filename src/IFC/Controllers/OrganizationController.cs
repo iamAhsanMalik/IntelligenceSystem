@@ -1,12 +1,10 @@
-﻿using IFC.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Mvc.Rendering;
-namespace IFC.Controllers;
+﻿namespace IFC.Controllers;
 
-public class OrganizationsController : Controller
+public class OrganizationController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public OrganizationsController(IFCDbContext context)
+    public OrganizationController(IFCDbContext context)
     {
         _context = context;
     }

@@ -1,13 +1,10 @@
-﻿using IFC.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class IncidentsController : Controller
+public class IncidentController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public IncidentsController(IFCDbContext context)
+    public IncidentController(IFCDbContext context)
     {
         _context = context;
     }

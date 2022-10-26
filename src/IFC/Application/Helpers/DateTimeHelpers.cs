@@ -1,7 +1,4 @@
-﻿using IFC.Application.Contracts.Application;
-using System.Globalization;
-
-namespace IFC.Application.Helpers;
+﻿namespace IFC.Application.Helpers;
 
 internal sealed class DateTimeHelpers : IDateTimeHelpers
 {

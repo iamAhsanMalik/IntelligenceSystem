@@ -1,13 +1,10 @@
-﻿using IFC.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class ApprovalsController : Controller
+public class ApprovalController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public ApprovalsController(IFCDbContext context)
+    public ApprovalController(IFCDbContext context)
     {
         _context = context;
     }

@@ -1,7 +1,4 @@
-﻿using IFC.Domain.Enums;
-using Microsoft.EntityFrameworkCore;
-
-namespace IFC.Controllers;
+﻿namespace IFC.Controllers;
 
 [Authorize(Roles = nameof(AppRoles.SuperAdmin))]
 public class RoleManagementController : Controller

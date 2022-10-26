@@ -1,8 +1,4 @@
-﻿using IFC.Application.Contracts.Persistence;
-using IFC.Domain.Enums;
-using IFC.Infrastructure.Persistence.Seeding;
-
-namespace IFC.Infrastructure.Persistence;
+﻿namespace IFC.Infrastructure.Persistence;
 internal static class PersistenceServices
 {
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)

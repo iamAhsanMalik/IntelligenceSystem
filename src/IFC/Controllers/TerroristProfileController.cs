@@ -1,13 +1,10 @@
-﻿using IFC.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿namespace IFC.Controllers;
 
-namespace IFC.Controllers;
-
-public class TerroristProfilesController : Controller
+public class TerroristProfileController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public TerroristProfilesController(IFCDbContext context)
+    public TerroristProfileController(IFCDbContext context)
     {
         _context = context;
     }

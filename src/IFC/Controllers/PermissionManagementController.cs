@@ -1,9 +1,4 @@
-﻿using IFC.Application.Extensions;
-using IFC.Domain.Enums;
-using IFC.Infrastructure.Identity.Helpers;
-using IFC.Infrastructure.Identity.Models;
-
-namespace IFC.Controllers;
+﻿namespace IFC.Controllers;
 
 [Authorize(Roles = nameof(AppRoles.SuperAdmin))]
 public class PermissionManagementController : Controller

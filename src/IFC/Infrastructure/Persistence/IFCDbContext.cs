@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System.Reflection;
-
 namespace IFC.Infrastructure.Persistence;
 
 public class IFCDbContext : IdentityDbContext<ApplicationUser>
