@@ -1,3 +1,4 @@
+@model LoginDTO
 @{
     Layout = null;
 }
@@ -37,22 +38,25 @@
         <div class="animate form login_form">
             <section class="login_content">
                 <div id="divLoginForm">
-                    <form id="LoginForm" autocomplete="off">
+                    <form id="LoginForm"  asp-controller="Account" asp-action="Login">
                         <div class="heading_login">
                             <h2>Login</h2>
                             <hr />
                         </div>
                         <div>
-                            <input type="text" id="username" class="form-control usrName" name="User Name"
-                                placeholder="User Name" required="" autocomplete="off" />
+                            <input type="text" class="form-control usrName" asp-for="Email"
+                                placeholder="UserName" required="" autocomplete="off" />
+                                <span asp-validation-for="Email" style="color:red"></span>
                         </div>
                         <div>
-                            <input type="password" id="password" class="form-control passwrd" name="Password"
+                            <input type="password" class="form-control passwrd" asp-for="Password"
                                 placeholder="Password" required="" autocomplete="off" />
+                                <span asp-validation-for="Password" style="color:red"></span>
+
                         </div>
                         <div class="row">
                             <div class="col-md-6 text-left clrDarkBlue">
-                                <input type="checkbox" name="RememberMe" id="chkRemember" />&nbsp;Remember me
+                                <input type="checkbox"  asp-for="RememberMe" />&nbsp;Remember me
                             </div>
                             <div class="col-md-6 text-right clrRed">
 
@@ -61,7 +65,7 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                                 <div class="mt-4 mb-3">
-                                    <input type="button" value="Log in" onclick="LogIn()"
+                                    <input type="submit" value="Log in" 
                                         class="btn btn-default loginBtn " />
                                 </div>
                             </div>
@@ -92,7 +96,8 @@
                         <div class="separator">
                             <p class="change_link">
                                 Already a member ?
-                                <a href="#signin" class="to_register" onclick="ShowForm()"> Log in </a>
+                                <a href="#signin" value="submit" class="to_register" onclick="ShowForm()"> Log in </a>
+                                <span></span>
                             </p>
                         </div>
                         <div class="loginBtnDev">
