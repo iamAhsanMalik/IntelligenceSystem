@@ -20,7 +20,7 @@
 
                 </div>
                 <div class="col-md-2 col-sm-6">
-                    <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius " data-toggle="modal" data-target="#AddthreatModal">Add New Threats</button>
+                    <a class="btn btn-danger float-right mt-2 mb-2 btn-radius " asp-action="Create" asp-controller="Threat">Add New Threats</a>
                 </div>
                      <div class="col-md-2 col-sm-6">
                     <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius">Export to Excel</button>
@@ -85,10 +85,11 @@
     });
 
     function LoadTable() {
+        debugger
         var search = $("#searchfield").val();
         $('#pageSize').val("25");
         $.ajax({
-            url: '../Threats/LoadData',
+            url: '../Threat/LoadData',
             type: "GET",
             data: { SearchCriteria: search },
             dataType: "JSON",

@@ -16,13 +16,13 @@ public class ThreatController : Controller
         return View(await iFCDbContext.ToListAsync());
     }
 
-    public JsonResult LoadData(string SearchCriteriaint, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
+    public async Task<OkObjectResult> LoadData(string SearchCriteria, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
     {
 
 
-        var iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
-
-        return Json(new { status = true, Data = iFCDbContext });
+        var iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing);
+        var result = (await iFCDbContext.ToListAsync()).Take(25);
+        return Ok(result);
 
     }
 
