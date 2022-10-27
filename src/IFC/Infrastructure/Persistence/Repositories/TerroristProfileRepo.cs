@@ -1,4 +1,6 @@
-﻿namespace IFC.Infrastructure.Persistence.Repositories;
+﻿using IFC.Application.Contracts.Persistence.Repositries;
+
+namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class TerroristProfileRepo : ITerroristProfileRepo
 {

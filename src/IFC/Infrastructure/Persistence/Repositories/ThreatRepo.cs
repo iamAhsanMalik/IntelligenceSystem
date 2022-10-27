@@ -1,4 +1,6 @@
 ﻿
+using IFC.Application.Contracts.Persistence.Repositries;
+
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class ThreatRepo : IThreatRepo
