@@ -1,3 +1,5 @@
+using Newtonsoft.Json.Converters;
+
 namespace IFC;
 
 public static class DependencyInjection
@@ -6,7 +8,9 @@ public static class DependencyInjection
     {
         services.AddApplicationServices().AddInfrastructureServices(configuration);
         services.AddControllersWithViews(options => options.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()))).AddJsonOptions(options =>
-                options.JsonSerializerOptions.PropertyNamingPolicy = null);
+                options.JsonSerializerOptions.PropertyNamingPolicy = null).AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
+
+     
         // services.AddDistributedMemoryCache();
         services.AddScoped<ISeedDatabase, SeedDatabase>();
         services.AddSession(options =>
@@ -15,6 +19,7 @@ public static class DependencyInjection
             options.Cookie.HttpOnly = true;
             options.Cookie.IsEssential = true;
         });
+        
         return services;
     }
 }

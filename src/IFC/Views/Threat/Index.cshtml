@@ -34,7 +34,7 @@
                     <tr class="bg_Brown border-radius" style="color:white !important">
                         <th>Incident ID</th>
                         <th>Location</th>
-                        <th>Target Win</th>
+                        <th>Target Wing</th>
                         <th>Organization</th>
                         <th>Date</th>
                         <th>Suspect Name</th>
@@ -259,7 +259,7 @@
                         "data": "Location",
                         "class": "background",
                         "render": function (data, type, row) {
-                            return '<span>' + row.Location+'<span>';
+                            return '<span>' + row.Location.Name+'<span>';
 
                         }
                     },
@@ -268,7 +268,7 @@
                         "class": "background",
                         "render": function (data, type, row) {
 
-                            return '<span>' + row.Organization + '</span>';
+                            return '<span>' + row.Organization.Name + '</span>';
 
                         }
 
@@ -288,7 +288,7 @@
                         "class": "background",
                         "render": function (data, type, row) {
 
-                            return '<span>' + row.SuspectName + '</span>';
+                            return '<span>' + row.SuspectName.FullName + '</span>';
 
                         }
 
