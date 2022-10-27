@@ -1,5 +1,5 @@
 ﻿namespace IFC.Application.Contracts.Persistence.Repositries;
-internal interface IUnitOfWork
+public interface IUnitOfWork
 {
     IAddressRepo AddressRepo { get; }
     IAffiliateRepo AffiliateRepo { get; }
