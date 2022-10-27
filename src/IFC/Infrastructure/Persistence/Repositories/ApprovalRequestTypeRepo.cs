@@ -2,10 +2,10 @@
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
-public class ApprovalRequestTypeRequestTypeRepo : IApprovalRequestTypeRequestTypeRepo
+public class ApprovalRequestTypeRepo : IApprovalRequestTypeRepo
 {
     private readonly IFCDbContext _dbContext;
-    public ApprovalRequestTypeRequestTypeRepo(IFCDbContext dbContext)
+    public ApprovalRequestTypeRepo(IFCDbContext dbContext)
     {
         _dbContext = dbContext;
     }
