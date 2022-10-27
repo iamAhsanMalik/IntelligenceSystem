@@ -12,7 +12,7 @@ public class TerroristInvolvementRepo : ITerroristInvolvementRepo
 
     public async Task<List<TerroristInvolvement>> GetTerroristInvolvementsAsync()
     {
-        var iFCDbContext = await _dbContext.TerroristInvolvements.ToListAsync());
+        var iFCDbContext = await _dbContext.TerroristInvolvements.ToListAsync();
 
         return iFCDbContext;
     }

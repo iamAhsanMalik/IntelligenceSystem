@@ -12,7 +12,6 @@ public class SuspectProfile
     public string? LastName { get; set; }
     public string? FullName { get => $"{FirstName} {LastName}"; }
     public string? FatherName { get; set; }
-    public string? FullName { get => $"{FirstName} {LastName}"; }
     public DateTime? DateOfBirth { get; set; }
     public string? TribeOrCast { get; set; }
     public string? Sect { get; set; }
