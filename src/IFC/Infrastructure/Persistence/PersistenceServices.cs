@@ -23,6 +23,7 @@ internal static class PersistenceServices
         }
         services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IFCDbContext>().AddDefaultTokenProviders();
         services.AddScoped<ISeedDatabase, SeedDatabase>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         //Repositories Registration
         //services.AddScoped<IApprovalRepo, ApprovalRepo>();

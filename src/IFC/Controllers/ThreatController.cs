@@ -26,9 +26,9 @@ public class ThreatController : Controller
         IQueryable<Threat>? iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
         var result = await iFCDbContext.ToListAsync();
 
-        var cccccc = _mapper.Map<List<ThreatDTO>>(result);
+        var ThreatList = _mapper.Map<List<ThreatDTO>>(result);
 
-        return Json(new { status = true, Data = cccccc });
+        return Json(new { Status = true, Data = ThreatList }, new Newtonsoft.Json.JsonSerializerSettings());
     }
 
     // GET: Threats/Details/5

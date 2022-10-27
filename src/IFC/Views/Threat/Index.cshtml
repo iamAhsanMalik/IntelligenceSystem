@@ -4,7 +4,6 @@
     ViewData["Title"] = "Threat";
 }
 
-<h1>Index</h1>
 
 
 <section>
@@ -29,10 +28,9 @@
             </div>
         </div>
         <div class="panel-body">
-            <table id="DashboardTable" class="table border-none">
+            <table id="myTable" class="table border-none" style="width:100% !important">
                 <thead>
                     <tr class="bg_Brown border-radius" style="color:white !important">
-                        <th>Incident ID</th>
                         <th>Location</th>
                         <th>Target Wing</th>
                         <th>Organization</th>
@@ -43,21 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @*<tr>
-                        <td>1</td>
-                        <td>CBT</td>
-                        <td>100</td>
-                        <td>700</td>
-                        <td>10</td>
-                        <td>10</td>
-                        <td>10</td>
-                        <td>
 
-                            <button><i class="fa fa-edit"></i></button>
-                            <button><i class="fa fa-eye"></i></button>
-                            <button><i class="fa fa-trash"></i></button>
-                        </td>
-                    </tr>*@
                 </tbody>
             </table>
             <div class="col-sm-12" id="AreaUnderTable" >
@@ -202,7 +186,7 @@
             datatype: 'json',
             success: function (response) {
                 debugger
-                if (response.Status) {
+                if (response.status) {
                     GetRecords(response.Data);
                     $('.pagercustom #DynamicRecord').empty();
 
@@ -259,7 +243,15 @@
                         "data": "Location",
                         "class": "background",
                         "render": function (data, type, row) {
-                            return '<span>' + row.Location.Name+'<span>';
+                            return '<span>' + row.Location + '<span>';
+
+                        }
+                    },   
+                    {
+                        "data": "Wing",
+                        "class": "background",
+                        "render": function (data, type, row) {
+                            return '<span>' + row.Wing + '<span>';
 
                         }
                     },
@@ -268,7 +260,7 @@
                         "class": "background",
                         "render": function (data, type, row) {
 
-                            return '<span>' + row.Organization.Name + '</span>';
+                            return '<span>' + row.Organization + '</span>';
 
                         }
 
@@ -278,7 +270,8 @@
                         "class": "background",
                         "render": function (data, type, row) {
 
-                            return '<span>' + row.Date + '</span>';
+                            return '<span>' + moment(row.ThreatDate).format('YYYY-MM-DD') + '</span>';
+                            
 
                         }
 
@@ -288,7 +281,7 @@
                         "class": "background",
                         "render": function (data, type, row) {
 
-                            return '<span>' + row.SuspectName.FullName + '</span>';
+                            return '<span>' + row.SuspectsProfile + '</span>';
 
                         }
 
@@ -306,9 +299,9 @@
                         "class": "background",
                         "render": function (data, type, row) {
                           
-                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=EditData(' + row.ID + ') class="edt"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
-                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=View(' + row.ID + ') class="fa fa-eye"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
-                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.ID + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/ShowPassword.svg"></a><a href="#" title="Edit User" onclick=DeleteData(' + row.ID + ') class="fa fa-trash"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/Content/img/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
+                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.Id + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/edit.svg"></a><a href="#" title="Edit User" onclick=EditData(' + row.ID + ') class="edt"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
+                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.Id + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/print.svg"></a><a href="#" title="Edit User" onclick=View(' + row.ID + ') class="fa fa-eye"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/print.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
+                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.Id + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/reasonforrejection.svg"></a><a href="#" title="Edit User" onclick=DeleteData(' + row.ID + ') class="fa fa-trash"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/reasonforrejection.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
                             
                             
                         }
