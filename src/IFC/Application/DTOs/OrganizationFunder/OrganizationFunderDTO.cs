@@ -3,10 +3,10 @@
 public class OrganizationFunderDTO
 {
     public long Id { get; set; }
-   
+
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
-    public virtual String? Funder { get; set; }
-    public virtual string? Organization { get; set; }
+    public string? Funder { get; set; }
+    public string? Organization { get; set; }
 }

@@ -12,7 +12,7 @@ public class TerroristProfileController : Controller
     // GET: TerroristProfiles
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.TerroristProfiles.Include(t => t.Address).Include(t => t.Orgnization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement);
+        var iFCDbContext = _context.TerroristProfiles.Include(t => t.Address).Include(t => t.Organization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement);
         return View(await iFCDbContext.ToListAsync());
     }
 
@@ -26,7 +26,7 @@ public class TerroristProfileController : Controller
 
         var terroristProfile = await _context.TerroristProfiles
             .Include(t => t.Address)
-            .Include(t => t.Orgnization)
+            .Include(t => t.Organization)
             .Include(t => t.TerroristFacilitatorsDetails)
             .Include(t => t.TerroristFamilyDetails)
             .Include(t => t.TerroristInvolvement)
@@ -64,7 +64,7 @@ public class TerroristProfileController : Controller
             return RedirectToAction(nameof(Index));
         }
         ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id", terroristProfile.AddressId);
-        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrgnizationId);
+        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrganizationId);
         ViewData["TerroristFacilitatorsDetailsId"] = new SelectList(_context.TerroristFacilitatorsDetails, "Id", "Id", terroristProfile.TerroristFacilitatorsDetailsId);
         ViewData["TerroristFamilyDetailsId"] = new SelectList(_context.TerroristFamilyDetails, "Id", "Id", terroristProfile.TerroristFamilyDetailsId);
         ViewData["TerroristInvolvementId"] = new SelectList(_context.TerroristInvolvements, "Id", "Id", terroristProfile.TerroristInvolvementId);
@@ -85,7 +85,7 @@ public class TerroristProfileController : Controller
             return NotFound();
         }
         ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id", terroristProfile.AddressId);
-        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrgnizationId);
+        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrganizationId);
         ViewData["TerroristFacilitatorsDetailsId"] = new SelectList(_context.TerroristFacilitatorsDetails, "Id", "Id", terroristProfile.TerroristFacilitatorsDetailsId);
         ViewData["TerroristFamilyDetailsId"] = new SelectList(_context.TerroristFamilyDetails, "Id", "Id", terroristProfile.TerroristFamilyDetailsId);
         ViewData["TerroristInvolvementId"] = new SelectList(_context.TerroristInvolvements, "Id", "Id", terroristProfile.TerroristInvolvementId);
@@ -125,7 +125,7 @@ public class TerroristProfileController : Controller
             return RedirectToAction(nameof(Index));
         }
         ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id", terroristProfile.AddressId);
-        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrgnizationId);
+        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrganizationId);
         ViewData["TerroristFacilitatorsDetailsId"] = new SelectList(_context.TerroristFacilitatorsDetails, "Id", "Id", terroristProfile.TerroristFacilitatorsDetailsId);
         ViewData["TerroristFamilyDetailsId"] = new SelectList(_context.TerroristFamilyDetails, "Id", "Id", terroristProfile.TerroristFamilyDetailsId);
         ViewData["TerroristInvolvementId"] = new SelectList(_context.TerroristInvolvements, "Id", "Id", terroristProfile.TerroristInvolvementId);
@@ -142,7 +142,7 @@ public class TerroristProfileController : Controller
 
         var terroristProfile = await _context.TerroristProfiles
             .Include(t => t.Address)
-            .Include(t => t.Orgnization)
+            .Include(t => t.Organization)
             .Include(t => t.TerroristFacilitatorsDetails)
             .Include(t => t.TerroristFamilyDetails)
             .Include(t => t.TerroristInvolvement)

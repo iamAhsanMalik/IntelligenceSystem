@@ -11,10 +11,9 @@ public class OrganizationDTO
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
- 
-
-    public virtual string? Affiliate { get; set; }
-    public virtual string? Involvement { get; set; }
-    public virtual string? OperationalBase { get; set; }
-    public virtual string? SocialMediaProfile { get; set; }
+    public string? LocalAffiliate { get; set; }
+    public string? ForeignAffiliate { get; set; }
+    public string? Involvement { get; set; }
+    public string? OperationalBase { get; set; }
+    public string? SocialMediaProfile { get; set; }
 }

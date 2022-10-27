@@ -7,6 +7,6 @@ public class AddressDTO
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
-    public virtual string? City { get; set; }
-    public virtual string? District { get; set; }
+    public string? City { get; set; }
+    public string? District { get; set; }
 }

@@ -7,7 +7,7 @@ public class CoreHeadQuarterDTO
     public string? Description { get; set; }
     public bool? IsActive { get; set; }
     public string? DisplayName { get; set; }
- 
+
     public bool? IsDeleted { get; set; }
-    public virtual string? SectorHeadQuarter { get; set; }
+    public string? SectorHeadQuarter { get; set; }
 }

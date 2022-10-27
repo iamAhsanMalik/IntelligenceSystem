@@ -14,9 +14,6 @@ public class TerroristFamilyDetailDTO
     public bool? MaritalStatus { get; set; }
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
-
-
-
-    public virtual string? Address { get; set; }
-    public virtual string? RelationType { get; set; }
+    public string? Address { get; set; }
+    public string? RelationType { get; set; }
 }

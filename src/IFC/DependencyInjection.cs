@@ -16,7 +16,8 @@ public static class DependencyInjection
         services.AddScoped<ICsvService, CsvService>();
         services.AddScoped<IHtmlService, HtmlService>();
         var authorizeFilter = new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
-        services.AddControllersWithViews(options => options.Filters.Add(authorizeFilter)).AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
+        services.AddControllersWithViews(options => options.Filters.Add(authorizeFilter)).AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter())).AddJsonOptions(options =>
+                options.JsonSerializerOptions.PropertyNamingPolicy = null);
         // services.AddDistributedMemoryCache();
         services.AddScoped<ISeedDatabase, SeedDatabase>();
         services.AddSession(options =>

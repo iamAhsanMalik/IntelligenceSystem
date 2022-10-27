@@ -308,7 +308,7 @@ public class SeedDatabase : ISeedDatabase
         // Seed Database
         return new Faker<Affiliate>()
             .RuleFor(o => o.LocalAffiliate, f => f.Lorem.Word())
-            .RuleFor(o => o.ForiegnAffiliate, f => f.Lorem.Word())
+            .RuleFor(o => o.ForeignAffiliate, f => f.Lorem.Word())
             .Generate(10);
     }
     #endregion
@@ -633,7 +633,7 @@ public class SeedDatabase : ISeedDatabase
             .RuleFor(o => o.IsFounder, f => f.Random.Bool())
             .RuleFor(o => o.GeneralRemarks, f => f.Lorem.Paragraph())
             .RuleFor(o => o.AddressId, f => f.Random.Int(1, 10))
-            .RuleFor(o => o.OrgnizationId, f => f.Random.Int(1, 10))
+            .RuleFor(o => o.OrganizationId, f => f.Random.Int(1, 10))
             .RuleFor(o => o.TerroristInvolvementId, f => f.Random.Int(1, 10))
             .RuleFor(o => o.TerroristFamilyDetailsId, f => f.Random.Int(1, 10))
             .RuleFor(o => o.TerroristFacilitatorsDetailsId, f => f.Random.Int(1, 10))

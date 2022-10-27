@@ -5,7 +5,7 @@ internal class SuspectFamilyDetailProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        //TypeAdapterConfig<SuspectFamilyDetail, ThreatDTO>
+        //TypeAdapterConfig<SuspectFamilyDetail, SuspectFamilyDetailDTO>
         //.NewConfig()
         //.Map(dest => dest.Organization, src => $"{src.Organization!.Name}")
         //.Map(dest => dest.Wing, src => $"{src.Wing!.Name}")

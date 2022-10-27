@@ -1,16 +1,13 @@
-﻿using Mapster;
+﻿using IFC.Application.DTOs.TerroristFamilyDetail;
+using Mapster;
 
 namespace IFC.Application.Profiles;
 internal class TerroristFamilyDetailProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        //TypeAdapterConfig<TerroristFamilyDetail, ThreatDTO>
-        //.NewConfig()
-        //.Map(dest => dest.Organization, src => $"{src.Organization!.Name}")
-        //.Map(dest => dest.Wing, src => $"{src.Wing!.Name}")
-        //.Map(dest => dest.SuspectsProfile, src => $"{src.SuspectsProfile!.FullName}")
-        //.Map(dest => dest.Incident, src => $"{src.Incident!.IncidentDate}")
-        //.Map(dest => dest.Location, src => $"{src.Location!.Name}");
+        TypeAdapterConfig<TerroristFamilyDetail, TerroristFamilyDetailDTO>
+        .NewConfig()
+        .Map(dest => dest.RelationType, src => $"{src.RelationType!.Name}");
     }
 }

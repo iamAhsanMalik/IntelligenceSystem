@@ -25,13 +25,13 @@ public class TerroristProfile
     public bool? IsActive { get; set; }
 
     public long? AddressId { get; set; }
-    public long? OrgnizationId { get; set; }
+    public long? OrganizationId { get; set; }
     public long? TerroristInvolvementId { get; set; }
     public long? TerroristFamilyDetailsId { get; set; }
     public long? TerroristFacilitatorsDetailsId { get; set; }
 
     public virtual Address? Address { get; set; }
-    public virtual Organization? Orgnization { get; set; }
+    public virtual Organization? Organization { get; set; }
     public virtual TerroristFacilitatorsDetail? TerroristFacilitatorsDetails { get; set; }
     public virtual TerroristFamilyDetail? TerroristFamilyDetails { get; set; }
     public virtual TerroristInvolvement? TerroristInvolvement { get; set; }

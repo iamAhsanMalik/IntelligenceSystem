@@ -1,16 +1,13 @@
-﻿using Mapster;
+﻿using IFC.Application.DTOs.Approval;
+using Mapster;
 
 namespace IFC.Application.Profiles;
 internal class ApprovalProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        //TypeAdapterConfig<Approval, ThreatDTO>
-        //.NewConfig()
-        //.Map(dest => dest.Organization, src => $"{src.Organization!.Name}")
-        //.Map(dest => dest.Wing, src => $"{src.Wing!.Name}")
-        //.Map(dest => dest.SuspectsProfile, src => $"{src.SuspectsProfile!.FullName}")
-        //.Map(dest => dest.Incident, src => $"{src.Incident!.IncidentDate}")
-        //.Map(dest => dest.Location, src => $"{src.Location!.Name}");
+        TypeAdapterConfig<Approval, ApprovalDTO>
+        .NewConfig()
+        .Map(dest => dest.ApprovalRequestType, src => $"{src.ApprovalRequestType!.RequestType}");
     }
 }

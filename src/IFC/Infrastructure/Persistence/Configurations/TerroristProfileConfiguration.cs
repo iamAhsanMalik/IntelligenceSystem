@@ -38,9 +38,9 @@ public class TerroristProfileConfigurations : IEntityTypeConfiguration<Terrorist
             .HasConstraintName("FK_TerroristProfiles_Address")
             .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne(d => d.Orgnization)
+        entity.HasOne(d => d.Organization)
             .WithMany(p => p.TerroristProfiles)
-            .HasForeignKey(d => d.OrgnizationId)
+            .HasForeignKey(d => d.OrganizationId)
             .HasConstraintName("FK_TerroristProfiles_Organizations")
             .OnDelete(DeleteBehavior.SetNull);
 

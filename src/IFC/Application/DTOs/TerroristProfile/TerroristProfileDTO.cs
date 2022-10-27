@@ -18,12 +18,9 @@ public class TerroristProfileDTO
     public string? GeneralRemarks { get; set; }
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
-
-
-
-    public virtual string? Address { get; set; }
-    public virtual string? Orgnization { get; set; }
-    public virtual string? TerroristFacilitatorsDetails { get; set; }
-    public virtual string? TerroristFamilyDetails { get; set; }
-    public virtual string? TerroristInvolvement { get; set; }
+    public string? Address { get; set; }
+    public string? Organization { get; set; }
+    public string? TerroristFacilitatorsDetails { get; set; }
+    public string? TerroristFamilyDetails { get; set; }
+    public string? TerroristInvolvement { get; set; }
 }

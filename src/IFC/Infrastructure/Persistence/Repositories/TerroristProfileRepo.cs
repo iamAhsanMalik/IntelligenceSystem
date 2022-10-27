@@ -12,7 +12,7 @@ public class TerroristProfileRepo : ITerroristProfileRepo
 
     public async Task<List<TerroristProfile>> GetTerroristProfilesAsync()
     {
-        var iFCDbContext = await _dbContext.TerroristProfiles.Include(t => t.Address).Include(t => t.Orgnization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement).ToListAsync();
+        var iFCDbContext = await _dbContext.TerroristProfiles.Include(t => t.Address).Include(t => t.Organization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement).ToListAsync();
 
         return iFCDbContext;
     }
@@ -20,7 +20,7 @@ public class TerroristProfileRepo : ITerroristProfileRepo
     {
         return await _dbContext.TerroristProfiles
             .Include(t => t.Address)
-            .Include(t => t.Orgnization)
+            .Include(t => t.Organization)
             .Include(t => t.TerroristFacilitatorsDetails)
             .Include(t => t.TerroristFamilyDetails)
             .Include(t => t.TerroristInvolvement)
