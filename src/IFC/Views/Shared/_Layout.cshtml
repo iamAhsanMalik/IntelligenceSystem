@@ -14,7 +14,7 @@
     <script src="~/admintheme/js/font-awesome.js"></script>
     <link href="~/admintheme/build/css/custom.min.css" rel="stylesheet" />
     <link href="~/admintheme/css/sweetalert.css" rel="stylesheet" />
-    <link href="~/admintheme/css/dataTable.css" rel="stylesheet" />
+   @* <link href="~/admintheme/css/dataTable.css" rel="stylesheet" />*@
 
     <script src="~/admintheme/scripts/chartsjs.js"></script>
     <script src="~/admintheme/scripts/jquery-slim.min.js"></script>
@@ -22,8 +22,8 @@
     <script src="~/admintheme/scripts/bootstrap4.1.0.js"></script>
     <script src="~/admintheme/scripts/popper.min.js"></script>
     <script src="~/admintheme/scripts/sweetalert-dev.js"></script>
-    <script src="~/admintheme/scripts/dataTables.min.js"></script>
-
+  @*  <script src="~/admintheme/scripts/dataTables.min.js"></script>*@
+    @await RenderSectionAsync("Styles", required: false)
 
 
 </head>

@@ -16,6 +16,7 @@ public class IncidentController : Controller
         return View(await iFCDbContext.ToListAsync());
     }
 
+
     // GET: Incidents
     public async Task<IActionResult> LoadIncidentData()
     {
@@ -28,6 +29,55 @@ public class IncidentController : Controller
         return Ok(jsonData);
         //return View();
     }
+
+    /// <summary>Loads the table.</summary>
+    /// <param name="dtParameters">The dt parameters.</param>
+    /// <returns>
+    ///   <br />
+    /// </returns>
+    [HttpPost("LoadTable")]
+    public async Task<IActionResult> LoadTable([FromBody] DtParameters dtParameters)
+    {
+        var searchBy = dtParameters.Search?.Value;
+
+        // if we have an empty search then just order the results by Id ascending
+        var orderCriteria = "Id";
+        var orderAscendingDirection = true;
+
+        if (dtParameters.Order != null)
+        {
+            // in this example we just default sort on the 1st column
+            orderCriteria = dtParameters.Columns[dtParameters.Order[0].Column].Data;
+            orderAscendingDirection = dtParameters.Order[0].Dir.ToString().ToLower() == "asc";
+        }
+
+        var result = _context.Incidents.AsQueryable();
+
+        if (!string.IsNullOrEmpty(searchBy))
+        {
+            result = result.Where(r => r.Location.Name != null && r.Location.Name.ToUpper().Contains(searchBy.ToUpper()) ||
+                                       r.Organization.Name != null && r.Organization.Name.ToUpper().Contains(searchBy.ToUpper()) ||
+                                       r.SuspectsProfile.FullName != null && r.SuspectsProfile.FullName.ToUpper().Contains(searchBy.ToUpper()));
+        }
+
+        result = orderAscendingDirection ? result.OrderByDynamic(orderCriteria, DtOrderDir.Asc) : result.OrderByDynamic(orderCriteria, DtOrderDir.Desc);
+
+        // now just get the count of items (without the skip and take) - eg how many could be returned with filtering
+        var filteredResultsCount = await result.CountAsync();
+        var totalResultsCount = await _context.Incidents.CountAsync();
+        var incidentData = Json(new DtResult<Incident>
+        {
+            Draw = dtParameters.Draw,
+            RecordsTotal = totalResultsCount,
+            RecordsFiltered = filteredResultsCount,
+            Data = await result
+                .Skip(dtParameters.Start)
+                .Take(dtParameters.Length)
+                .ToListAsync()
+        });
+        return incidentData;
+    }
+
 
     // GET: Incidents/Details/5
     public async Task<IActionResult> Details(long? id)

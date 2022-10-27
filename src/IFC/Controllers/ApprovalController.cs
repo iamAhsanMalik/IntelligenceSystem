@@ -77,17 +77,17 @@ public class ApprovalController : Controller
         return View(approval);
     }
 
-    // POST: Approvals/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, [Bind("Id,ApprovalRequestTypeId,InitiatedOn,ApprovalStatus,IsDeleted,IsActive")] Approval approval)
-    {
-        if (id != approval.Id)
-        {
-            return NotFound();
-        }
+    //// POST: Approvals/Edit/5
+    //// To protect from overposting attacks, enable the specific properties you want to bind to.
+    //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    //[HttpPost]
+    //[ValidateAntiForgeryToken]
+    //public async Task<IActionResult> Edit(long id, [Bind("Id,ApprovalRequestTypeId,InitiatedOn,ApprovalStatus,IsDeleted,IsActive")] Approval approval)
+    //{
+    //    if (id != approval.Id)
+    //    {
+    //        return NotFound();
+    //    }
 
         if (ModelState.IsValid)
         {
@@ -129,8 +129,8 @@ public class ApprovalController : Controller
             return NotFound();
         }
 
-        return View(approval);
-    }
+    //    return View(approval);
+    //}
 
     // POST: Approvals/Delete/5
     [HttpPost, ActionName("Delete")]
