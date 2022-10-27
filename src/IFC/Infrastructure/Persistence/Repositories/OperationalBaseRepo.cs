@@ -1,6 +1,6 @@
 ﻿namespace IFC.Infrastructure.Persistence.Repositories;
 
-public class OperationalBaseRepo
+public class OperationalBaseRepo : IOperationalBaseRepo
 {
     private readonly IFCDbContext _dbContext;
     public OperationalBaseRepo(IFCDbContext dbContext)

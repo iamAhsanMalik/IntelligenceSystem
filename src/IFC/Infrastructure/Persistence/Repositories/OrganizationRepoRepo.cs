@@ -1,6 +1,6 @@
 ﻿namespace IFC.Infrastructure.Persistence.Repositories;
 
-public class OrganizationRepo
+public class OrganizationRepo : IOrganizationRepo
 {
     private readonly IFCDbContext _dbContext;
     public OrganizationRepo(IFCDbContext dbContext)
@@ -24,7 +24,7 @@ public class OrganizationRepo
             .FirstOrDefaultAsync(m => m.Id == id);
 
     }
-    public async Task CreateOrganizationDetailAsync(Organization  organization)
+    public async Task CreateOrganizationDetailAsync(Organization organization)
     {
         _dbContext.Add(organization);
         await _dbContext.SaveChangesAsync();
