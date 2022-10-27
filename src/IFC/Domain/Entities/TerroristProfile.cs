@@ -10,6 +10,7 @@ public class TerroristProfile
     public long Id { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
+    public string? FullName { get => $"{FirstName} {LastName}"; }
     public string? NameAlias { get; set; }
     public string? FatherName { get; set; }
     public DateTime? DateOfBirth { get; set; }

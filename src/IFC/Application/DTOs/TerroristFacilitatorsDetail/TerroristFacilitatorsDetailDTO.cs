@@ -1,12 +1,7 @@
-﻿namespace IFC.Domain.Entities;
+﻿namespace IFC.Application.DTOs.TerroristFacilitatorsDetail;
 
-public class TerroristFamilyDetail
+public class TerroristFacilitatorsDetailDTO
 {
-    public TerroristFamilyDetail()
-    {
-        TerroristProfiles = new HashSet<TerroristProfile>();
-    }
-
     public long Id { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
@@ -20,10 +15,8 @@ public class TerroristFamilyDetail
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
-    public long? AddressId { get; set; }
-    public long? RelationTypeId { get; set; }
 
-    public virtual Address? Address { get; set; }
-    public virtual RelationType? RelationType { get; set; }
-    public virtual ICollection<TerroristProfile> TerroristProfiles { get; set; }
+
+    public virtual string? Address { get; set; }
+    public virtual string? RelationType { get; set; }
 }

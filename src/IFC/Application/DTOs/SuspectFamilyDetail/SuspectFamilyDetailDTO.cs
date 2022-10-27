@@ -1,12 +1,7 @@
-﻿namespace IFC.Domain.Entities;
+﻿namespace IFC.Application.DTOs.SuspectFamilyDetail;
 
-public class SuspectFamilyDetail
+public class SuspectFamilyDetailDTO
 {
-    public SuspectFamilyDetail()
-    {
-        SuspectProfiles = new HashSet<SuspectProfile>();
-    }
-
     public long Id { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
@@ -18,8 +13,7 @@ public class SuspectFamilyDetail
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
-    public long? RelationTypeId { get; set; }
+   
 
-    public virtual RelationType? RelationType { get; set; }
-    public virtual ICollection<SuspectProfile> SuspectProfiles { get; set; }
+    public virtual string? RelationType { get; set; }
 }
