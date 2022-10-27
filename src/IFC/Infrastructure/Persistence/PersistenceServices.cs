@@ -25,7 +25,29 @@ internal static class PersistenceServices
         services.AddScoped<ISeedDatabase, SeedDatabase>();
 
         //Repositories Registration
-        services.AddScoped<IApprovalRepo, ApprovalRepo>();
+        //services.AddScoped<IApprovalRepo, ApprovalRepo>();
+        //services.AddScoped<IAddressRepo, AddressRepo>();
+        //services.AddScoped<IAffiliateRepo, AffiliateRepo>();
+        //services.AddScoped<IApprovalRequestTypeRequestTypeRepo, ApprovalRequestTypeRequestTypeRepo>();
+        //services.AddScoped<ICityRepo, CityRepo>();
+        //services.AddScoped<ICoreHeadQuarterRepo, CoreHeadQuarterRepo>();
+        //services.AddScoped<IDistrictRepo, DistrictRepo>();
+        //services.AddScoped<IFunderRepo, FunderRepo>();
+        //services.AddScoped<IIncidentRepo, IncidentRepo>();
+        //services.AddScoped<ILocationRepo, LocationRepo>();
+        //services.AddScoped<IIncidentRepo, IncidentRepo>();
+        //services.AddScoped<IOperationalBaseRepo, OperationalBaseRepo>();
+        //services.AddScoped<IOrganizationRepo, OrganizationRepo>();
+        //services.AddScoped<IRelationTypeRepo, IRelationTypeRepo>();
+        //services.AddScoped<ISectorHeadQuarterRepo, SectorHeadQuarterRepo>();
+        //services.AddScoped<ISocialMediaProfileRepo, SocialMediaProfileRepo>();
+        //services.AddScoped<ITerroristFacilitatorsDetailRepo, ITerroristFacilitatorsDetailRepo>();
+        //services.AddScoped<ITerroristFamilyDetailRepo, ITerroristFamilyDetailRepo>();
+        //services.AddScoped<ITerroristProfileRepo, ITerroristProfileRepo>();
+        //services.AddScoped<ITerroristInvolvementRepo, ITerroristInvolvementRepo>();
+        //services.AddScoped<IThreatRepo, IThreatRepo>();
+        //services.AddScoped<IWingRepo, WingRepo>();
+
 
         return services;
     }
