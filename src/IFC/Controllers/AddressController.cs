@@ -4,7 +4,7 @@ public class AddressController : Controller
 {
     private readonly IFCDbContext _context;
 
-    public AddressController(IFCDbContext context)
+    public AddressController(Iuniofwork context)
     {
         _context = context;
     }
