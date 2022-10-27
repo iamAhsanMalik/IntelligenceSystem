@@ -1,12 +1,16 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Application.DTOs.Threat;
+
+namespace IFC.Controllers;
 
 public class ThreatController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IMapper _mapper;
 
-    public ThreatController(IFCDbContext context)
+    public ThreatController(IFCDbContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     // GET: Threats
@@ -16,14 +20,15 @@ public class ThreatController : Controller
         return View(await iFCDbContext.ToListAsync());
     }
 
-    public JsonResult LoadData(string SearchCriteriaint, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
+    public async Task<JsonResult> LoadData(string SearchCriteriaint, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
     {
 
+        IQueryable<Threat>? iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
+        var result = await iFCDbContext.ToListAsync();
 
-        var iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
+        var cccccc = _mapper.Map<List<ThreatDTO>>(result);
 
-        return Json(new { status = true, Data = iFCDbContext });
-
+        return Json(new { status = true, Data = cccccc });
     }
 
     // GET: Threats/Details/5
@@ -189,3 +194,5 @@ public class ThreatController : Controller
         return _context.Threats.Any(e => e.Id == id);
     }
 }
+
+

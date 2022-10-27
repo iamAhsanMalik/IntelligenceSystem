@@ -88,7 +88,7 @@
         var search = $("#searchfield").val();
         $('#pageSize').val("25");
         $.ajax({
-            url: '../Threats/LoadData',
+            url: 'Threat/LoadData',
             type: "GET",
             data: { SearchCriteria: search },
             dataType: "JSON",
