@@ -1,4 +1,5 @@
-﻿using IFC.Infrastructure.Persistence.Repositories;
+﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Infrastructure.Persistence.Repositories;
 
 namespace IFC.Infrastructure.Persistence;
 internal static class PersistenceServices

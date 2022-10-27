@@ -1,4 +1,4 @@
-﻿namespace IFC.Infrastructure.Persistence.Repositories;
+﻿namespace IFC.Application.Contracts.Persistence.Repositries;
 
 public interface ICityRepo
 {

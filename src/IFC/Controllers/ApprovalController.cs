@@ -1,4 +1,4 @@
-﻿using IFC.Infrastructure.Persistence.Repositories;
+﻿using IFC.Application.Contracts.Persistence.Repositries;
 
 namespace IFC.Controllers;
 
@@ -89,70 +89,70 @@ public class ApprovalController : Controller
     //        return NotFound();
     //    }
 
-        if (ModelState.IsValid)
-        {
-            try
-            {
-                _dbContext.Update(approval);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ApprovalExists(approval.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToAction(nameof(Index));
-        }
-        ViewData["ApprovalRequestTypeId"] = new SelectList(_dbContext.ApprovalRequestTypes, "Id", "Id", approval.ApprovalRequestTypeId);
-        return View(approval);
-    }
-
-    // GET: Approvals/Delete/5
-    public async Task<IActionResult> Delete(long? id)
-    {
-        if (id == null || _dbContext.Approvals == null)
-        {
-            return NotFound();
-        }
-
-        var approval = await _dbContext.Approvals
-            .Include(a => a.ApprovalRequestType)
-            .FirstOrDefaultAsync(m => m.Id == id);
-        if (approval == null)
-        {
-            return NotFound();
-        }
-
+    //    if (ModelState.IsValid)
+    //    {
+    //        try
+    //        {
+    //            _dbContext.Update(approval);
+    //            await _dbContext.SaveChangesAsync();
+    //        }
+    //        catch (DbUpdateConcurrencyException)
+    //        {
+    //            if (!ApprovalExists(approval.Id))
+    //            {
+    //                return NotFound();
+    //            }
+    //            else
+    //            {
+    //                throw;
+    //            }
+    //        }
+    //        return RedirectToAction(nameof(Index));
+    //    }
+    //    ViewData["ApprovalRequestTypeId"] = new SelectList(_dbContext.ApprovalRequestTypes, "Id", "Id", approval.ApprovalRequestTypeId);
     //    return View(approval);
     //}
 
-    // POST: Approvals/Delete/5
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(long id)
-    {
-        if (_dbContext.Approvals == null)
-        {
-            return Problem("Entity set 'IFCDbContext.Approvals'  is null.");
-        }
-        var approval = await _dbContext.Approvals.FindAsync(id);
-        if (approval != null)
-        {
-            _dbContext.Approvals.Remove(approval);
-        }
+    //// GET: Approvals/Delete/5
+    //public async Task<IActionResult> Delete(long? id)
+    //{
+    //    if (id == null || _dbContext.Approvals == null)
+    //    {
+    //        return NotFound();
+    //    }
 
-        await _dbContext.SaveChangesAsync();
-        return RedirectToAction(nameof(Index));
-    }
+    //    var approval = await _dbContext.Approvals
+    //        .Include(a => a.ApprovalRequestType)
+    //        .FirstOrDefaultAsync(m => m.Id == id);
+    //    if (approval == null)
+    //    {
+    //        return NotFound();
+    //    }
 
-    private bool ApprovalExists(long id)
-    {
-        return _dbContext.Approvals.Any(e => e.Id == id);
-    }
+    ////    return View(approval);
+    ////}
+
+    //// POST: Approvals/Delete/5
+    //[HttpPost, ActionName("Delete")]
+    //[ValidateAntiForgeryToken]
+    //public async Task<IActionResult> DeleteConfirmed(long id)
+    //{
+    //    if (_dbContext.Approvals == null)
+    //    {
+    //        return Problem("Entity set 'IFCDbContext.Approvals'  is null.");
+    //    }
+    //    var approval = await _dbContext.Approvals.FindAsync(id);
+    //    if (approval != null)
+    //    {
+    //        _dbContext.Approvals.Remove(approval);
+    //    }
+
+    //    await _dbContext.SaveChangesAsync();
+    //    return RedirectToAction(nameof(Index));
+    //}
+
+    //private bool ApprovalExists(long id)
+    //{
+    //    return _dbContext.Approvals.Any(e => e.Id == id);
+    //}
 }
