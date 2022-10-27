@@ -1,6 +1,6 @@
 ﻿namespace IFC.Application.Contracts.Persistence.Repositries;
 
-public interface IApprovalRequestTypeRequestTypeRepo
+public interface IApprovalRequestTypeRepo
 {
     Task CreateApprovalRequestTypeAsync(ApprovalRequestType approvalRequestType);
     Task DeleteApprovalRequestTypeAsync(long? id);

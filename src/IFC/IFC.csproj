@@ -63,8 +63,4 @@
     
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Contracts\Persistence\Repositries\" />
-  </ItemGroup>
-
 </Project>
