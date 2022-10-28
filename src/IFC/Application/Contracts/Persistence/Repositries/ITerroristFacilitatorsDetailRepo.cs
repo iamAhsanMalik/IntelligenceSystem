@@ -3,7 +3,7 @@
 public interface ITerroristFacilitatorsDetailRepo
 {
     Task CreateTerroristFacilitatorsDetailAsync(TerroristFacilitatorsDetail terroristFacilitatorsDetail);
-    Task DeleteTerroristFacilitatorsDetailAsync(long? id);
-    Task<List<TerroristFacilitatorsDetail>> GetTerroristFacilitatorsDetailsAsync();
-    Task<TerroristFacilitatorsDetail?> GetTerroristFacilitatorsDetailsAsync(long? id);
+    Task DeleteTerroristFacilitatorsDetailReposAsync(long? id);
+    Task<List<TerroristFacilitatorsDetailDTO>> GetTerroristFacilitatorsDetailReposAsync();
+    Task<TerroristFacilitatorsDetailDTO> GetTerroristFacilitatorsDetailReposAsync(long? id);
 }

@@ -1,25 +1,29 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.TerroristInvolvement;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class TerroristInvolvementRepo : ITerroristInvolvementRepo
 {
     private readonly IFCDbContext _dbContext;
-    public TerroristInvolvementRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public TerroristInvolvementRepo(IFCDbContext dbContext,IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<TerroristInvolvement>> GetTerroristInvolvementsAsync()
+    public async Task<List<TerroristInvolvementDTO>> GetTerroristInvolvementsAsync()
     {
-        var iFCDbContext = await _dbContext.TerroristInvolvements.ToListAsync();
+        return _mapper.Map<List<TerroristInvolvementDTO>> (await _dbContext.TerroristInvolvements.ToListAsync());
 
-        return iFCDbContext;
     }
-    public async Task<TerroristInvolvement?> GetTerroristInvolvementsAsync(long? id)
+    public async Task<TerroristInvolvementDTO> GetTerroristInvolvementsAsync(long? id)
     {
-        return await _dbContext.TerroristInvolvements
+      var result= await _dbContext.TerroristInvolvements
             .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map <TerroristInvolvementDTO>(result!);
 
     }
     public async Task CreateTerroristInvolvementsAsync(TerroristInvolvement TerroristInvolvements)
