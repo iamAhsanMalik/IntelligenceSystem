@@ -10,13 +10,13 @@ public class TerroristFacilitatorsDetailRepo : ITerroristFacilitatorsDetailRepo
         _dbContext = dbContext;
     }
 
-    public async Task<List<TerroristFacilitatorsDetail>> GetTerroristFacilitatorsDetailReposAsync()
+    public async Task<List<TerroristFacilitatorsDetail>> GetTerroristFacilitatorsDetailsAsync()
     {
         var iFCDbContext = await _dbContext.TerroristFacilitatorsDetails.Include(t => t.Address).Include(t => t.RelationType).ToListAsync();
 
         return iFCDbContext;
     }
-    public async Task<TerroristFacilitatorsDetail?> GetTerroristFacilitatorsDetailReposAsync(long? id)
+    public async Task<TerroristFacilitatorsDetail?> GetTerroristFacilitatorsDetailsAsync(long? id)
     {
         return await _dbContext.TerroristFacilitatorsDetails
             .Include(t => t.Address)
@@ -29,7 +29,7 @@ public class TerroristFacilitatorsDetailRepo : ITerroristFacilitatorsDetailRepo
         _dbContext.Add(terroristFacilitatorsDetail);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteTerroristFacilitatorsDetailReposAsync(long? id)
+    public async Task DeleteTerroristFacilitatorsDetailAsync(long? id)
     {
         var TerroristFacilitatorsDetail = await _dbContext.TerroristFacilitatorsDetails.FindAsync(id);
         if (TerroristFacilitatorsDetail != null)

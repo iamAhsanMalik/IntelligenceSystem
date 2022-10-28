@@ -24,12 +24,12 @@ public class ApprovalRepo : IApprovalRepo
         var result = await _dbContext.Approvals.Include(a => a.ApprovalRequestType).FirstOrDefaultAsync(m => m.Id == id);
         return _mapper.Map<ApprovalDTO>(result!);
     }
-    public async Task CreateApprovalsAsync(Approval approval)
+    public async Task CreateApprovalAsync(Approval approval)
     {
         _dbContext.Add(approval);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteApprovalsAsync(long? id)
+    public async Task DeleteApprovalAsync(long? id)
     {
         var approval = await _dbContext.Approvals.FindAsync(id);
         if (approval != null)

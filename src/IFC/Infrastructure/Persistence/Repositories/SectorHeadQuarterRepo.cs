@@ -14,11 +14,11 @@ public class SectorHeadQuarterRepo : ISectorHeadQuarterRepo
         _mapper = mapper;
     }
 
-    public async Task<List<SectorHeadQuarterDTO>> GetSectorHeadQuarterDetailReposAsync()
+    public async Task<List<SectorHeadQuarterDTO>> GetSectorHeadQuarterDetailsAsync()
     {
         return _mapper.Map<List<SectorHeadQuarterDTO>>(await _dbContext.SectorHeadQuarters.ToListAsync());
     }
-    public async Task<SectorHeadQuarterDTO> GetSectorHeadQuarterDetailReposAsync(long? id)
+    public async Task<SectorHeadQuarterDTO> GetSectorHeadQuarterDetailsAsync(long? id)
     {
         var result = await _dbContext.SectorHeadQuarters
             .FirstOrDefaultAsync(m => m.Id == id);
@@ -29,7 +29,7 @@ public class SectorHeadQuarterRepo : ISectorHeadQuarterRepo
         _dbContext.Add(socialMediaProfile);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteSectorHeadQuarterDetailReposAsync(long? id)
+    public async Task DeleteSectorHeadQuarterDetailAsync(long? id)
     {
         var socialMediaProfile = await _dbContext.SectorHeadQuarters.FindAsync(id);
         if (socialMediaProfile != null)

@@ -14,11 +14,11 @@ public class SocialMediaProfileRepo : ISocialMediaProfileRepo
         _mapper = mapper;
     }
 
-    public async Task<List<SocialMediaProfileDTO>> GetSocialMediaProfileDetailReposAsync()
+    public async Task<List<SocialMediaProfileDTO>> GetSocialMediaProfileDetailsAsync()
     {
         return _mapper.Map<List<SocialMediaProfileDTO>>(await _dbContext.SocialMediaProfiles.ToListAsync());
     }
-    public async Task<SocialMediaProfileDTO> GetSocialMediaProfileDetailReposAsync(long? id)
+    public async Task<SocialMediaProfileDTO> GetSocialMediaProfileDetailsAsync(long? id)
     {
         var result = await _dbContext.SocialMediaProfiles
             .FirstOrDefaultAsync(m => m.Id == id);
@@ -29,7 +29,7 @@ public class SocialMediaProfileRepo : ISocialMediaProfileRepo
         _dbContext.Add(socialMediaProfile);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteSocialMediaProfileDetailReposAsync(long? id)
+    public async Task DeleteSocialMediaProfileDetailAsync(long? id)
     {
         var socialMediaProfile = await _dbContext.SocialMediaProfiles.FindAsync(id);
         if (socialMediaProfile != null)

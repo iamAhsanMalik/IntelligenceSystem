@@ -14,11 +14,11 @@ public class OperationalBaseRepo : IOperationalBaseRepo
         _mapper = mapper;
     }
 
-    public async Task<List<OperationalBaseDTO>> GetOperationalBaseDetailReposAsync()
+    public async Task<List<OperationalBaseDTO>> GetOperationalBaseDetailsAsync()
     {
         return _mapper.Map<List<OperationalBaseDTO>>(await _dbContext.OperationalBases.ToListAsync());
     }
-    public async Task<OperationalBaseDTO> GetOperationalBaseDetailReposAsync(long? id)
+    public async Task<OperationalBaseDTO> GetOperationalBaseDetailsAsync(long? id)
     {
         var result = await _dbContext.OperationalBases
             .FirstOrDefaultAsync(m => m.Id == id);
@@ -30,7 +30,7 @@ public class OperationalBaseRepo : IOperationalBaseRepo
         _dbContext.Add(operationalBase);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteOperationalBaseDetailReposAsync(long? id)
+    public async Task DeleteOperationalBaseDetailAsync(long? id)
     {
         var operationalBase = await _dbContext.OperationalBases.FindAsync(id);
         if (operationalBase != null)

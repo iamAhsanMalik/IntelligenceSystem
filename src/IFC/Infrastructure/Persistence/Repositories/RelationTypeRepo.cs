@@ -14,12 +14,12 @@ public class RelationTypeRepo : IRelationTypeRepo
         _mapper = mapper;
     }
 
-    public async Task<List<RelationTypeDTO>> GetRelationTypeDetailReposAsync()
+    public async Task<List<RelationTypeDTO>> GetRelationTypeDetailsAsync()
     {
         return _mapper.Map<List<RelationTypeDTO>>(await _dbContext.RelationTypes.ToListAsync());
 
     }
-    public async Task<RelationTypeDTO> GetRelationTypeDetailReposAsync(long? id)
+    public async Task<RelationTypeDTO> GetRelationTypeDetailsAsync(long? id)
     {
         var result = await _dbContext.RelationTypes
             .FirstOrDefaultAsync(m => m.Id == id);
@@ -30,7 +30,7 @@ public class RelationTypeRepo : IRelationTypeRepo
         _dbContext.Add(relationType);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteRelationTypeDetailReposAsync(long? id)
+    public async Task DeleteRelationTypeDetailAsync(long? id)
     {
         var relationType = await _dbContext.RelationTypes.FindAsync(id);
         if (relationType != null)

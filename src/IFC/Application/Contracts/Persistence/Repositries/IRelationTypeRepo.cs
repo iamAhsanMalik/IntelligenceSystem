@@ -5,7 +5,7 @@ namespace IFC.Application.Contracts.Persistence.Repositries;
 public interface IRelationTypeRepo
 {
     Task CreateRelationTypeDetailAsync(RelationType relationType);
-    Task DeleteRelationTypeDetailReposAsync(long? id);
-    Task<List<RelationTypeDTO>> GetRelationTypeDetailReposAsync();
-    Task<RelationTypeDTO> GetRelationTypeDetailReposAsync(long? id);
+    Task DeleteRelationTypeDetailAsync(long? id);
+    Task<List<RelationTypeDTO>> GetRelationTypeDetailsAsync();
+    Task<RelationTypeDTO> GetRelationTypeDetailsAsync(long? id);
 }

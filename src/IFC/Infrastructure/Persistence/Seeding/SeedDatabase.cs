@@ -500,7 +500,7 @@ public class SeedDatabase : ISeedDatabase
             .RuleFor(o => o.MaritalStatus, f => f.Random.Bool())
             .RuleFor(o => o.GeneralRemarks, f => f.Lorem.Paragraph())
             .RuleFor(o => o.AddressId, f => f.Random.Int(1, 10))
-            .RuleFor(o => o.OrgnizationId, f => f.Random.Int(1, 10))
+            .RuleFor(o => o.OrganizationId, f => f.Random.Int(1, 10))
             .RuleFor(o => o.SuspectFamilyDetailsId, f => f.Random.Int(1, 10))
             .Generate(10);
     }

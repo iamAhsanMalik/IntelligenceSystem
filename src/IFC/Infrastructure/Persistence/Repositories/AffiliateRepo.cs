@@ -23,12 +23,12 @@ public class AffiliateRepo : IAffiliateRepo
         var result = await _dbContext.Affiliates.FirstOrDefaultAsync(m => m.Id == id);
         return _mapper.Map<AffiliateDTO>(result!);
     }
-    public async Task CreateAffiliatesAsync(Affiliate affiliate)
+    public async Task CreateAffiliateAsync(Affiliate affiliate)
     {
         _dbContext.Add(affiliate);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteAffiliatesAsync(long? id)
+    public async Task DeleteAffiliateAsync(long? id)
     {
         var affiliate = await _dbContext.Affiliates.FindAsync(id);
         if (affiliate != null)

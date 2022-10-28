@@ -18,8 +18,6 @@ public class SuspectProfileDTO
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
-
-
     public string? Address { get; set; }
     public string? Organization { get; set; }
     public string? SuspectFamilyDetails { get; set; }
