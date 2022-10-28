@@ -12,4 +12,5 @@ public class ThreatDTO
     public string? SuspectsProfile { get; set; }
     public string? Incident { get; set; }
     public string? Location { get; set; }
+    public int? TotalRecored { get; set; }
 }

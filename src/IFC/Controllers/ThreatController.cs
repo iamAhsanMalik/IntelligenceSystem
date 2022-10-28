@@ -22,13 +22,28 @@ public class ThreatController : Controller
 
     public async Task<JsonResult> LoadData(string SearchCriteriaint, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
     {
+        int? tempLastRowId = LastRowId;
+        if (Direction < 0) { 
+            tempLastRowId = LastRowId - PageSize;
+        }
+        else if (Direction > 0) {
+            tempLastRowId = LastRowId + PageSize;
+        }
+        else { 
+            tempLastRowId = LastRowId;
+        }
+
+        if (tempLastRowId < 0) { 
+            tempLastRowId = 0;
+        }
 
         IQueryable<Threat>? iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
         var result = await iFCDbContext.ToListAsync();
+         var TotalRecored=result.Count();
 
         var ThreatList = _mapper.Map<List<ThreatDTO>>(result);
 
-        return Json(new { Status = true, Data = ThreatList }, new Newtonsoft.Json.JsonSerializerSettings());
+        return Json(new { Status = true, Data = ThreatList , TotalRecord = TotalRecored , LastRowID = tempLastRowId , Count = ThreatList.Count }, new Newtonsoft.Json.JsonSerializerSettings());
     }
 
     // GET: Threats/Details/5

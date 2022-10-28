@@ -299,10 +299,10 @@
                         "class": "background",
                         "render": function (data, type, row) {
                           
-                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.Id + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/edit.svg"></a><a href="#" title="Edit User" onclick=EditData(' + row.ID + ') class="edt"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/edit.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
-                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.Id + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/print.svg"></a><a href="#" title="Edit User" onclick=View(' + row.ID + ') class="fa fa-eye"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/print.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
-                            return '<td><a href="#" title="Show Password" onclick=ShowPassword(' + row.Id + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/reasonforrejection.svg"></a><a href="#" title="Edit User" onclick=DeleteData(' + row.ID + ') class="fa fa-trash"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/reasonforrejection.svg"></a><a href="#" title="Delete User" onclick=DeleteUser(' + row.ID + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/Content/img/delete.svg"></a></td>';
-                            
+                            //return '<td><button><a href="/Threat/Edit/'+row.Id+'"   onclick="Editdata(' + row.Id + ');"   title="Edit Data"  value="EDIT"></a></button>Edit<i href="#" title="Detail User" onclick=DetailData(' + row.Id + ') class="fas fa-info-circle"></i><i href="#" title="Delete User" onclick=DeleteData(' + row.Id + ') class="fas fa-trash-alt"></i></td>';
+                             return '<td><a href="#" title="Show Password" onclick=Editdata(' + row.Id + ') class="edt" ><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/edit.svg"></a><a href="#" title="Edit User" onclick=DetailsData(' + row.Id + ') class="edt"><img class="img-respoinsive"style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/details.svg"></a><a href="#" title="Delete User" onclick=Deletedata(' + row.Id + ') class=dlt><img class=img-respoinsive style="width: 30px;margin-right: 5px;" src="/admintheme/assets/Icons/Delete.svg"></a></td>';
+
+                 
                             
                         }
 
@@ -340,5 +340,20 @@
         dynamicdiv += ' </span >';
 
         $('.pagercustom').append(dynamicdiv);
+    }
+    function Editdata(id){
+        debugger
+        location.href = "/Threat/Edit/"+id;
+
+    }   
+    function DetailsData(id){
+        debugger
+        location.href = "/Threat/Details/"+id;
+
+    } 
+    function Deletedata(id){
+        debugger
+        location.href = "/Threat/Delete/"+id;
+
     }
 </script>
