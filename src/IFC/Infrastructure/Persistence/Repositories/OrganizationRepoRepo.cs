@@ -1,29 +1,33 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.Organization;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class OrganizationRepo : IOrganizationRepo
 {
     private readonly IFCDbContext _dbContext;
-    public OrganizationRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public OrganizationRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<Organization>> GetOrganizationDetailReposAsync()
+    public async Task<List<OrganizationDTO>> GetOrganizationDetailReposAsync()
     {
-        var iFCDbContext = await _dbContext.Organizations.Include(o => o.Affiliate).Include(o => o.Involvement).Include(o => o.OperationalBase).Include(o => o.SocialMediaProfile).ToListAsync();
+        return _mapper.Map<List<OrganizationDTO>>(await _dbContext.Organizations.Include(o => o.Affiliate).Include(o => o.Involvement).Include(o => o.OperationalBase).Include(o => o.SocialMediaProfile).ToListAsync());
 
-        return iFCDbContext;
     }
-    public async Task<Organization?> GetOrganizationDetailReposAsync(long? id)
+    public async Task<OrganizationDTO> GetOrganizationDetailReposAsync(long? id)
     {
-        return await _dbContext.Organizations
+        var result = await _dbContext.Organizations
             .Include(o => o.Affiliate)
             .Include(o => o.Involvement)
             .Include(o => o.OperationalBase)
             .Include(o => o.SocialMediaProfile)
             .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<OrganizationDTO>(result!);
 
     }
     public async Task CreateOrganizationDetailAsync(Organization organization)

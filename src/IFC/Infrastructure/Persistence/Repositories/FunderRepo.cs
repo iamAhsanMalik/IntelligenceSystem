@@ -1,22 +1,27 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.Funder;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class FunderRepo : IFunderRepo
 {
     private readonly IFCDbContext _dbContext;
-    public FunderRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public FunderRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<Funder>> GetFundersAsync()
+    public async Task<List<FunderDTO>> GetFundersAsync()
     {
-        return await _dbContext.Funders.ToListAsync();
+        return _mapper.Map<List<FunderDTO>>(await _dbContext.Funders.ToListAsync());
     }
-    public async Task<Funder?> GetFundersAsync(long? id)
+    public async Task<FunderDTO> GetFundersAsync(long? id)
     {
-        return await _dbContext.Funders.FirstOrDefaultAsync(m => m.Id == id);
+        var result = await _dbContext.Funders.FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<FunderDTO>(result!);
     }
     public async Task CreateFunderAsync(Funder funder)
     {

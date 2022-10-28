@@ -1,23 +1,28 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.Approval;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class ApprovalRepo : IApprovalRepo
 {
     private readonly IFCDbContext _dbContext;
-    public ApprovalRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public ApprovalRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<Approval>> GetApprovalsAsync()
+    public async Task<List<ApprovalDTO>> GetApprovalsAsync()
     {
         var iFCDbContext = _dbContext.Approvals.Include(a => a.ApprovalRequestType);
-        return await iFCDbContext.ToListAsync();
+        return _mapper.Map<List<ApprovalDTO>>(await iFCDbContext.ToListAsync());
     }
-    public async Task<Approval?> GetApprovalsAsync(long? id)
+    public async Task<ApprovalDTO> GetApprovalsAsync(long? id)
     {
-        return await _dbContext.Approvals.Include(a => a.ApprovalRequestType).FirstOrDefaultAsync(m => m.Id == id);
+        var result = await _dbContext.Approvals.Include(a => a.ApprovalRequestType).FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<ApprovalDTO>(result!);
     }
     public async Task CreateApprovalsAsync(Approval approval)
     {

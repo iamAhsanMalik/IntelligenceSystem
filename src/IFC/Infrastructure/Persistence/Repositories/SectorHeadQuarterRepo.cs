@@ -1,26 +1,28 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.SectorHeadQuarter;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class SectorHeadQuarterRepo : ISectorHeadQuarterRepo
 {
     private readonly IFCDbContext _dbContext;
-    public SectorHeadQuarterRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public SectorHeadQuarterRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<SectorHeadQuarter>> GetSectorHeadQuarterDetailReposAsync()
+    public async Task<List<SectorHeadQuarterDTO>> GetSectorHeadQuarterDetailReposAsync()
     {
-        var iFCDbContext = await _dbContext.SectorHeadQuarters.ToListAsync();
-
-        return iFCDbContext;
+        return _mapper.Map<List<SectorHeadQuarterDTO>>(await _dbContext.SectorHeadQuarters.ToListAsync());
     }
-    public async Task<SectorHeadQuarter?> GetSectorHeadQuarterDetailReposAsync(long? id)
+    public async Task<SectorHeadQuarterDTO> GetSectorHeadQuarterDetailReposAsync(long? id)
     {
-        return await _dbContext.SectorHeadQuarters
+        var result = await _dbContext.SectorHeadQuarters
             .FirstOrDefaultAsync(m => m.Id == id);
-
+        return _mapper.Map<SectorHeadQuarterDTO>(result!);
     }
     public async Task CreateSectorHeadQuarterDetailAsync(SectorHeadQuarter socialMediaProfile)
     {

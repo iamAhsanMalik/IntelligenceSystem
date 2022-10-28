@@ -14,7 +14,7 @@ public class AddressController : Controller
     // GET: Address
     public async Task<IActionResult> Index()
     {
-        List<Address>? iFCDbContext = await _unitOfWork.AddressRepo.GetAddressesAsync();
+        var iFCDbContext = await _unitOfWork.AddressRepo.GetAddressesAsync();
         return View(iFCDbContext);
     }
 

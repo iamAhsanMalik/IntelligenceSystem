@@ -1,25 +1,30 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.CoreHeadQuarter;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class CoreHeadQuarterRepo : ICoreHeadQuarterRepo
 {
     private readonly IFCDbContext _dbContext;
-    public CoreHeadQuarterRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public CoreHeadQuarterRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<CoreHeadQuarter>> GetCoreHeadQuartersAsync()
+    public async Task<List<CoreHeadQuarterDTO>> GetCoreHeadQuartersAsync()
     {
         var iFCDbContext = _dbContext.CoreHeadQuarters.Include(c => c.SectorHeadQuarter);
-        return await iFCDbContext.ToListAsync();
+        return _mapper.Map<List<CoreHeadQuarterDTO>>(await iFCDbContext.ToListAsync());
     }
-    public async Task<CoreHeadQuarter?> GetCoreHeadQuartersAsync(long? id)
+    public async Task<CoreHeadQuarterDTO> GetCoreHeadQuartersAsync(long? id)
     {
-        return await _dbContext.CoreHeadQuarters
+        var result = await _dbContext.CoreHeadQuarters
             .Include(c => c.SectorHeadQuarter)
             .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<CoreHeadQuarterDTO>(result!);
     }
     public async Task CreateCoreHeadQuarterAsync(CoreHeadQuarter coreHeadQuarter)
     {

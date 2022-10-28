@@ -1,22 +1,27 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.District;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class DistrictRepo : IDistrictRepo
 {
     private readonly IFCDbContext _dbContext;
-    public DistrictRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public DistrictRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<District>> GetDistrictsAsync()
+    public async Task<List<DistrictDTO>> GetDistrictsAsync()
     {
-        return await _dbContext.Districts.ToListAsync();
+        return _mapper.Map<List<DistrictDTO>>(await _dbContext.Districts.ToListAsync());
     }
-    public async Task<District?> GetDistrictsAsync(long? id)
+    public async Task<DistrictDTO> GetDistrictsAsync(long? id)
     {
-        return await _dbContext.Districts.FirstOrDefaultAsync(m => m.Id == id);
+        var result = await _dbContext.Districts.FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<DistrictDTO>(result!);
     }
     public async Task CreateDistrictAsync(District district)
     {

@@ -1,23 +1,28 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.City;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class CityRepo : ICityRepo
 {
     private readonly IFCDbContext _dbContext;
-    public CityRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public CityRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<City>> GetCitiesAsync()
+    public async Task<List<CityDTO>> GetCitiesAsync()
     {
-        return await _dbContext.Cities.ToListAsync();
+        return _mapper.Map<List<CityDTO>>(await _dbContext.Cities.ToListAsync());
     }
-    public async Task<City?> GetCitiesAsync(long? id)
+    public async Task<CityDTO> GetCitiesAsync(long? id)
     {
-        return await _dbContext.Cities
+        var result = await _dbContext.Cities
             .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<CityDTO>(result!);
     }
     public async Task CreateCityAsync(City city)
     {

@@ -4,30 +4,30 @@ namespace IFC.Infrastructure.Persistence.Repositories;
 
 internal class UnitOfWork : IUnitOfWork
 {
-    public UnitOfWork(IFCDbContext dbContext)
+    public UnitOfWork(IFCDbContext dbContext, IMapper mapper)
     {
-        AddressRepo = new AddressRepo(dbContext);
-        AffiliateRepo = new AffiliateRepo(dbContext);
-        ApprovalRepo = new ApprovalRepo(dbContext);
-        ApprovalRequestTypeRepo = new ApprovalRequestTypeRepo(dbContext);
-        CityRepo = new CityRepo(dbContext);
-        CoreHeadQuarterRepo = new CoreHeadQuarterRepo(dbContext);
-        DistrictRepo = new DistrictRepo(dbContext);
-        FunderRepo = new FunderRepo(dbContext);
-        IncidentRepo = new IncidentRepo(dbContext);
-        InvolvementRepo = new InvolvementRepo(dbContext);
-        LocationRepo = new LocationRepo(dbContext);
-        OperationalBaseRepo = new OperationalBaseRepo(dbContext);
-        OrganizationRepo = new OrganizationRepo(dbContext);
-        RelationTypeRepo = new RelationTypeRepo(dbContext);
-        SectorHeadQuarterRepo = new SectorHeadQuarterRepo(dbContext);
-        SocialMediaProfileRepo = new SocialMediaProfileRepo(dbContext);
-        TerroristFacilitatorsDetailRepo = new TerroristFacilitatorsDetailRepo(dbContext);
-        TerroristFamilyDetailRepo = new TerroristFamilyDetailRepo(dbContext);
-        TerroristInvolvementRepo = new TerroristInvolvementRepo(dbContext);
-        TerroristProfileRepo = new TerroristProfileRepo(dbContext);
-        ThreatRepo = new ThreatRepo(dbContext);
-        WingRepo = new WingRepo(dbContext);
+        AddressRepo = new AddressRepo(dbContext, mapper);
+        AffiliateRepo = new AffiliateRepo(dbContext, mapper);
+        ApprovalRepo = new ApprovalRepo(dbContext, mapper);
+        ApprovalRequestTypeRepo = new ApprovalRequestTypeRepo(dbContext, mapper);
+        CityRepo = new CityRepo(dbContext, mapper);
+        CoreHeadQuarterRepo = new CoreHeadQuarterRepo(dbContext, mapper);
+        DistrictRepo = new DistrictRepo(dbContext, mapper);
+        FunderRepo = new FunderRepo(dbContext, mapper);
+        IncidentRepo = new IncidentRepo(dbContext, mapper);
+        InvolvementRepo = new InvolvementRepo(dbContext, mapper);
+        LocationRepo = new LocationRepo(dbContext, mapper);
+        OperationalBaseRepo = new OperationalBaseRepo(dbContext, mapper);
+        OrganizationRepo = new OrganizationRepo(dbContext, mapper);
+        RelationTypeRepo = new RelationTypeRepo(dbContext, mapper);
+        SectorHeadQuarterRepo = new SectorHeadQuarterRepo(dbContext, mapper);
+        SocialMediaProfileRepo = new SocialMediaProfileRepo(dbContext, mapper);
+        TerroristFacilitatorsDetailRepo = new TerroristFacilitatorsDetailRepo(dbContext, mapper);
+        TerroristFamilyDetailRepo = new TerroristFamilyDetailRepo(dbContext, mapper);
+        TerroristInvolvementRepo = new TerroristInvolvementRepo(dbContext, mapper);
+        TerroristProfileRepo = new TerroristProfileRepo(dbContext, mapper);
+        ThreatRepo = new ThreatRepo(dbContext, mapper);
+        WingRepo = new WingRepo(dbContext, mapper);
     }
 
     //public UnitOfWork(IAddressRepo addressRepo, IAffiliateRepo affiliateRepo, IApprovalRepo approvalRepo, IApprovalRequestTypeRepo approvalRequestTypeRepo, ICityRepo cityRepo, ICoreHeadQuarterRepo coreHeadQuarterRepo, IDistrictRepo districtRepo, IFunderRepo funderRepo, IIncidentRepo incidentRepo, IInvolvementRepo involvementRepo, ILocationRepo locationRepo, IOperationalBaseRepo operationalBaseRepo, IOrganizationRepo organizationRepo, IRelationTypeRepo relationTypeRepo, ISectorHeadQuarterRepo sectorHeadQuarterRepo, ISocialMediaProfileRepo socialMediaProfileRepo, ITerroristFacilitatorsDetailRepo terroristFacilitatorsDetailRepo, ITerroristFamilyDetailRepo terroristFamilyDetailRepo, ITerroristInvolvementRepo terroristInvolvementRepo, ITerroristProfileRepo terroristProfileRepo, IThreatRepo threatRepo, IWingRepo wingRepo)

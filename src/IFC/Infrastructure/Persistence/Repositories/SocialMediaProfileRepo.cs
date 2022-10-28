@@ -1,26 +1,28 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.SocialMediaProfile;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class SocialMediaProfileRepo : ISocialMediaProfileRepo
 {
     private readonly IFCDbContext _dbContext;
-    public SocialMediaProfileRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public SocialMediaProfileRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<SocialMediaProfile>> GetSocialMediaProfileDetailReposAsync()
+    public async Task<List<SocialMediaProfileDTO>> GetSocialMediaProfileDetailReposAsync()
     {
-        var iFCDbContext = await _dbContext.SocialMediaProfiles.ToListAsync();
-
-        return iFCDbContext;
+        return _mapper.Map<List<SocialMediaProfileDTO>>(await _dbContext.SocialMediaProfiles.ToListAsync());
     }
-    public async Task<SocialMediaProfile?> GetSocialMediaProfileDetailReposAsync(long? id)
+    public async Task<SocialMediaProfileDTO> GetSocialMediaProfileDetailReposAsync(long? id)
     {
-        return await _dbContext.SocialMediaProfiles
+        var result = await _dbContext.SocialMediaProfiles
             .FirstOrDefaultAsync(m => m.Id == id);
-
+        return _mapper.Map<SocialMediaProfileDTO>(result!);
     }
     public async Task CreateSocialMediaProfileDetailAsync(SocialMediaProfile socialMediaProfile)
     {

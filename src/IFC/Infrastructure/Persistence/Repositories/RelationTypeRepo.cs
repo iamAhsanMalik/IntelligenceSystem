@@ -1,26 +1,29 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.RelationType;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class RelationTypeRepo : IRelationTypeRepo
 {
     private readonly IFCDbContext _dbContext;
-    public RelationTypeRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public RelationTypeRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<RelationType>> GetRelationTypeDetailReposAsync()
+    public async Task<List<RelationTypeDTO>> GetRelationTypeDetailReposAsync()
     {
-        var iFCDbContext = await _dbContext.RelationTypes.ToListAsync();
+        return _mapper.Map<List<RelationTypeDTO>>(await _dbContext.RelationTypes.ToListAsync());
 
-        return iFCDbContext;
     }
-    public async Task<RelationType?> GetRelationTypeDetailReposAsync(long? id)
+    public async Task<RelationTypeDTO> GetRelationTypeDetailReposAsync(long? id)
     {
-        return await _dbContext.RelationTypes
+        var result = await _dbContext.RelationTypes
             .FirstOrDefaultAsync(m => m.Id == id);
-
+        return _mapper.Map<RelationTypeDTO>(result!);
     }
     public async Task CreateRelationTypeDetailAsync(RelationType relationType)
     {
