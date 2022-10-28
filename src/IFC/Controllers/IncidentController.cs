@@ -1,12 +1,16 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Application.DTOs.Incident;
+
+namespace IFC.Controllers;
 
 public class IncidentController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IMapper _mapper;
 
-    public IncidentController(IFCDbContext context)
+    public IncidentController(IFCDbContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     // GET: Incidents
@@ -21,7 +25,8 @@ public class IncidentController : Controller
     public async Task<IActionResult> LoadIncidentData()
     {
         var iFCDbContext = _context.Incidents.Include(i => i.Location).Include(i => i.Organization).Include(i => i.SuspectsProfile).Include(i => i.Wing);
-        var incidentsResults = await iFCDbContext.ToListAsync();
+        var incidentsResults = _mapper.Map<List<IncidentDTO>>(await iFCDbContext.ToListAsync());
+
         int recordsTotal = 0;
         recordsTotal = incidentsResults.Count();
         var data = incidentsResults.Skip(0).Take(0).ToList();
@@ -61,19 +66,20 @@ public class IncidentController : Controller
         }
 
         result = orderAscendingDirection ? result.OrderByDynamic(orderCriteria, DtOrderDir.Asc) : result.OrderByDynamic(orderCriteria, DtOrderDir.Desc);
+        var customResult = await result
+                .Skip(dtParameters.Start)
+                .Take(dtParameters.Length)
+                .ToListAsync();
 
         // now just get the count of items (without the skip and take) - eg how many could be returned with filtering
         var filteredResultsCount = await result.CountAsync();
         var totalResultsCount = await _context.Incidents.CountAsync();
-        var incidentData = Json(new DtResult<Incident>
+        var incidentData = Json(new DtResult<IncidentDTO>
         {
             Draw = dtParameters.Draw,
             RecordsTotal = totalResultsCount,
             RecordsFiltered = filteredResultsCount,
-            Data = await result
-                .Skip(dtParameters.Start)
-                .Take(dtParameters.Length)
-                .ToListAsync()
+            Data = _mapper.Map<List<IncidentDTO>>(customResult)
         });
         return incidentData;
     }

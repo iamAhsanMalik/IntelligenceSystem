@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - IFC</title>
+    @await RenderSectionAsync("Styles", required: false)
     <link rel="stylesheet" href="~/admintheme/assets/Icons/web/logo-1.png" asp-append-version="true" />
     <link href="~/admintheme/css/bootstrap.css" rel="stylesheet" />
     <link href="~/admintheme/css/style.css" rel="stylesheet" />
@@ -23,7 +24,6 @@
     <script src="~/admintheme/scripts/popper.min.js"></script>
     <script src="~/admintheme/scripts/sweetalert-dev.js"></script>
   @*  <script src="~/admintheme/scripts/dataTables.min.js"></script>*@
-    @await RenderSectionAsync("Styles", required: false)
 
 
 </head>
@@ -49,6 +49,7 @@
 
 
 
+    @await RenderSectionAsync("Scripts", required: false)
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
@@ -56,7 +57,6 @@
             });
         });
     </script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

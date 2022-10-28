@@ -2,10 +2,10 @@ namespace IFC.Controllers;
 
 public class UserManagementController : Controller
 {
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly IUserInfoService _userInfoService;
 
-    public UserManagementController(UserManager<IdentityUser> userManager, IUserInfoService userInfoService)
+    public UserManagementController(UserManager<ApplicationUser> userManager, IUserInfoService userInfoService)
     {
         _userManager = userManager;
         _userInfoService = userInfoService;
