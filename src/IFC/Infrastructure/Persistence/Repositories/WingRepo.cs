@@ -1,26 +1,29 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.Wing;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class WingRepo : IWingRepo
 {
     private readonly IFCDbContext _dbContext;
-    public WingRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public WingRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<Wing>> GetWingsAsync()
+    public async Task<List<WingDTO>> GetWingsAsync()
     {
-        var iFCDbContext = await _dbContext.Wings.Include(w => w.CoreHeadQuarter).ToListAsync();
-
-        return iFCDbContext;
+        return _mapper.Map<List<WingDTO>>(await _dbContext.Wings.Include(w => w.CoreHeadQuarter).ToListAsync());
     }
-    public async Task<Wing?> GetWingsAsync(long? id)
+    public async Task<WingDTO> GetWingsAsync(long? id)
     {
-        return await _dbContext.Wings
+        var result = await _dbContext.Wings
             .Include(w => w.CoreHeadQuarter)
             .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<WingDTO>(result!);
 
     }
     public async Task CreateWingsAsync(Wing wing)
