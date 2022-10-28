@@ -28,6 +28,7 @@ public class ThreatController : Controller
 
         var ThreatList = _mapper.Map<List<ThreatDTO>>(result);
 
+
         return Json(new { Status = true, Data = ThreatList }, new Newtonsoft.Json.JsonSerializerSettings());
     }
 
@@ -57,8 +58,8 @@ public class ThreatController : Controller
     // GET: Threats/Create
     public IActionResult Create()
     {
-        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "Id");
-        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id");
+        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "IncidentDate");
+        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
         ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Id");
         ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "Id");
         ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Id");

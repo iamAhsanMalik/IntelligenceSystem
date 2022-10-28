@@ -3,17 +3,16 @@
 public class CityController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public CityController(IFCDbContext context)
+    public CityController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Cities
-    public async Task<IActionResult> Index()
-    {
-        return View(await _context.Cities.ToListAsync());
-    }
+    public async Task<IActionResult> Index() => View(await _unitOfWork.CityRepo.GetCitiesAsync());
 
     // GET: Cities/Details/5
     public async Task<IActionResult> Details(long? id)
@@ -23,8 +22,7 @@ public class CityController : Controller
             return NotFound();
         }
 
-        var city = await _context.Cities
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var city = await _unitOfWork.CityRepo.GetCitiesAsync(id);
         if (city == null)
         {
             return NotFound();
@@ -42,8 +40,7 @@ public class CityController : Controller
     // POST: Cities/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
+    [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,IsActive")] City city)
     {
         if (ModelState.IsValid)

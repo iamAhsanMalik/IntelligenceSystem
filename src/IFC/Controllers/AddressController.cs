@@ -14,8 +14,7 @@ public class AddressController : Controller
     // GET: Address
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = await _unitOfWork.AddressRepo.GetAddressesAsync();
-        return View(iFCDbContext);
+        return View(await _unitOfWork.AddressRepo.GetAddressesAsync());
     }
 
     // GET: Address/Details/5
@@ -30,7 +29,6 @@ public class AddressController : Controller
         {
             return NotFound();
         }
-
         return View(address);
     }
 

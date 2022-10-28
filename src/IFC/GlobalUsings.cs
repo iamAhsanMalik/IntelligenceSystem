@@ -3,6 +3,7 @@ global using IFC.Application;
 global using IFC.Application.Contracts.Application;
 global using IFC.Application.Contracts.Identity;
 global using IFC.Application.Contracts.Persistence;
+global using IFC.Application.Contracts.Persistence.Repositries;
 global using IFC.Application.DTOs;
 global using IFC.Application.Extensions;
 global using IFC.Application.Helpers;
