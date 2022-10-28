@@ -1,27 +1,32 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.TerroristFacilitatorsDetail;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class TerroristFacilitatorsDetailRepo : ITerroristFacilitatorsDetailRepo
 {
     private readonly IFCDbContext _dbContext;
-    public TerroristFacilitatorsDetailRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public TerroristFacilitatorsDetailRepo(IFCDbContext dbContext,IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<TerroristFacilitatorsDetail>> GetTerroristFacilitatorsDetailReposAsync()
+    public async Task<List<TerroristFacilitatorsDetailDTO>> GetTerroristFacilitatorsDetailReposAsync()
     {
-        var iFCDbContext = await _dbContext.TerroristFacilitatorsDetails.Include(t => t.Address).Include(t => t.RelationType).ToListAsync();
+    return _mapper.Map <List<TerroristFacilitatorsDetailDTO>> (await _dbContext.TerroristFacilitatorsDetails.Include(t => t.Address).Include(t => t.RelationType).ToListAsync());
 
-        return iFCDbContext;
+        
     }
-    public async Task<TerroristFacilitatorsDetail?> GetTerroristFacilitatorsDetailReposAsync(long? id)
+    public async Task<TerroristFacilitatorsDetailDTO> GetTerroristFacilitatorsDetailReposAsync(long? id)
     {
-        return await _dbContext.TerroristFacilitatorsDetails
+       var result= await _dbContext.TerroristFacilitatorsDetails
             .Include(t => t.Address)
             .Include(t => t.RelationType)
             .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map <TerroristFacilitatorsDetailDTO>(result!);
 
     }
     public async Task CreateTerroristFacilitatorsDetailAsync(TerroristFacilitatorsDetail terroristFacilitatorsDetail)
