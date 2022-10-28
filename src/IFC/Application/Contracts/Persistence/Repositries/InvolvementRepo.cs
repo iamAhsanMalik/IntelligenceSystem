@@ -1,20 +1,26 @@
-﻿namespace IFC.Application.Contracts.Persistence.Repositries;
+﻿using IFC.Application.DTOs.Involvement;
+
+namespace IFC.Application.Contracts.Persistence.Repositries;
 
 public class InvolvementRepo : IInvolvementRepo
 {
     private readonly IFCDbContext _dbContext;
-    public InvolvementRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public InvolvementRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<Involvement>> GetInvolvementsAsync()
+    public async Task<List<InvolvementDTO>> GetInvolvementsAsync()
     {
-        return await _dbContext.Involvements.ToListAsync();
+        return _mapper.Map<List<InvolvementDTO>>(await _dbContext.Involvements.ToListAsync());
     }
-    public async Task<Involvement?> GetInvolvementsAsync(long? id)
+    public async Task<InvolvementDTO> GetInvolvementsAsync(long? id)
     {
-        return await _dbContext.Involvements.FirstOrDefaultAsync(m => m.Id == id);
+        var result = await _dbContext.Involvements.FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<InvolvementDTO>(result!);
     }
     public async Task CreateInvolvementAsync(Involvement involvement)
     {

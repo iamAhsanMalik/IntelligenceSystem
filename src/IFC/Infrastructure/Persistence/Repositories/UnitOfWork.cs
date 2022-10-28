@@ -22,12 +22,12 @@ internal class UnitOfWork : IUnitOfWork
         RelationTypeRepo = new RelationTypeRepo(dbContext, mapper);
         SectorHeadQuarterRepo = new SectorHeadQuarterRepo(dbContext, mapper);
         SocialMediaProfileRepo = new SocialMediaProfileRepo(dbContext, mapper);
-        TerroristFacilitatorsDetailRepo = new TerroristFacilitatorsDetailRepo(dbContext, mapper);
-        TerroristFamilyDetailRepo = new TerroristFamilyDetailRepo(dbContext, mapper);
-        TerroristInvolvementRepo = new TerroristInvolvementRepo(dbContext, mapper);
-        TerroristProfileRepo = new TerroristProfileRepo(dbContext, mapper);
-        ThreatRepo = new ThreatRepo(dbContext, mapper);
-        WingRepo = new WingRepo(dbContext, mapper);
+        //TerroristFacilitatorsDetailRepo = new TerroristFacilitatorsDetailRepo(dbContext, mapper);
+        //TerroristFamilyDetailRepo = new TerroristFamilyDetailRepo(dbContext, mapper);
+        //TerroristInvolvementRepo = new TerroristInvolvementRepo(dbContext, mapper);
+        //TerroristProfileRepo = new TerroristProfileRepo(dbContext, mapper);
+        //ThreatRepo = new ThreatRepo(dbContext, mapper);
+        //WingRepo = new WingRepo(dbContext, mapper);
     }
 
     //public UnitOfWork(IAddressRepo addressRepo, IAffiliateRepo affiliateRepo, IApprovalRepo approvalRepo, IApprovalRequestTypeRepo approvalRequestTypeRepo, ICityRepo cityRepo, ICoreHeadQuarterRepo coreHeadQuarterRepo, IDistrictRepo districtRepo, IFunderRepo funderRepo, IIncidentRepo incidentRepo, IInvolvementRepo involvementRepo, ILocationRepo locationRepo, IOperationalBaseRepo operationalBaseRepo, IOrganizationRepo organizationRepo, IRelationTypeRepo relationTypeRepo, ISectorHeadQuarterRepo sectorHeadQuarterRepo, ISocialMediaProfileRepo socialMediaProfileRepo, ITerroristFacilitatorsDetailRepo terroristFacilitatorsDetailRepo, ITerroristFamilyDetailRepo terroristFamilyDetailRepo, ITerroristInvolvementRepo terroristInvolvementRepo, ITerroristProfileRepo terroristProfileRepo, IThreatRepo threatRepo, IWingRepo wingRepo)

@@ -1,26 +1,32 @@
-﻿namespace IFC.Application.Contracts.Persistence.Repositries;
+﻿using IFC.Application.DTOs.Incident;
+
+namespace IFC.Application.Contracts.Persistence.Repositries;
 
 public class IncidentRepo : IIncidentRepo
 {
     private readonly IFCDbContext _dbContext;
-    public IncidentRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public IncidentRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<Incident>> GetIncidentsAsync()
+    public async Task<List<IncidentDTO>> GetIncidentsAsync()
     {
         var iFCDbContext = _dbContext.Incidents.Include(i => i.Location).Include(i => i.Organization).Include(i => i.SuspectsProfile).Include(i => i.Wing);
-        return await iFCDbContext.ToListAsync();
+        return _mapper.Map<List<IncidentDTO>>(await iFCDbContext.ToListAsync());
     }
-    public async Task<Incident?> GetIncidentsAsync(long? id)
+    public async Task<IncidentDTO> GetIncidentsAsync(long? id)
     {
-        return await _dbContext.Incidents
-            .Include(i => i.Location)
-            .Include(i => i.Organization)
-            .Include(i => i.SuspectsProfile)
-            .Include(i => i.Wing)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var result = await _dbContext.Incidents
+                    .Include(i => i.Location)
+                    .Include(i => i.Organization)
+                    .Include(i => i.SuspectsProfile)
+                    .Include(i => i.Wing)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<IncidentDTO>(result!);
     }
     public async Task CreateIncidentAsync(Incident incident)
     {
