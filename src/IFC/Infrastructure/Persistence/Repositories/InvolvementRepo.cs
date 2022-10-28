@@ -1,6 +1,7 @@
-﻿using IFC.Application.DTOs.Involvement;
+﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.Involvement;
 
-namespace IFC.Application.Contracts.Persistence.Repositries;
+namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class InvolvementRepo : IInvolvementRepo
 {

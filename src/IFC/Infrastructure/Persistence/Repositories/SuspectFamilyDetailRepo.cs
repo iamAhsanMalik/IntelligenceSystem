@@ -1,4 +1,5 @@
-﻿using IFC.Application.DTOs.SuspectFamilyDetail;
+﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.SuspectFamilyDetail;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 

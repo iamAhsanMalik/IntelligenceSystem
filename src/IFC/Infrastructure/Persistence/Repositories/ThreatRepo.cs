@@ -30,12 +30,12 @@ public class ThreatRepo : IThreatRepo
             .FirstOrDefaultAsync(m => m.Id == id);
         return _mapper.Map<ThreatDTO>(result!);
     }
-    public async Task CreateThreatsAsync(Threat threat)
+    public async Task CreateThreatAsync(Threat threat)
     {
         _dbContext.Add(threat);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteThreatsAsync(long? id)
+    public async Task DeleteThreatAsync(long? id)
     {
         var threat = await _dbContext.Threats.FindAsync(id);
         if (threat != null)

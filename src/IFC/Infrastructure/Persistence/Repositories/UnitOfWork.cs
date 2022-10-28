@@ -22,10 +22,12 @@ internal class UnitOfWork : IUnitOfWork
         RelationTypeRepo = new RelationTypeRepo(dbContext, mapper);
         SectorHeadQuarterRepo = new SectorHeadQuarterRepo(dbContext, mapper);
         SocialMediaProfileRepo = new SocialMediaProfileRepo(dbContext, mapper);
-        //TerroristFacilitatorsDetailRepo = new TerroristFacilitatorsDetailRepo(dbContext, mapper);
-        //TerroristFamilyDetailRepo = new TerroristFamilyDetailRepo(dbContext, mapper);
-        //TerroristInvolvementRepo = new TerroristInvolvementRepo(dbContext, mapper);
+        TerroristFacilitatorsDetailRepo = new TerroristFacilitatorsDetailRepo(dbContext, mapper);
+        TerroristFamilyDetailRepo = new TerroristFamilyDetailRepo(dbContext, mapper);
+        TerroristInvolvementRepo = new TerroristInvolvementRepo(dbContext, mapper);
         TerroristProfileRepo = new TerroristProfileRepo(dbContext, mapper);
+        SuspectProfileRepo = new SuspectProfileRepo(dbContext, mapper);
+        SuspectFamilyDetailRepo = new SuspectFamilyDetailRepo(dbContext, mapper);
         ThreatRepo = new ThreatRepo(dbContext, mapper);
         WingRepo = new WingRepo(dbContext, mapper);
     }
@@ -71,10 +73,12 @@ internal class UnitOfWork : IUnitOfWork
     public IRelationTypeRepo RelationTypeRepo { get; }
     public ISectorHeadQuarterRepo SectorHeadQuarterRepo { get; }
     public ISocialMediaProfileRepo SocialMediaProfileRepo { get; }
-    public ITerroristFacilitatorsDetailRepo TerroristFacilitatorsDetailRepo { get; private set; }
-    public ITerroristFamilyDetailRepo TerroristFamilyDetailRepo { get; private set; }
-    public ITerroristInvolvementRepo TerroristInvolvementRepo { get; private set; }
-    public ITerroristProfileRepo TerroristProfileRepo { get; private set; }
-    public IThreatRepo ThreatRepo { get; private set; }
-    public IWingRepo WingRepo { get; private set; }
+    public ITerroristFacilitatorsDetailRepo TerroristFacilitatorsDetailRepo { get; }
+    public ITerroristFamilyDetailRepo TerroristFamilyDetailRepo { get; }
+    public ITerroristInvolvementRepo TerroristInvolvementRepo { get; }
+    public ITerroristProfileRepo TerroristProfileRepo { get; }
+    public ISuspectFamilyDetailRepo SuspectFamilyDetailRepo { get; }
+    public ISuspectProfileRepo SuspectProfileRepo { get; }
+    public IThreatRepo ThreatRepo { get; }
+    public IWingRepo WingRepo { get; }
 }

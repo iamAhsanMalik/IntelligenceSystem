@@ -1,7 +1,7 @@
 ﻿using IFC.Application.DTOs.SuspectFamilyDetail;
 
-namespace IFC.Infrastructure.Persistence.Repositories;
-public interface ISuspectFamilyDetailRepo
+namespace IFC.Application.Contracts.Persistence.Repositries;
+public interface ISuspectProfileRepo
 {
     Task CreateSuspectFamilyDetailAsync(SuspectFamilyDetail suspectFamilyDetail);
     Task DeleteSuspectFamilyDetailAsync(long? id);

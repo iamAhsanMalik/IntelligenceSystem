@@ -1,8 +1,9 @@
-﻿using IFC.Application.DTOs.SuspectFamilyDetail;
+﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.SuspectFamilyDetail;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
-public class SuspectProfileRepo
+public class SuspectProfileRepo : ISuspectProfileRepo
 {
     private readonly IFCDbContext _dbContext;
     private readonly IMapper _mapper;

@@ -1,6 +1,5 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
 using IFC.Application.DTOs.TerroristProfile;
-using System.Collections.Generic;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
@@ -17,28 +16,28 @@ public class TerroristProfileRepo : ITerroristProfileRepo
 
     public async Task<List<TerroristProfileDTO>> GetTerroristProfilesAsync()
     {
-        return _mapper.Map <List<TerroristProfileDTO >>(await _dbContext.TerroristProfiles.Include(t => t.Address).Include(t => t.Organization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement).ToListAsync())!;
+        return _mapper.Map<List<TerroristProfileDTO>>(await _dbContext.TerroristProfiles.Include(t => t.Address).Include(t => t.Organization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement).ToListAsync());
 
-        
+
     }
     public async Task<TerroristProfileDTO> GetTerroristProfilesAsync(long? id)
     {
-     var  result= await _dbContext.TerroristProfiles
-            .Include(t => t.Address)
-            .Include(t => t.Organization)
-            .Include(t => t.TerroristFacilitatorsDetails)
-            .Include(t => t.TerroristFamilyDetails)
-            .Include(t => t.TerroristInvolvement)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var result = await _dbContext.TerroristProfiles
+               .Include(t => t.Address)
+               .Include(t => t.Organization)
+               .Include(t => t.TerroristFacilitatorsDetails)
+               .Include(t => t.TerroristFamilyDetails)
+               .Include(t => t.TerroristInvolvement)
+               .FirstOrDefaultAsync(m => m.Id == id);
         return _mapper.Map<TerroristProfileDTO>(result!);
 
     }
-    public async Task CreateTerroristProfilesAsync(TerroristProfile TerroristProfiles)
+    public async Task CreateTerroristProfileAsync(TerroristProfile TerroristProfiles)
     {
         _dbContext.Add(TerroristProfiles);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteTerroristProfilesAsync(long? id)
+    public async Task DeleteTerroristProfileAsync(long? id)
     {
         var TerroristProfile = await _dbContext.TerroristProfiles.FindAsync(id);
         if (TerroristProfile != null)

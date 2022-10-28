@@ -1,6 +1,7 @@
-﻿using IFC.Application.DTOs.Incident;
+﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.Incident;
 
-namespace IFC.Application.Contracts.Persistence.Repositries;
+namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class IncidentRepo : IIncidentRepo
 {
