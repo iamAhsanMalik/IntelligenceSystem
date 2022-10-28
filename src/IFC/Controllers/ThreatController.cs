@@ -1,34 +1,27 @@
-﻿using IFC.Application.DTOs.Threat;
-
-namespace IFC.Controllers;
+﻿namespace IFC.Controllers;
 
 public class ThreatController : Controller
 {
     private readonly IFCDbContext _context;
     private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public ThreatController(IFCDbContext context, IMapper mapper)
+    public ThreatController(IFCDbContext context, IMapper mapper, IUnitOfWork unitOfWork)
     {
         _context = context;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Threats
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
-        return View(await iFCDbContext.ToListAsync());
+        return View(await _unitOfWork.ThreatRepo.GetThreatsAsync());
     }
 
     public async Task<JsonResult> LoadData(string SearchCriteriaint, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
     {
-
-        IQueryable<Threat>? iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
-        var result = await iFCDbContext.ToListAsync();
-
-        var ThreatList = _mapper.Map<List<ThreatDTO>>(result);
-
-
+        var ThreatList = (await _unitOfWork.ThreatRepo.GetThreatsAsync()).Take(25);
         return Json(new { Status = true, Data = ThreatList }, new Newtonsoft.Json.JsonSerializerSettings());
     }
 
@@ -39,14 +32,7 @@ public class ThreatController : Controller
         {
             return NotFound();
         }
-
-        var threat = await _context.Threats
-            .Include(t => t.Incident)
-            .Include(t => t.Location)
-            .Include(t => t.Organization)
-            .Include(t => t.SuspectsProfile)
-            .Include(t => t.Wing)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var threat = await _unitOfWork.ThreatRepo.GetThreatsAsync(id);
         if (threat == null)
         {
             return NotFound();

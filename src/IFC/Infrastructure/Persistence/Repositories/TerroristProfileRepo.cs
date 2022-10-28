@@ -1,5 +1,4 @@
-﻿using IFC.Application.Contracts.Persistence.Repositries;
-using IFC.Application.DTOs.TerroristProfile;
+﻿using IFC.Application.DTOs.TerroristProfile;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 

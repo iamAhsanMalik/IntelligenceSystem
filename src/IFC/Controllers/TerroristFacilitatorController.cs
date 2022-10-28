@@ -3,17 +3,18 @@
 public class TerroristFacilitatorController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public TerroristFacilitatorController(IFCDbContext context)
+    public TerroristFacilitatorController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: TerroristFacilitatorsDetails
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.TerroristFacilitatorsDetails.Include(t => t.Address).Include(t => t.RelationType);
-        return View(await iFCDbContext.ToListAsync());
+        return View(await _unitOfWork.TerroristFacilitatorsDetailRepo.GetTerroristFacilitatorsDetailsAsync());
     }
 
     // GET: TerroristFacilitatorsDetails/Details/5
@@ -24,10 +25,7 @@ public class TerroristFacilitatorController : Controller
             return NotFound();
         }
 
-        var terroristFacilitatorsDetail = await _context.TerroristFacilitatorsDetails
-            .Include(t => t.Address)
-            .Include(t => t.RelationType)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var terroristFacilitatorsDetail = await _unitOfWork.TerroristFacilitatorsDetailRepo.GetTerroristFacilitatorsDetailsAsync(id);
         if (terroristFacilitatorsDetail == null)
         {
             return NotFound();

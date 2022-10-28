@@ -3,17 +3,18 @@
 public class WingController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public WingController(IFCDbContext context)
+    public WingController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Wings
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.Wings.Include(w => w.CoreHeadQuarter);
-        return View(await iFCDbContext.ToListAsync());
+        return View(await _unitOfWork.WingRepo.GetWingsAsync());
     }
 
     // GET: Wings/Details/5
@@ -24,9 +25,7 @@ public class WingController : Controller
             return NotFound();
         }
 
-        var wing = await _context.Wings
-            .Include(w => w.CoreHeadQuarter)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var wing = await _unitOfWork.WingRepo.GetWingsAsync(id);
         if (wing == null)
         {
             return NotFound();

@@ -3,16 +3,18 @@
 public class TerroristInvolvementController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public TerroristInvolvementController(IFCDbContext context)
+    public TerroristInvolvementController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: TerroristInvolvements
     public async Task<IActionResult> Index()
     {
-        return View(await _context.TerroristInvolvements.ToListAsync());
+        return View(await _unitOfWork.TerroristInvolvementRepo.GetTerroristInvolvementsAsync());
     }
 
     // GET: TerroristInvolvements/Details/5
@@ -23,8 +25,7 @@ public class TerroristInvolvementController : Controller
             return NotFound();
         }
 
-        var terroristInvolvement = await _context.TerroristInvolvements
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var terroristInvolvement = await _unitOfWork.TerroristInvolvementRepo.GetTerroristInvolvementsAsync(id);
         if (terroristInvolvement == null)
         {
             return NotFound();

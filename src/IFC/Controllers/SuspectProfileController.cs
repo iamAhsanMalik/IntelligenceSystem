@@ -14,8 +14,7 @@ public class SuspectProfileController : Controller
     // GET: SuspectProfiles
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.SuspectProfiles.Include(s => s.Address).Include(s => s.Organization).Include(s => s.SuspectFamilyDetails);
-        return View(await _unitOfWork.SuspectProfileRepo.get);
+        return View(await _unitOfWork.SuspectProfileRepo.GetSuspectProfilesAsync());
     }
 
     // GET: SuspectProfiles/Details/5
@@ -25,12 +24,7 @@ public class SuspectProfileController : Controller
         {
             return NotFound();
         }
-
-        SuspectProfile? suspectProfile = await _context.SuspectProfiles
-            .Include(s => s.Address)
-            .Include(s => s.Organization)
-            .Include(s => s.SuspectFamilyDetails)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var suspectProfile = await _unitOfWork.SuspectProfileRepo.GetSuspectProfilesAsync(id);
         if (suspectProfile == null)
         {
             return NotFound();

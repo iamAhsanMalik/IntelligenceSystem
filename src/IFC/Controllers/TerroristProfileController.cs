@@ -3,34 +3,29 @@
 public class TerroristProfileController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public TerroristProfileController(IFCDbContext context)
+    public TerroristProfileController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: TerroristProfiles
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.TerroristProfiles.Include(t => t.Address).Include(t => t.Organization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement);
-        return View(await iFCDbContext.ToListAsync());
+        return View(await _unitOfWork.TerroristProfileRepo.GetTerroristProfilesAsync());
     }
 
     // GET: TerroristProfiles/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.TerroristProfiles == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var terroristProfile = await _context.TerroristProfiles
-            .Include(t => t.Address)
-            .Include(t => t.Organization)
-            .Include(t => t.TerroristFacilitatorsDetails)
-            .Include(t => t.TerroristFamilyDetails)
-            .Include(t => t.TerroristInvolvement)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var terroristProfile = await _unitOfWork.TerroristProfileRepo.GetTerroristProfilesAsync(id);
         if (terroristProfile == null)
         {
             return NotFound();

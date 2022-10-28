@@ -1,10 +1,10 @@
-﻿using IFC.Application.DTOs.SuspectFamilyDetail;
+﻿using IFC.Application.DTOs.SuspectProfile;
 
 namespace IFC.Application.Contracts.Persistence.Repositries;
 public interface ISuspectProfileRepo
 {
-    Task CreateSuspectFamilyDetailAsync(SuspectFamilyDetail suspectFamilyDetail);
-    Task DeleteSuspectFamilyDetailAsync(long? id);
-    Task<List<SuspectFamilyDetailDTO>> GetSuspectFamilyDetailsAsync();
-    Task<SuspectFamilyDetailDTO> GetSuspectFamilyDetailsAsync(long? id);
+    Task CreateSuspectProfileAsync(SuspectProfile suspectProfile);
+    Task DeleteSuspectProfileAsync(long? id);
+    Task<List<SuspectProfileDTO>> GetSuspectProfilesAsync();
+    Task<SuspectProfileDTO> GetSuspectProfilesAsync(long? id);
 }

@@ -3,31 +3,29 @@
 public class TerroristFamilyController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public TerroristFamilyController(IFCDbContext context)
+    public TerroristFamilyController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: TerroristFamilyDetails
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.TerroristFamilyDetails.Include(t => t.Address).Include(t => t.RelationType);
-        return View(await iFCDbContext.ToListAsync());
+        return View(await _unitOfWork.TerroristFamilyDetailRepo.GetTerroristFamilyDetailsAsync());
     }
 
     // GET: TerroristFamilyDetails/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.TerroristFamilyDetails == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var terroristFamilyDetail = await _context.TerroristFamilyDetails
-            .Include(t => t.Address)
-            .Include(t => t.RelationType)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var terroristFamilyDetail = await _unitOfWork.TerroristFamilyDetailRepo.GetTerroristFamilyDetailsAsync(id);
         if (terroristFamilyDetail == null)
         {
             return NotFound();

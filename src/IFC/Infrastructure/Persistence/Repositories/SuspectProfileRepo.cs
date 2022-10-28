@@ -1,5 +1,4 @@
-﻿using IFC.Application.Contracts.Persistence.Repositries;
-using IFC.Application.DTOs.SuspectFamilyDetail;
+﻿using IFC.Application.DTOs.SuspectProfile;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
@@ -14,27 +13,27 @@ public class SuspectProfileRepo : ISuspectProfileRepo
         _mapper = mapper;
     }
 
-    public async Task<List<SuspectFamilyDetailDTO>> GetSuspectFamilyDetailsAsync()
+    public async Task<List<SuspectProfileDTO>> GetSuspectProfilesAsync()
     {
-        return _mapper.Map<List<SuspectFamilyDetailDTO>>(await _dbContext.SuspectFamilyDetails.ToListAsync());
+        return _mapper.Map<List<SuspectProfileDTO>>(await _dbContext.SuspectProfiles.ToListAsync());
     }
-    public async Task<SuspectFamilyDetailDTO> GetSuspectFamilyDetailsAsync(long? id)
+    public async Task<SuspectProfileDTO> GetSuspectProfilesAsync(long? id)
     {
-        var result = await _dbContext.SuspectFamilyDetails
+        var result = await _dbContext.SuspectProfiles
             .FirstOrDefaultAsync(m => m.Id == id);
-        return _mapper.Map<SuspectFamilyDetailDTO>(result!);
+        return _mapper.Map<SuspectProfileDTO>(result!);
     }
-    public async Task CreateSuspectFamilyDetailAsync(SuspectFamilyDetail suspectFamilyDetail)
+    public async Task CreateSuspectProfileAsync(SuspectProfile suspectProfile)
     {
-        _dbContext.Add(suspectFamilyDetail);
+        _dbContext.Add(suspectProfile);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteSuspectFamilyDetailAsync(long? id)
+    public async Task DeleteSuspectProfileAsync(long? id)
     {
-        var suspectFamilyDetail = await _dbContext.SuspectFamilyDetails.FindAsync(id);
-        if (suspectFamilyDetail != null)
+        var suspectProfile = await _dbContext.SuspectProfiles.FindAsync(id);
+        if (suspectProfile != null)
         {
-            _dbContext.SuspectFamilyDetails.Remove(suspectFamilyDetail);
+            _dbContext.SuspectProfiles.Remove(suspectProfile);
         }
         await _dbContext.SaveChangesAsync();
     }
