@@ -17,7 +17,7 @@ public class TerroristProfileRepo : ITerroristProfileRepo
 
     public async Task<List<TerroristProfileDTO>> GetTerroristProfilesAsync()
     {
-        return _mapper.Map <List<TerroristProfileDTO >>(await _dbContext.TerroristProfiles.Include(t => t.Address).Include(t => t.Organization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement).ToListAsync())!;
+        return _mapper.Map <List<TerroristProfileDTO >>(await _dbContext.TerroristProfiles.Include(t => t.Address).Include(t => t.Organization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement).ToListAsync());
 
         
     }
