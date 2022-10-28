@@ -3,28 +3,29 @@
 public class FunderController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public FunderController(IFCDbContext context)
+    public FunderController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Funders
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Funders.ToListAsync());
+        return View(await _unitOfWork.FunderRepo.GetFundersAsync());
     }
 
     // GET: Funders/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Funders == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var funder = await _context.Funders
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var funder = await _unitOfWork.FunderRepo.GetFundersAsync(id);
         if (funder == null)
         {
             return NotFound();

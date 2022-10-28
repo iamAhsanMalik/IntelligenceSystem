@@ -3,28 +3,28 @@
 public class SectorHeadQuarterController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public SectorHeadQuarterController(IFCDbContext context)
+    public SectorHeadQuarterController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: SectorHeadQuarters
     public async Task<IActionResult> Index()
     {
-        return View(await _context.SectorHeadQuarters.ToListAsync());
+        return View(await _unitOfWork.SectorHeadQuarterRepo.GetSectorHeadQuarterDetailsAsync());
     }
 
     // GET: SectorHeadQuarters/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.SectorHeadQuarters == null)
+        if (id == null)
         {
             return NotFound();
         }
-
-        var sectorHeadQuarter = await _context.SectorHeadQuarters
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var sectorHeadQuarter = await _unitOfWork.SectorHeadQuarterRepo.GetSectorHeadQuarterDetailsAsync(id);
         if (sectorHeadQuarter == null)
         {
             return NotFound();

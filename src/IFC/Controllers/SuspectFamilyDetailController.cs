@@ -3,30 +3,29 @@
 public class SuspectFamilyDetailController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public SuspectFamilyDetailController(IFCDbContext context)
+    public SuspectFamilyDetailController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: SuspectFamilyDetails
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.SuspectFamilyDetails.Include(s => s.RelationType);
-        return View(await iFCDbContext.ToListAsync());
+        return View(await _unitOfWork.SuspectFamilyDetailRepo.GetSuspectFamilyDetailsAsync());
     }
 
     // GET: SuspectFamilyDetails/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.SuspectFamilyDetails == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var suspectFamilyDetail = await _context.SuspectFamilyDetails
-            .Include(s => s.RelationType)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var suspectFamilyDetail = await _unitOfWork.SuspectFamilyDetailRepo.GetSuspectFamilyDetailsAsync(id);
         if (suspectFamilyDetail == null)
         {
             return NotFound();

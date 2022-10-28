@@ -3,28 +3,29 @@
 public class RelationTypeController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public RelationTypeController(IFCDbContext context)
+    public RelationTypeController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: RelationTypes
     public async Task<IActionResult> Index()
     {
-        return View(await _context.RelationTypes.ToListAsync());
+        return View(await _unitOfWork.RelationTypeRepo.GetRelationTypeDetailsAsync());
     }
 
     // GET: RelationTypes/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.RelationTypes == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var relationType = await _context.RelationTypes
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var relationType = await _unitOfWork.RelationTypeRepo.GetRelationTypeDetailsAsync(id);
         if (relationType == null)
         {
             return NotFound();

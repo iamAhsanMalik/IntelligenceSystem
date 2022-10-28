@@ -3,17 +3,19 @@
 public class CoreHeadQuarterController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public CoreHeadQuarterController(IFCDbContext context)
+    public CoreHeadQuarterController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: CoreHeadQuarters
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.CoreHeadQuarters.Include(c => c.SectorHeadQuarter);
-        return View(await iFCDbContext.ToListAsync());
+        var result = await _unitOfWork.CoreHeadQuarterRepo.GetCoreHeadQuartersAsync();
+        return View(result);
     }
 
     // GET: CoreHeadQuarters/Details/5
@@ -24,9 +26,7 @@ public class CoreHeadQuarterController : Controller
             return NotFound();
         }
 
-        var coreHeadQuarter = await _context.CoreHeadQuarters
-            .Include(c => c.SectorHeadQuarter)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var coreHeadQuarter = await _unitOfWork.CoreHeadQuarterRepo.GetCoreHeadQuartersAsync(id);
         if (coreHeadQuarter == null)
         {
             return NotFound();

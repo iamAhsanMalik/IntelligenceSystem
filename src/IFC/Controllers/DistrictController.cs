@@ -3,34 +3,30 @@
 public class DistrictController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public DistrictController(IFCDbContext context)
+    public DistrictController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Districts
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Districts.ToListAsync());
+        return View(await _unitOfWork.DistrictRepo.GetDistrictsAsync());
     }
 
     // GET: Districts/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Districts == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var district = await _context.Districts
-            .FirstOrDefaultAsync(m => m.Id == id);
-        if (district == null)
-        {
-            return NotFound();
-        }
-
-        return View(district);
+        var district = await _unitOfWork.DistrictRepo.GetDistrictsAsync(id);
+        return (district == null) ? NotFound() : View(district);
     }
 
     // GET: Districts/Create

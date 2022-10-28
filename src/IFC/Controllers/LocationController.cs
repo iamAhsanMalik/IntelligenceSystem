@@ -3,28 +3,29 @@
 public class LocationController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public LocationController(IFCDbContext context)
+    public LocationController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Locations
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Locations.ToListAsync());
+        return View(await _unitOfWork.LocationRepo.GetLocationsAsync());
     }
 
     // GET: Locations/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Locations == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var location = await _context.Locations
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var location = await _unitOfWork.LocationRepo.GetLocationsAsync(id);
         if (location == null)
         {
             return NotFound();

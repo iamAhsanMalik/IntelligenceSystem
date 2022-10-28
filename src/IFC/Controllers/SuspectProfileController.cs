@@ -3,17 +3,19 @@
 public class SuspectProfileController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public SuspectProfileController(IFCDbContext context)
+    public SuspectProfileController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: SuspectProfiles
     public async Task<IActionResult> Index()
     {
         var iFCDbContext = _context.SuspectProfiles.Include(s => s.Address).Include(s => s.Organization).Include(s => s.SuspectFamilyDetails);
-        return View(await iFCDbContext.ToListAsync());
+        return View(await _unitOfWork.SuspectProfileRepo.get);
     }
 
     // GET: SuspectProfiles/Details/5

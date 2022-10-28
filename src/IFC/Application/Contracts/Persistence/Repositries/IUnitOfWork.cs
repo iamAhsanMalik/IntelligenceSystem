@@ -23,4 +23,6 @@ public interface IUnitOfWork
     ITerroristProfileRepo TerroristProfileRepo { get; }
     IThreatRepo ThreatRepo { get; }
     IWingRepo WingRepo { get; }
+    ISuspectFamilyDetailRepo SuspectFamilyDetailRepo { get; }
+    ISuspectProfileRepo SuspectProfileRepo { get; }
 }

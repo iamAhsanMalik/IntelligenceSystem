@@ -3,28 +3,29 @@
 public class SocialMediaProfileController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public SocialMediaProfileController(IFCDbContext context)
+    public SocialMediaProfileController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: SocialMediaProfiles
     public async Task<IActionResult> Index()
     {
-        return View(await _context.SocialMediaProfiles.ToListAsync());
+        return View(await _unitOfWork.SocialMediaProfileRepo.GetSocialMediaProfileDetailsAsync());
     }
 
     // GET: SocialMediaProfiles/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.SocialMediaProfiles == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var socialMediaProfile = await _context.SocialMediaProfiles
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var socialMediaProfile = await _unitOfWork.SocialMediaProfileRepo.GetSocialMediaProfileDetailsAsync(id);
         if (socialMediaProfile == null)
         {
             return NotFound();

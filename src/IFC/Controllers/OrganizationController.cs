@@ -3,17 +3,18 @@
 public class OrganizationController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public OrganizationController(IFCDbContext context)
+    public OrganizationController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Organizations
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.Organizations.Include(o => o.Affiliate).Include(o => o.Involvement).Include(o => o.OperationalBase).Include(o => o.SocialMediaProfile);
-        return View(await iFCDbContext.ToListAsync());
+        return View(await _unitOfWork.OrganizationRepo.GetOrganizationDetailsAsync());
     }
 
     // GET: Organizations/Details/5
@@ -23,13 +24,7 @@ public class OrganizationController : Controller
         {
             return NotFound();
         }
-
-        var organization = await _context.Organizations
-            .Include(o => o.Affiliate)
-            .Include(o => o.Involvement)
-            .Include(o => o.OperationalBase)
-            .Include(o => o.SocialMediaProfile)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var organization = await _unitOfWork.OrganizationRepo.GetOrganizationDetailsAsync(id);
         if (organization == null)
         {
             return NotFound();

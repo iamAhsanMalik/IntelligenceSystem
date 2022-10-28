@@ -1,23 +1,20 @@
-﻿using IFC.Application.Contracts.Persistence.Repositries;
-
-namespace IFC.Controllers;
+﻿namespace IFC.Controllers;
 
 public class ApprovalController : Controller
 {
-    private readonly IApprovalRepo _approvalRepo;
     private readonly IFCDbContext _dbContext;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public ApprovalController(IApprovalRepo approvalRepo, IFCDbContext dbContext)
+    public ApprovalController(IFCDbContext dbContext, IUnitOfWork unitOfWork)
     {
-        _approvalRepo = approvalRepo;
         _dbContext = dbContext;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Approvals
     public async Task<IActionResult> Index()
     {
-        var result = await _approvalRepo.GetApprovalsAsync();
-        return View(result);
+        return View(await _unitOfWork.ApprovalRepo.GetApprovalsAsync());
     }
 
     // GET: Approvals/Details/5
@@ -27,12 +24,11 @@ public class ApprovalController : Controller
         {
             return NotFound();
         }
-        var approval = await _approvalRepo.GetApprovalsAsync(id);
+        var approval = await _unitOfWork.ApprovalRepo.GetApprovalsAsync(id);
         if (approval == null)
         {
             return NotFound();
         }
-
         return View(approval);
     }
 
