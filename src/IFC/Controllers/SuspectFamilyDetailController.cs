@@ -14,7 +14,8 @@ public class SuspectFamilyDetailController : Controller
     // GET: SuspectFamilyDetails
     public async Task<IActionResult> Index()
     {
-        return View(await _unitOfWork.SuspectFamilyDetailRepo.GetSuspectFamilyDetailsAsync());
+        var result = await _unitOfWork.SuspectFamilyDetailRepo.GetSuspectFamilyDetailsAsync();
+        return View();
     }
 
     // GET: SuspectFamilyDetails/Details/5
