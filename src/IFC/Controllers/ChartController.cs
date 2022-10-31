@@ -5,18 +5,18 @@ using ChartJSCore.Plugins.Zoom;
 namespace IFC.Controllers;
 public class ChartController : Controller
 {
-    private readonly ILogger<ChartController> _logger;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public ChartController(ILogger<ChartController> logger)
+    public ChartController(IUnitOfWork unitOfWork)
     {
-        _logger = logger;
+        _unitOfWork = unitOfWork;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         var iFCCharts = new IFCChartsModel()
         {
-            VerticalBarChart = GenerateVerticalBarChart(),
+            VerticalBarChart = await GenerateVerticalBarChart(),
             HorizontalBarChart = GenerateHorizontalBarChart(),
             LineChart = GenerateLineChart(),
             RadarChart = GenerateRadarChart(),
@@ -28,18 +28,24 @@ public class ChartController : Controller
         return View(iFCCharts);
     }
 
-    private static Chart GenerateVerticalBarChart()
+    private async Task<Chart> GenerateVerticalBarChart()
     {
+        var totalIncidents = await _unitOfWork.IncidentRepo.GetIncidentsAsync();
+        var totalThreats = await _unitOfWork.ThreatRepo.GetThreatsAsync();
+        var totalTerrorist = await _unitOfWork.TerroristProfileRepo.GetTerroristProfilesAsync();
+        var totalOrganizations = await _unitOfWork.OrganizationRepo.GetOrganizationDetailsAsync();
+        var totalSuspects = await _unitOfWork.SuspectProfileRepo.GetSuspectProfilesAsync();
+
         var chart = new Chart();
         chart.Type = Enums.ChartType.Bar;
 
         var data = new Data();
-        data.Labels = new List<string>() { "Incidents", "Blue", "Yellow", "Green", "Purple", "Orange" };
+        data.Labels = new List<string>() { "Incidents", "Threats", "Terrorist", "Suspects", "Organizations" };
 
         var dataset = new BarDataset()
         {
             Label = "IFC Overview",
-            Data = new List<double?>() { 12, 19, 3, 5, 2, 3 },
+            Data = new List<double?>() { totalIncidents.Count(), totalThreats.Count(), totalTerrorist.Count(), totalSuspects.Count(), totalOrganizations.Count() },
             BackgroundColor = new List<ChartColor>
                 {
                     ChartColor.FromRgba(255, 99, 132, 0.2),
@@ -47,7 +53,6 @@ public class ChartController : Controller
                     ChartColor.FromRgba(255, 206, 86, 0.2),
                     ChartColor.FromRgba(75, 192, 192, 0.2),
                     ChartColor.FromRgba(153, 102, 255, 0.2),
-                    ChartColor.FromRgba(255, 159, 64, 0.2)
                 },
             BorderColor = new List<ChartColor>
                 {
@@ -56,7 +61,6 @@ public class ChartController : Controller
                     ChartColor.FromRgb(255, 206, 86),
                     ChartColor.FromRgb(75, 192, 192),
                     ChartColor.FromRgb(153, 102, 255),
-                    ChartColor.FromRgb(255, 159, 64)
                 },
             BorderWidth = new List<int>() { 1 },
             BarPercentage = 0.5,
@@ -104,7 +108,7 @@ public class ChartController : Controller
         return chart;
     }
 
-    private static Chart GenerateHorizontalBarChart()
+    private Chart GenerateHorizontalBarChart()
     {
         var chart = new Chart();
         chart.Type = Enums.ChartType.Bar;
@@ -116,7 +120,7 @@ public class ChartController : Controller
                     {
                         new VerticalBarDataset()
                         {
-                            Label = "Dataset 1",
+                            Label = "Incidents",
                             Data = new List<VerticalBarDataPoint?>()
                             {
                                 new VerticalBarDataPoint(12, 1)
@@ -132,7 +136,7 @@ public class ChartController : Controller
                     {
                         new VerticalBarDataset()
                         {
-                            Label = "Dataset 2",
+                            Label = "Threats",
                             Data = new List<VerticalBarDataPoint?>()
                             {
                                 new VerticalBarDataPoint(19, 2)
@@ -224,7 +228,7 @@ public class ChartController : Controller
                 Title = new Title()
                 {
                     Display = true,
-                    Text = new List<string>() { "Chart.js Horizontal Bar Chart" }
+                    Text = new List<string>() { "Hello World Chart" }
                 }
             }
         };
@@ -232,7 +236,7 @@ public class ChartController : Controller
         return chart;
     }
 
-    private static Chart GenerateLineChart()
+    private Chart GenerateLineChart()
     {
         var chart = new Chart();
 
@@ -317,7 +321,7 @@ public class ChartController : Controller
         return chart;
     }
 
-    private static Chart GenerateLineScatterChart()
+    private Chart GenerateLineScatterChart()
     {
         var chart = new Chart();
         chart.Type = Enums.ChartType.Scatter;
@@ -390,7 +394,7 @@ public class ChartController : Controller
         return chart;
     }
 
-    private static Chart GenerateRadarChart()
+    private Chart GenerateRadarChart()
     {
         var chart = new Chart();
         chart.Type = Enums.ChartType.Radar;
@@ -431,7 +435,7 @@ public class ChartController : Controller
         return chart;
     }
 
-    private static Chart GeneratePolarChart()
+    private Chart GeneratePolarChart()
     {
         var chart = new Chart();
         chart.Type = Enums.ChartType.PolarArea;
@@ -460,7 +464,7 @@ public class ChartController : Controller
         return chart;
     }
 
-    private static Chart GeneratePieChart()
+    private Chart GeneratePieChart()
     {
         var chart = new Chart();
         chart.Type = Enums.ChartType.Pie;
@@ -492,7 +496,7 @@ public class ChartController : Controller
         return chart;
     }
 
-    private static Chart GenerateNestedDoughnutChart()
+    private Chart GenerateNestedDoughnutChart()
     {
         var chart = new Chart();
         chart.Type = Enums.ChartType.Doughnut;
