@@ -1,4 +1,4 @@
-namespace IFC.Application.Models;
+namespace IFC.ViewModels;
 
 public class ErrorViewModel
 {

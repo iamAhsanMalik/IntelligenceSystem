@@ -23,7 +23,7 @@ public class ChartController : Controller
         Chart pieChart = GeneratePieChart();
         Chart nestedDoughnutChart = GenerateNestedDoughnutChart();
 
-        IFCCharts iFCCharts = new IFCCharts()
+        IFCChartsModel iFCCharts = new IFCChartsModel()
         {
             VerticalBarChart = verticalBarChart,
             HorizontalBarChart = horizontalBarChart,
@@ -569,16 +569,4 @@ public class ChartController : Controller
 
         return chart;
     }
-}
-
-public class IFCCharts
-{
-    public Chart? VerticalBarChart { get; set; }
-    public Chart? HorizontalBarChart { get; set; }
-    public Chart? LineChart { get; set; }
-    public Chart? LineScatterChart { get; set; }
-    public Chart? RadarChart { get; set; }
-    public Chart? PolarChart { get; set; }
-    public Chart? PieChart { get; set; }
-    public Chart? NestedDoughnutChart { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace IFC.Infrastructure.Identity.Models;
+﻿namespace IFC.Application.Models;
 public class PermissionModel
 {
     public string? RoleId { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.ViewModels;
+
+namespace IFC.Controllers;
 
 public class HomeController : Controller
 {
