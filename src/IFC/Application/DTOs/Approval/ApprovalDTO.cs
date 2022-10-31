@@ -9,5 +9,5 @@ public class ApprovalDTO
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
-    public virtual string? ApprovalRequestType { get; set; }
+    public string? ApprovalRequestType { get; set; }
 }

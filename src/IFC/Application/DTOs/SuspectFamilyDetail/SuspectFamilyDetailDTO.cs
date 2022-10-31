@@ -13,7 +13,7 @@ public class SuspectFamilyDetailDTO
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
-   
 
-    public virtual string? RelationType { get; set; }
+
+    public string? RelationType { get; set; }
 }

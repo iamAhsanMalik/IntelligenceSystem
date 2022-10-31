@@ -1,16 +1,14 @@
-﻿using Mapster;
+﻿using IFC.Application.DTOs.OrganizationFunder;
+using Mapster;
 
 namespace IFC.Application.Profiles;
 internal class OrganizationFunderProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        //TypeAdapterConfig<OrganizationFunder, ThreatDTO>
-        //.NewConfig()
-        //.Map(dest => dest.Organization, src => $"{src.Organization!.Name}")
-        //.Map(dest => dest.Wing, src => $"{src.Wing!.Name}")
-        //.Map(dest => dest.SuspectsProfile, src => $"{src.SuspectsProfile!.FullName}")
-        //.Map(dest => dest.Incident, src => $"{src.Incident!.IncidentDate}")
-        //.Map(dest => dest.Location, src => $"{src.Location!.Name}");
+        TypeAdapterConfig<OrganizationFunder, OrganizationFunderDTO>
+        .NewConfig()
+        .Map(dest => dest.Organization, src => $"{src.Organization!.Name}")
+        .Map(dest => dest.Funder, src => $"{src.Funder!.Name}");
     }
 }

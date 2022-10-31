@@ -1,18 +1,21 @@
-﻿namespace IFC.Controllers;
+﻿
+namespace IFC.Controllers;
 
 public class AffiliateController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public AffiliateController(IFCDbContext context)
+    public AffiliateController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Affiliate
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Affiliates.ToListAsync());
+        return View(await _unitOfWork.AffiliateRepo.GetAffiliatesAsync());
     }
 
     // GET: Affiliate/Details/5
@@ -23,8 +26,7 @@ public class AffiliateController : Controller
             return NotFound();
         }
 
-        var affiliate = await _context.Affiliates
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var affiliate = await _unitOfWork.AffiliateRepo.GetAffiliatesAsync(id);
         if (affiliate == null)
         {
             return NotFound();

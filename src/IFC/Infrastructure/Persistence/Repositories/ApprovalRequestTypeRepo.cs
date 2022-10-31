@@ -1,23 +1,28 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.ApprovalRequestType;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class ApprovalRequestTypeRepo : IApprovalRequestTypeRepo
 {
     private readonly IFCDbContext _dbContext;
-    public ApprovalRequestTypeRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public ApprovalRequestTypeRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<ApprovalRequestType>> GetApprovalRequestTypesAsync()
+    public async Task<List<ApprovalRequestTypeDTO>> GetApprovalRequestTypesAsync()
     {
-        return await _dbContext.ApprovalRequestTypes.ToListAsync();
+        return _mapper.Map<List<ApprovalRequestTypeDTO>>(await _dbContext.ApprovalRequestTypes.ToListAsync());
     }
-    public async Task<ApprovalRequestType?> GetApprovalRequestTypesAsync(long? id)
+    public async Task<ApprovalRequestTypeDTO> GetApprovalRequestTypesAsync(long? id)
     {
-        return await _dbContext.ApprovalRequestTypes
+        var result = await _dbContext.ApprovalRequestTypes
             .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<ApprovalRequestTypeDTO>(result!);
     }
     public async Task CreateApprovalRequestTypeAsync(ApprovalRequestType approvalRequestType)
     {

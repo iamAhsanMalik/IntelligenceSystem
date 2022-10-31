@@ -1,38 +1,41 @@
 ﻿
 using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.Threat;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class ThreatRepo : IThreatRepo
 {
     private readonly IFCDbContext _dbContext;
-    public ThreatRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public ThreatRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<Threat>> GetThreatsAsync()
+    public async Task<List<ThreatDTO>> GetThreatsAsync()
     {
-        var iFCDbContext = await _dbContext.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).ToListAsync();
-
-        return iFCDbContext;
+        return _mapper.Map<List<ThreatDTO>>(await _dbContext.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).ToListAsync());
     }
-    public async Task<Threat?> GetThreatsAsync(long? id)
+    public async Task<ThreatDTO> GetThreatsAsync(long? id)
     {
-        return await _dbContext.Threats
+        var result = await _dbContext.Threats
             .Include(t => t.Incident)
             .Include(t => t.Location)
             .Include(t => t.Organization)
             .Include(t => t.SuspectsProfile)
             .Include(t => t.Wing)
             .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<ThreatDTO>(result!);
     }
-    public async Task CreateThreatsAsync(Threat threat)
+    public async Task CreateThreatAsync(Threat threat)
     {
         _dbContext.Add(threat);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteThreatsAsync(long? id)
+    public async Task DeleteThreatAsync(long? id)
     {
         var threat = await _dbContext.Threats.FindAsync(id);
         if (threat != null)

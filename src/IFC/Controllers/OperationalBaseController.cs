@@ -3,28 +3,29 @@
 public class OperationalBaseController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public OperationalBaseController(IFCDbContext context)
+    public OperationalBaseController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: OperationalBases
     public async Task<IActionResult> Index()
     {
-        return View(await _context.OperationalBases.ToListAsync());
+        return View(await _unitOfWork.OperationalBaseRepo.GetOperationalBaseDetailsAsync());
     }
 
     // GET: OperationalBases/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.OperationalBases == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var operationalBase = await _context.OperationalBases
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var operationalBase = await _unitOfWork.OperationalBaseRepo.GetOperationalBaseDetailsAsync(id);
         if (operationalBase == null)
         {
             return NotFound();

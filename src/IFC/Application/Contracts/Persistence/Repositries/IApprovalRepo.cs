@@ -1,9 +1,11 @@
-﻿namespace IFC.Application.Contracts.Persistence.Repositries;
+﻿using IFC.Application.DTOs.Approval;
+
+namespace IFC.Application.Contracts.Persistence.Repositries;
 
 public interface IApprovalRepo
 {
-    Task CreateApprovalsAsync(Approval approval);
-    Task DeleteApprovalsAsync(long? id);
-    Task<List<Approval>> GetApprovalsAsync();
-    Task<Approval?> GetApprovalsAsync(long? id);
+    Task CreateApprovalAsync(Approval approval);
+    Task DeleteApprovalAsync(long? id);
+    Task<List<ApprovalDTO>> GetApprovalsAsync();
+    Task<ApprovalDTO> GetApprovalsAsync(long? id);
 }

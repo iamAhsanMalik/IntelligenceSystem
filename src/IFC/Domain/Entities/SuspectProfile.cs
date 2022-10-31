@@ -23,11 +23,11 @@ public class SuspectProfile
     public bool? IsActive { get; set; }
 
     public long? AddressId { get; set; }
-    public long? OrgnizationId { get; set; }
+    public long? OrganizationId { get; set; }
     public long? SuspectFamilyDetailsId { get; set; }
 
     public virtual Address? Address { get; set; }
-    public virtual Organization? Orgnization { get; set; }
+    public virtual Organization? Organization { get; set; }
     public virtual SuspectFamilyDetail? SuspectFamilyDetails { get; set; }
     public virtual ICollection<Incident> Incidents { get; set; }
     public virtual ICollection<Threat> Threats { get; set; }

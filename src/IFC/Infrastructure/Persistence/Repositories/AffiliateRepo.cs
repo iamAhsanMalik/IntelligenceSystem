@@ -1,30 +1,34 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.Affiliate;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class AffiliateRepo : IAffiliateRepo
 {
     private readonly IFCDbContext _dbContext;
-    public AffiliateRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public AffiliateRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<Affiliate>> GetAffiliatesAsync()
+    public async Task<List<AffiliateDTO>> GetAffiliatesAsync()
     {
-        return await _dbContext.Affiliates.ToListAsync();
+        return _mapper.Map<List<AffiliateDTO>>(await _dbContext.Affiliates.ToListAsync());
     }
-    public async Task<Affiliate?> GetAffiliatesAsync(long? id)
+    public async Task<AffiliateDTO> GetAffiliatesAsync(long? id)
     {
-        return await _dbContext.Affiliates
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var result = await _dbContext.Affiliates.FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<AffiliateDTO>(result!);
     }
-    public async Task CreateAffiliatesAsync(Affiliate affiliate)
+    public async Task CreateAffiliateAsync(Affiliate affiliate)
     {
         _dbContext.Add(affiliate);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteAffiliatesAsync(long? id)
+    public async Task DeleteAffiliateAsync(long? id)
     {
         var affiliate = await _dbContext.Affiliates.FindAsync(id);
         if (affiliate != null)

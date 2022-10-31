@@ -3,34 +3,29 @@
 public class TerroristProfileController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public TerroristProfileController(IFCDbContext context)
+    public TerroristProfileController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: TerroristProfiles
     public async Task<IActionResult> Index()
     {
-        var iFCDbContext = _context.TerroristProfiles.Include(t => t.Address).Include(t => t.Orgnization).Include(t => t.TerroristFacilitatorsDetails).Include(t => t.TerroristFamilyDetails).Include(t => t.TerroristInvolvement);
-        return View(await iFCDbContext.ToListAsync());
+        return View(await _unitOfWork.TerroristProfileRepo.GetTerroristProfilesAsync());
     }
 
     // GET: TerroristProfiles/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.TerroristProfiles == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var terroristProfile = await _context.TerroristProfiles
-            .Include(t => t.Address)
-            .Include(t => t.Orgnization)
-            .Include(t => t.TerroristFacilitatorsDetails)
-            .Include(t => t.TerroristFamilyDetails)
-            .Include(t => t.TerroristInvolvement)
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var terroristProfile = await _unitOfWork.TerroristProfileRepo.GetTerroristProfilesAsync(id);
         if (terroristProfile == null)
         {
             return NotFound();
@@ -64,7 +59,7 @@ public class TerroristProfileController : Controller
             return RedirectToAction(nameof(Index));
         }
         ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id", terroristProfile.AddressId);
-        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrgnizationId);
+        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrganizationId);
         ViewData["TerroristFacilitatorsDetailsId"] = new SelectList(_context.TerroristFacilitatorsDetails, "Id", "Id", terroristProfile.TerroristFacilitatorsDetailsId);
         ViewData["TerroristFamilyDetailsId"] = new SelectList(_context.TerroristFamilyDetails, "Id", "Id", terroristProfile.TerroristFamilyDetailsId);
         ViewData["TerroristInvolvementId"] = new SelectList(_context.TerroristInvolvements, "Id", "Id", terroristProfile.TerroristInvolvementId);
@@ -85,7 +80,7 @@ public class TerroristProfileController : Controller
             return NotFound();
         }
         ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id", terroristProfile.AddressId);
-        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrgnizationId);
+        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrganizationId);
         ViewData["TerroristFacilitatorsDetailsId"] = new SelectList(_context.TerroristFacilitatorsDetails, "Id", "Id", terroristProfile.TerroristFacilitatorsDetailsId);
         ViewData["TerroristFamilyDetailsId"] = new SelectList(_context.TerroristFamilyDetails, "Id", "Id", terroristProfile.TerroristFamilyDetailsId);
         ViewData["TerroristInvolvementId"] = new SelectList(_context.TerroristInvolvements, "Id", "Id", terroristProfile.TerroristInvolvementId);
@@ -125,7 +120,7 @@ public class TerroristProfileController : Controller
             return RedirectToAction(nameof(Index));
         }
         ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "Id", terroristProfile.AddressId);
-        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrgnizationId);
+        ViewData["OrgnizationId"] = new SelectList(_context.Organizations, "Id", "Id", terroristProfile.OrganizationId);
         ViewData["TerroristFacilitatorsDetailsId"] = new SelectList(_context.TerroristFacilitatorsDetails, "Id", "Id", terroristProfile.TerroristFacilitatorsDetailsId);
         ViewData["TerroristFamilyDetailsId"] = new SelectList(_context.TerroristFamilyDetails, "Id", "Id", terroristProfile.TerroristFamilyDetailsId);
         ViewData["TerroristInvolvementId"] = new SelectList(_context.TerroristInvolvements, "Id", "Id", terroristProfile.TerroristInvolvementId);
@@ -142,7 +137,7 @@ public class TerroristProfileController : Controller
 
         var terroristProfile = await _context.TerroristProfiles
             .Include(t => t.Address)
-            .Include(t => t.Orgnization)
+            .Include(t => t.Organization)
             .Include(t => t.TerroristFacilitatorsDetails)
             .Include(t => t.TerroristFamilyDetails)
             .Include(t => t.TerroristInvolvement)

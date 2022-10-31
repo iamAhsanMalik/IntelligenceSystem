@@ -17,6 +17,6 @@ public class TerroristFacilitatorsDetailDTO
 
 
 
-    public virtual string? Address { get; set; }
-    public virtual string? RelationType { get; set; }
+    public string? Address { get; set; }
+    public string? RelationType { get; set; }
 }

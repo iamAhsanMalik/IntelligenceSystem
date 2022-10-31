@@ -1,25 +1,28 @@
 ﻿using IFC.Application.Contracts.Persistence.Repositries;
+using IFC.Application.DTOs.OperationalBase;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
 public class OperationalBaseRepo : IOperationalBaseRepo
 {
     private readonly IFCDbContext _dbContext;
-    public OperationalBaseRepo(IFCDbContext dbContext)
+    private readonly IMapper _mapper;
+
+    public OperationalBaseRepo(IFCDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async Task<List<OperationalBase>> GetOperationalBaseDetailReposAsync()
+    public async Task<List<OperationalBaseDTO>> GetOperationalBaseDetailsAsync()
     {
-        var iFCDbContext = await _dbContext.OperationalBases.ToListAsync();
-
-        return iFCDbContext;
+        return _mapper.Map<List<OperationalBaseDTO>>(await _dbContext.OperationalBases.ToListAsync());
     }
-    public async Task<OperationalBase?> GetOperationalBaseDetailReposAsync(long? id)
+    public async Task<OperationalBaseDTO> GetOperationalBaseDetailsAsync(long? id)
     {
-        return await _dbContext.OperationalBases
+        var result = await _dbContext.OperationalBases
             .FirstOrDefaultAsync(m => m.Id == id);
+        return _mapper.Map<OperationalBaseDTO>(result!);
 
     }
     public async Task CreateOperationalBaseDetailAsync(OperationalBase operationalBase)
@@ -27,7 +30,7 @@ public class OperationalBaseRepo : IOperationalBaseRepo
         _dbContext.Add(operationalBase);
         await _dbContext.SaveChangesAsync();
     }
-    public async Task DeleteOperationalBaseDetailReposAsync(long? id)
+    public async Task DeleteOperationalBaseDetailAsync(long? id)
     {
         var operationalBase = await _dbContext.OperationalBases.FindAsync(id);
         if (operationalBase != null)

@@ -3,16 +3,19 @@
 public class ApprovalRequestTypeController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public ApprovalRequestTypeController(IFCDbContext context)
+    public ApprovalRequestTypeController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: ApprovalRequestTypes
     public async Task<IActionResult> Index()
     {
-        return View(await _context.ApprovalRequestTypes.ToListAsync());
+        var result = await _unitOfWork.ApprovalRequestTypeRepo.GetApprovalRequestTypesAsync();
+        return View(result);
     }
 
     // GET: ApprovalRequestTypes/Details/5
@@ -23,8 +26,7 @@ public class ApprovalRequestTypeController : Controller
             return NotFound();
         }
 
-        var approvalRequestType = await _context.ApprovalRequestTypes
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var approvalRequestType = await _unitOfWork.ApprovalRequestTypeRepo.GetApprovalRequestTypesAsync(id);
         if (approvalRequestType == null)
         {
             return NotFound();

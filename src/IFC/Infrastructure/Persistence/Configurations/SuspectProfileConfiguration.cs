@@ -34,9 +34,9 @@ public class SuspectProfileConfiguration : IEntityTypeConfiguration<SuspectProfi
             .HasConstraintName("FK_SuspectProfiles_Address")
             .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne(d => d.Orgnization)
+        entity.HasOne(d => d.Organization)
             .WithMany(p => p.SuspectProfiles)
-            .HasForeignKey(d => d.OrgnizationId)
+            .HasForeignKey(d => d.OrganizationId)
             .HasConstraintName("FK_SuspectProfiles_Organizations")
             .OnDelete(DeleteBehavior.SetNull);
 

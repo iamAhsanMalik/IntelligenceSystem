@@ -3,28 +3,29 @@
 public class InvolvementController : Controller
 {
     private readonly IFCDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public InvolvementController(IFCDbContext context)
+    public InvolvementController(IFCDbContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     // GET: Involvements
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Involvements.ToListAsync());
+        return View(await _unitOfWork.InvolvementRepo.GetInvolvementsAsync());
     }
 
     // GET: Involvements/Details/5
     public async Task<IActionResult> Details(long? id)
     {
-        if (id == null || _context.Involvements == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var involvement = await _context.Involvements
-            .FirstOrDefaultAsync(m => m.Id == id);
+        var involvement = await _unitOfWork.InvolvementRepo.GetInvolvementsAsync(id);
         if (involvement == null)
         {
             return NotFound();

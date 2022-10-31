@@ -9,7 +9,7 @@ public class Affiliate
 
     public long Id { get; set; }
     public string? LocalAffiliate { get; set; }
-    public string? ForiegnAffiliate { get; set; }
+    public string? ForeignAffiliate { get; set; }
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 

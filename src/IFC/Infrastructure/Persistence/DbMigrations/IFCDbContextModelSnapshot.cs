@@ -67,7 +67,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<string>("ForiegnAffiliate")
+                    b.Property<string>("ForeignAffiliate")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -687,7 +687,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                     b.Property<bool?>("MaritalStatus")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("OrgnizationId")
+                    b.Property<long?>("OrganizationId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Passport")
@@ -709,7 +709,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("OrgnizationId");
+                    b.HasIndex("OrganizationId");
 
                     b.HasIndex("SuspectFamilyDetailsId");
 
@@ -927,7 +927,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<long?>("OrgnizationId")
+                    b.Property<long?>("OrganizationId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Passport")
@@ -955,7 +955,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("OrgnizationId");
+                    b.HasIndex("OrganizationId");
 
                     b.HasIndex("TerroristFacilitatorsDetailsId");
 
@@ -1448,9 +1448,9 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_SuspectProfiles_Address");
 
-                    b.HasOne("IFC.Domain.Entities.Organization", "Orgnization")
+                    b.HasOne("IFC.Domain.Entities.Organization", "Organization")
                         .WithMany("SuspectProfiles")
-                        .HasForeignKey("OrgnizationId")
+                        .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_SuspectProfiles_Organizations");
 
@@ -1462,7 +1462,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
                     b.Navigation("Address");
 
-                    b.Navigation("Orgnization");
+                    b.Navigation("Organization");
 
                     b.Navigation("SuspectFamilyDetails");
                 });
@@ -1513,9 +1513,9 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_TerroristProfiles_Address");
 
-                    b.HasOne("IFC.Domain.Entities.Organization", "Orgnization")
+                    b.HasOne("IFC.Domain.Entities.Organization", "Organization")
                         .WithMany("TerroristProfiles")
-                        .HasForeignKey("OrgnizationId")
+                        .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_TerroristProfiles_Organizations");
 
@@ -1539,7 +1539,7 @@ namespace IFC.Infrastructure.Persistence.DbMigrations
 
                     b.Navigation("Address");
 
-                    b.Navigation("Orgnization");
+                    b.Navigation("Organization");
 
                     b.Navigation("TerroristFacilitatorsDetails");
 
