@@ -25,10 +25,10 @@ public class Organization
     public long? InvolvementId { get; set; }
     public long? SocialMediaProfileId { get; set; }
 
-    public virtual Affiliate? Affiliate { get; set; }
-    public virtual Involvement? Involvement { get; set; }
-    public virtual OperationalBase? OperationalBase { get; set; }
-    public virtual SocialMediaProfile? SocialMediaProfile { get; set; }
+    public virtual Affiliate? Affiliate { get; set; } = new Affiliate();
+    public virtual Involvement? Involvement { get; set; } = new Involvement();
+    public virtual OperationalBase? OperationalBase { get; set; } = new OperationalBase();
+    public virtual SocialMediaProfile? SocialMediaProfile { get; set; } = new SocialMediaProfile();
     public virtual ICollection<Incident> Incidents { get; set; }
     public virtual ICollection<OrganizationFunder> OrganizationFunders { get; set; }
     public virtual ICollection<SuspectProfile> SuspectProfiles { get; set; }

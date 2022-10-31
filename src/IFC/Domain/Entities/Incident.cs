@@ -17,9 +17,9 @@ public class Incident
     public long? WingId { get; set; }
     public long? LocationId { get; set; }
 
-    public virtual Location? Location { get; set; }
-    public virtual Organization? Organization { get; set; }
-    public virtual SuspectProfile? SuspectsProfile { get; set; }
-    public virtual Wing? Wing { get; set; }
+    public virtual Location? Location { get; set; } = new Location();
+    public virtual Organization? Organization { get; set; } = new Organization();
+    public virtual SuspectProfile? SuspectsProfile { get; set; } = new SuspectProfile();
+    public virtual Wing? Wing { get; set; } = new Wing();
     public virtual ICollection<Threat> Threats { get; set; }
 }

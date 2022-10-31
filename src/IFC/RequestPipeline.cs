@@ -5,6 +5,7 @@ public static class RequestPipeline
     public static async Task<WebApplication> AddRequestPipelineAsync(this WebApplication request)
     {
         await request.ApplyMigrationAndSeedingAsync();
+
         if (!request.Environment.IsDevelopment())
         {
             request.UseExceptionHandler("/Home/Error");

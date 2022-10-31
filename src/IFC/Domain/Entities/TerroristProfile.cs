@@ -30,10 +30,10 @@ public class TerroristProfile
     public long? TerroristFamilyDetailsId { get; set; }
     public long? TerroristFacilitatorsDetailsId { get; set; }
 
-    public virtual Address? Address { get; set; }
-    public virtual Organization? Organization { get; set; }
-    public virtual TerroristFacilitatorsDetail? TerroristFacilitatorsDetails { get; set; }
-    public virtual TerroristFamilyDetail? TerroristFamilyDetails { get; set; }
-    public virtual TerroristInvolvement? TerroristInvolvement { get; set; }
+    public virtual Address? Address { get; set; } = new Address();
+    public virtual Organization? Organization { get; set; } = new Organization();
+    public virtual TerroristFacilitatorsDetail? TerroristFacilitatorsDetails { get; set; } = new TerroristFacilitatorsDetail();
+    public virtual TerroristFamilyDetail? TerroristFamilyDetails { get; set; } = new TerroristFamilyDetail();
+    public virtual TerroristInvolvement? TerroristInvolvement { get; set; } = new TerroristInvolvement();
     public virtual ICollection<Organization> Organizations { get; set; }
 }

@@ -1,6 +1,4 @@
-﻿using IFC.Application.Contracts.Persistence.Repositries;
-
-namespace IFC.Infrastructure.Persistence.Repositories;
+﻿namespace IFC.Infrastructure.Persistence.Repositories;
 
 internal class UnitOfWork : IUnitOfWork
 {

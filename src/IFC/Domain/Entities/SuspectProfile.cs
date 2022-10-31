@@ -26,9 +26,9 @@ public class SuspectProfile
     public long? OrganizationId { get; set; }
     public long? SuspectFamilyDetailsId { get; set; }
 
-    public virtual Address? Address { get; set; }
-    public virtual Organization? Organization { get; set; }
-    public virtual SuspectFamilyDetail? SuspectFamilyDetails { get; set; }
+    public virtual Address? Address { get; set; } = new Address();
+    public virtual Organization? Organization { get; set; } = new Organization();
+    public virtual SuspectFamilyDetail? SuspectFamilyDetails { get; set; } = new SuspectFamilyDetail();
     public virtual ICollection<Incident> Incidents { get; set; }
     public virtual ICollection<Threat> Threats { get; set; }
 }
