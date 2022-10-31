@@ -14,25 +14,16 @@ public class ChartController : Controller
 
     public IActionResult Index()
     {
-        Chart verticalBarChart = GenerateVerticalBarChart();
-        Chart horizontalBarChart = GenerateHorizontalBarChart();
-        Chart lineChart = GenerateLineChart();
-        Chart lineScatterChart = GenerateLineScatterChart();
-        Chart radarChart = GenerateRadarChart();
-        Chart polarChart = GeneratePolarChart();
-        Chart pieChart = GeneratePieChart();
-        Chart nestedDoughnutChart = GenerateNestedDoughnutChart();
-
-        IFCCharts iFCCharts = new IFCCharts()
+        IFCChartsModel iFCCharts = new IFCChartsModel()
         {
-            VerticalBarChart = verticalBarChart,
-            HorizontalBarChart = horizontalBarChart,
-            LineChart = lineChart,
-            RadarChart = radarChart,
-            LineScatterChart = lineScatterChart,
-            NestedDoughnutChart = nestedDoughnutChart,
-            PieChart = pieChart,
-            PolarChart = polarChart
+            VerticalBarChart = GenerateVerticalBarChart(),
+            HorizontalBarChart = GenerateHorizontalBarChart(),
+            LineChart = GenerateLineChart(),
+            RadarChart = GenerateRadarChart(),
+            LineScatterChart = GenerateLineScatterChart(),
+            NestedDoughnutChart = GenerateNestedDoughnutChart(),
+            PieChart = GeneratePieChart(),
+            PolarChart = GeneratePolarChart()
         };
         return View(iFCCharts);
     }
@@ -43,11 +34,11 @@ public class ChartController : Controller
         chart.Type = Enums.ChartType.Bar;
 
         Data data = new Data();
-        data.Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
+        data.Labels = new List<string>() { "Incidents", "Blue", "Yellow", "Green", "Purple", "Orange" };
 
         BarDataset dataset = new BarDataset()
         {
-            Label = "# of Votes",
+            Label = "IFC Overview",
             Data = new List<double?>() { 12, 19, 3, 5, 2, 3 },
             BackgroundColor = new List<ChartColor>
                 {
@@ -76,7 +67,6 @@ public class ChartController : Controller
 
         data.Datasets = new List<Dataset>();
         data.Datasets.Add(dataset);
-
         chart.Data = data;
 
         var options = new Options
@@ -227,7 +217,7 @@ public class ChartController : Controller
         chart.Options = new Options()
         {
             Responsive = true,
-            Plugins = new ChartJSCore.Models.Plugins()
+            Plugins = new Plugins()
             {
                 Legend = new Legend()
                 {
@@ -569,16 +559,4 @@ public class ChartController : Controller
 
         return chart;
     }
-}
-
-public class IFCCharts
-{
-    public Chart? VerticalBarChart { get; set; }
-    public Chart? HorizontalBarChart { get; set; }
-    public Chart? LineChart { get; set; }
-    public Chart? LineScatterChart { get; set; }
-    public Chart? RadarChart { get; set; }
-    public Chart? PolarChart { get; set; }
-    public Chart? PieChart { get; set; }
-    public Chart? NestedDoughnutChart { get; set; }
 }

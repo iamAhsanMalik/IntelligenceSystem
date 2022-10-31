@@ -14,7 +14,6 @@ global using IFC.Domain.Enums;
 global using IFC.Infrastructure;
 global using IFC.Infrastructure.Identity;
 global using IFC.Infrastructure.Identity.Helpers;
-global using IFC.Infrastructure.Identity.Models;
 global using IFC.Infrastructure.Identity.Services;
 global using IFC.Infrastructure.Persistence;
 global using IFC.Infrastructure.Persistence.Seeding;
