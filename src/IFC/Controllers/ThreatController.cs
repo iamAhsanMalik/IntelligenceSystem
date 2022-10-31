@@ -102,16 +102,16 @@ public class ThreatController : Controller
             return NotFound();
         }
 
-        var threat = await _context.Threats.FindAsync(id);
+        var threat = await _unitOfWork.ThreatRepo.GetThreatsAsync(id);
         if (threat == null)
         {
             return NotFound();
         }
         ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "IncidentDate", threat.Id);
-        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", threat.LocationId);
-        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Name", threat.OrganizationId);
-        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "FullName", threat.SuspectsProfileId);
-        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Name", threat.WingId);
+        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", threat.Location);
+        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Name", threat.Organization);
+        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "FullName", threat.SuspectsProfile);
+        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Name", threat.Wing);
         return View(threat);
     }
 
