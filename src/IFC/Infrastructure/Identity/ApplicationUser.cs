@@ -1,4 +1,4 @@
-namespace IFC.Infrastructure.Identity.Models;
+namespace IFC.Infrastructure.Identity;
 
 public class ApplicationUser : IdentityUser
 {
