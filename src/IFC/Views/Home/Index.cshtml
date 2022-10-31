@@ -1,8 +1,148 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "DashBoard";
+      Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container-fluid">
+<div class="panel panel-default">
+        <div class="panel-body">
+        <div class="row">
+            <div class="col-md-5  dashboard-panel-5" style="margin:30px; padding:10px; border-radius:15px;">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+                    <select class="Attributewise" style="border-radius:5px;padding:10px; color:white !important; background-color:red !important; ; float:right;">
+                        <option class="thisweek">Last 6 Months</option>
+                    </select>
+                        <canvas id="myChart"></canvas>
+
+            </div>
+            <div class="col-md-5 graphbox dashboard-panel-6" style="margin:30px; padding:10px; border-radius:15px;">
+                    <select class="Attributewise" style="border-radius:5px;padding:10px; color:white !important; background-color:red !important; float:right;">
+                        <option class="thisweek">Last 6 Months</option>
+                    </select>
+                <canvas id="myChart2" ></canvas>
+              
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-12  dashboard-panel-5" style="margin:30px; padding:30px; border-radius:15px;">
+                    <select class="Attributewise" style="border-radius:5px;padding:10px; color:white !important; background-color:red !important; float:right;">
+                        <option class="thisweek">Threat</option>
+                    </select>
+                    <canvas id="myChart3"></canvas>
+            </div>
+            <div class="col-md-5 col-12  dashboard-panel-6" style="margin:30px; padding:30px; border-radius:15px;">
+                    <select class="Attributewise" style="border-radius:5px;padding:10px; color:white !important; background-color:red !important; float:right;">
+                        <option class="thisweek">Incident</option>
+                    </select>
+
+                    <canvas id="myChart4"></canvas>
+                    <div id="myPlot" ></div>
+            </div>
+        </div>
+        </div>
+        </div>
+    
+        </div>
+
+
+
+
+<script>
+    var xValues = [];
+    var yValues = [20, 60];
+    var barColors = [
+        "#d60000",
+        "#a6a6a6",
+
+    ];
+
+    new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+  
+            }
+        }
+    });
+</script>
+
+
+<script>
+    var xValues = [];
+    var yValues = [20, 60];
+    var barColors = [
+        "#d60000",
+        "#a6a6a6",
+
+    ];
+
+    new Chart("myChart2", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+              
+            }
+        }
+    });
+</script>
+<script>
+    var xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+
+    new Chart("myChart3", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+                borderColor: "red",
+                fill: false
+            }, {
+                data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+                borderColor: "black",
+                fill: false
+            }]
+        },
+        options: {
+            legend: { display: false }
+        }
+    });
+</script>
+
+<script>
+    var xValues = [55, 49, 44, 24, 10, 55,];
+    var yValues = ["June", "May", "April", "March", "Feb", "january"];
+    var barColors = ["grey", "black", "red", "grey", "black", "grey"];
+
+    new Chart("myChart4", {
+        type: "horizontalBar",
+        data: {
+            labels: yValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: xValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                
+            }
+        }
+    });
+</script>

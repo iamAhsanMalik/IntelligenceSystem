@@ -1,0 +1,362 @@
+﻿@{
+    ViewData["Title"] = "Organizations";
+}
+
+<section>
+    <div class="panel panel-default panel-bg p-2">
+        <div class="panel-header border-bottom">
+               <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <i class="fa fa-search"></i>
+                    <input type="search" class="form-control bg-transparent border-0 w-90 d-inline mt-2" name="search" placeholder="Search" value="" ; style="border:1px solid #fff !important; border-radius:20px;"/>
+                </div>
+                <div  class="col-md-4 col-sm-6">
+
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius" data-toggle="modal" data-target="#AddorganizationModal">Add New Organization </button>
+                </div>
+                     <div class="col-md-2 col-sm-6">
+                    <button type="button" class="btn btn-danger float-right mt-2 mb-2 btn-radius">Export to Excel</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table id="DashboardTable" class="table border-none">
+                <thead>
+                    <tr class="bg_Brown border-radius" style="color:white !important">
+                        <th>Organization ID</th>
+                        <th>Name</th>
+                        <th>Affiliated Organizations</th>
+                        <th >Base Area</th>
+                        <th>Recent Involvement</th>
+                        <th>Active Members</th>
+                        <th>Active  Map</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>CBT</td>
+                        <td>100</td>
+                        <td>700</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td><button type="button" class="btn btn-danger  mt-2 mb-2 btn-radius" >View  Map</button></td>
+                        <td>
+
+                            <button><i class="fa fa-edit"></i></button>
+                            <button><i class="fa fa-eye" data-toggle="modal" data-target="#AddorganizationmapModal"></i></button>
+                            <button><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class=" Modalgeneralclass modal" id="AddorganizationModal" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="col-md-12 text-center">
+                    <div class="modal_header">
+                        <h4 class="modal-title">ADD ORGANIZATION</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div><label> NAME</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>LOCAL AFFILIATES </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>  SOURCE OF FUNDING</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" readonly id="Ava_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> FOUNDING</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> FOREIGN AFFILIATES</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> LAST INVOLVEMENT</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> BASE AREA</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> NO.OF MEMBERS </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> DETAILS </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> ACTIVITY LEVEL </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> THREAT LEVEL </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" id="BtnMove" onclick="AddMovement();" style="  margin-left:10px;">Send For Approval</button>
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" data-dismiss="modal">Cancel</button>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+     
+
+
+
+
+<div class=" Modalgeneralclass modal" id="AddorganizationmapModal" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+              
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div><label>  NAME</label></div><br />
+                            <div>
+                                <input type="number" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div><label> MARITIAL STATUS</label></div><br />
+                            <div>
+                                <input type="number" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> HIERARCHY</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="DemandNo" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> YEAR FOUNDED</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" readonly id="Ava_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> PRIMARY FAMILY </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label>THREAT LEVEL</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> AREA FOUNDED</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" readonly id="Ava_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> EXTENDED FAMILY </label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> OREATIONAL BASE IN BALOACHISTAN</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                            <div> <label> FOUNDER DETAILS</label></div><br />
+                            <div>
+                                <input type="text" class="form-control" id="Move_item" placeholder="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label> FOREIGN AFFILIATES</label></div><br />
+                            <div>
+                                <input class="form-control" type="text" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label> CNIC</label></div><br />
+                            <div>
+                                <input class="form-control" type="number" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label> SOURCE OF FUNDING</label></div><br />
+                            <div>
+                                <input class="form-control" type="text" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label> PASSPORT</label></div><br />
+                            <div>
+                                <input class="form-control" type="file" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label> SOCIAL MEDIA PROFILES</label></div><br />
+                            <div>
+                                <input class="form-control" type="text" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label> ADDRESS</label></div><br />
+                            <div>
+                                <input class="form-control" type="text" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12" id="todate">
+                        <div class="form-group row">
+                            <div> <label> ACTIVITY HISTORY</label></div><br />
+                            <div>
+                                <input class="form-control" type="text" id="to_date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" id="BtnMove" onclick="AddMovement();" style="  margin-left:10px;">Send For Approval</button>
+                        <button class="btn btn-danger float-right mt-2 mb-2 btn-radius" data-dismiss="modal">Cancel</button>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

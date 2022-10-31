@@ -1,4 +1,6 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.ViewModels;
+
+namespace IFC.Controllers;
 
 public class HomeController : Controller
 {
@@ -6,7 +8,30 @@ public class HomeController : Controller
     {
         return View();
     }
-
+    public IActionResult Incidents()
+    {
+        return View();
+    }
+    public IActionResult Threat()
+    {
+        return View();
+    }
+    public IActionResult Organization()
+    {
+        return View();
+    }
+    public IActionResult Terrorist()
+    {
+        return View();
+    }
+    public IActionResult UserManagement()
+    {
+        return View();
+    }
+    public IActionResult ApprovalManagement()
+    {
+        return View();
+    }
     public IActionResult Privacy()
     {
         return View();

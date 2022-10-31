@@ -1,0 +1,127 @@
+@model LoginDTO
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<link rel="stylesheet" href="~/admintheme/css/sweetalert.css">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/admintheme/build/5. Icon/logo-1.png" type="image/ico" />
+    <title>FC South </title>
+
+    <!-- Bootstrap -->
+    <link href="~/admintheme/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/admintheme/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Datatables -->
+    <link href="~/admintheme/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/admintheme/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/admintheme/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="~/admintheme/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="~/admintheme/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/admintheme/Logincss/custom.css" rel="stylesheet" />
+    <link href="~/admintheme/Logincss/animate.min.css" rel="stylesheet" />
+</head>
+
+<body class="login_div" style="margin-left:15px;">
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+    <div class="login_wrapper" style="position:relative;">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <div id="divLoginForm">
+                    <form id="LoginForm"  asp-controller="Account" asp-action="Login">
+                        <div class="heading_login">
+                            <h2>Login</h2>
+                            <hr />
+                        </div>
+                        <div>
+                            <input type="text" class="form-control usrName" asp-for="Email"
+                                placeholder="UserName" required="" autocomplete="off" />
+                                <span asp-validation-for="Email" style="color:red"></span>
+                        </div>
+                        <div>
+                            <input type="password" class="form-control passwrd" asp-for="Password"
+                                placeholder="Password" required="" autocomplete="off" />
+                                <span asp-validation-for="Password" style="color:red"></span>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-left clrDarkBlue">
+                                <input type="checkbox"  asp-for="RememberMe" />&nbsp;Remember me
+                            </div>
+                            <div class="col-md-6 text-right clrRed">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                <div class="mt-4 mb-3">
+                                    <input type="submit" value="Log in" 
+                                        class="btn btn-default loginBtn " />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                <a href="#signup" class="reset_pass" onclick="ShowHideDiv()">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </section>
+        </div>
+        <div id="register" class="animate form registration_form">
+            <section class="login_content">
+                <div id="divForgotPassword">
+                    <form>
+                        <div class="heading_login">
+                            <h2>Forget Password ?</h2>
+                            <hr />
+                        </div>
+                        <div>
+                            <input type="email" id="forgetEmail" class="form-control usrName" placeholder="Email"
+                                required="" />
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <p class="change_link">
+                                Already a member ?
+                                <a href="#signin" value="submit" class="to_register" onclick="ShowForm()"> Log in </a>
+                                <span></span>
+                            </p>
+                        </div>
+                        <div class="loginBtnDev">
+                            <input type="button" value="Submit" id="btnSubmitForget" onclick="ForgotPassword()"
+                                class="btn btn-default loginBtn submit" />
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- jQuery -->
+    <script src="~/admintheme/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/admintheme/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/admintheme/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="~/admintheme/build/js/custom.js"></script>
+    <script src="~/admintheme/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/admintheme/Scripts/sweetalert-dev.js"></script>
+
+</body>
+
+</html>

@@ -2,8 +2,9 @@ namespace IFC;
 
 public static class RequestPipeline
 {
-    public static WebApplication AddRequestPipeline(this WebApplication request)
+    public static async Task<WebApplication> AddRequestPipelineAsync(this WebApplication request)
     {
+        await request.ApplyMigrationAndSeedingAsync();
         if (!request.Environment.IsDevelopment())
         {
             request.UseExceptionHandler("/Home/Error");
