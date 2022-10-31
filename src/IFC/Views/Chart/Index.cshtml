@@ -1,0 +1,119 @@
+﻿@using ChartJSCore.Models;
+@model IFC.Controllers.IFCCharts
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Head {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.2.1/chartjs-plugin-zoom.min.js" integrity="sha512-klQv6lz2YR+MecyFYMFRuU2eAl8IPRo6zHnsc9n142TJuJHS8CG0ix4Oq9na9ceeg1u5EkBfZsFcV3U7J51iew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
+
+    <div class="row">
+        <div class="col">
+            &nbsp;
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-md-6 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Vertical Bar Chart</h5>
+                <canvas id="verticalBarChart"></canvas>
+            </div>
+        </div>
+        <div class="card col-md-6 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Horizontal Bar Chart</h5>
+                <canvas id="horizontalBarChart"></canvas>
+            </div>
+        </div>
+        <div class="card col-md-6 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Line Chart with Zoom</h5>
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div>Use alt-click for drag-to-zoom</div>
+        </div>
+        <div class="card col-md-6 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Scatter Chart</h5>
+                <canvas id="lineScatterChart"></canvas>
+            </div>
+        </div>
+        <div class="card col-md-6 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Radar Chart</h5>
+                <canvas id="radarChart"></canvas>
+            </div>
+        </div>
+        <div class="card col-md-6 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Polar Chart</h5>
+                <canvas id="polarChart"></canvas>
+            </div>
+        </div>
+        <div class="card col-md-6 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Pie Chart</h5>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+        <div class="card col-md-6 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Live Line Chart</h5>
+                <canvas id="liveLineChart"></canvas>
+            </div>
+        </div>
+        <div class="card col-md-6 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Nested Doughnut Chart</h5>
+                <canvas id="nestedDoughnutChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            &nbsp;
+        </div>
+    </div>
+
+    @section Scripts {
+    <script type="text/javascript">
+        @Html.Raw(Model.VerticalBarChart?.CreateChartCode("verticalBarChart"));
+    </script>
+    <script type="text/javascript">
+        @Html.Raw(Model.HorizontalBarChart?.CreateChartCode("horizontalBarChart"));
+    </script>
+    <script type="text/javascript">
+        @Html.Raw(Model.LineChart?.CreateChartCode("lineChart"));
+    </script>
+    <script type="text/javascript">
+        @Html.Raw(Model.LineScatterChart?.CreateChartCode("lineScatterChart"));
+    </script>
+    <script type="text/javascript">
+        @Html.Raw(Model.RadarChart?.CreateChartCode("radarChart"));
+    </script>
+    <script type="text/javascript">
+        @Html.Raw(Model.PolarChart?.CreateChartCode("polarChart"));
+    </script>
+    <script type="text/javascript">
+        @Html.Raw(Model.PieChart?.CreateChartCode("pieChart"));
+    </script>
+    <script type="text/javascript">
+        @Html.Raw(Model.LineScatterChart?.CreateChartCode("liveLineChart"));
+
+        setInterval(function () {
+            // Get chart data
+            $.get('@Url.Action("GetRandomData", "Chart", new { id = 7 })', function (data) {
+                liveLineChart.data.datasets[0].data = data;
+            });
+
+            liveLineChart.update();
+        }, 5000);
+    </script>
+    <script type="text/javascript">
+        @Html.Raw(Model.NestedDoughnutChart?.CreateChartCode("nestedDoughnutChart"));
+    </script>
+    }
