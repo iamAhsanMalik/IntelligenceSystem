@@ -72,11 +72,11 @@ public class ThreatController : Controller
     // GET: Threats/Create
     public IActionResult Create()
     {
-        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "Id");
-        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id");
-        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Id");
-        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "Id");
-        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Id");
+        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "IncidentDate");
+        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
+        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Name");
+        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "FullName");
+        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Name");
         return View();
     }
 
@@ -93,11 +93,11 @@ public class ThreatController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "Id", threat.IncidentId);
-        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", threat.LocationId);
-        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Id", threat.OrganizationId);
-        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "Id", threat.SuspectsProfileId);
-        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Id", threat.WingId);
+        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "IncidentDate", threat.IncidentId);
+        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", threat.LocationId);
+        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Name", threat.OrganizationId);
+        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "FullName", threat.SuspectsProfileId);
+        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Name", threat.WingId);
         return View(threat);
     }
 
@@ -114,11 +114,11 @@ public class ThreatController : Controller
         {
             return NotFound();
         }
-        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "Id", threat.IncidentId);
-        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", threat.LocationId);
-        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Id", threat.OrganizationId);
-        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "Id", threat.SuspectsProfileId);
-        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Id", threat.WingId);
+        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "IncidentDate", threat.Id);
+        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", threat.LocationId);
+        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Name", threat.OrganizationId);
+        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "FullName", threat.SuspectsProfileId);
+        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Name", threat.WingId);
         return View(threat);
     }
 
@@ -154,11 +154,11 @@ public class ThreatController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "Id", threat.IncidentId);
-        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", threat.LocationId);
-        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Id", threat.OrganizationId);
-        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "Id", threat.SuspectsProfileId);
-        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Id", threat.WingId);
+        ViewData["IncidentId"] = new SelectList(_context.Incidents, "Id", "IncidentDate", threat.IncidentId);
+        ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", threat.LocationId);
+        ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "Name", threat.OrganizationId);
+        ViewData["SuspectsProfileId"] = new SelectList(_context.SuspectProfiles, "Id", "FullName", threat.SuspectsProfileId);
+        ViewData["WingId"] = new SelectList(_context.Wings, "Id", "Name", threat.WingId);
         return View(threat);
     }
 
