@@ -1,4 +1,6 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Application.DTOs.Threat;
+
+namespace IFC.Controllers;
 
 public class ThreatController : Controller
 {
@@ -36,13 +38,12 @@ public class ThreatController : Controller
             tempLastRowId = 0;
         }
 
-        IQueryable<Threat>? iFCDbContext = _context.Threats.Include(t => t.Incident).Include(t => t.Location).Include(t => t.Organization).Include(t => t.SuspectsProfile).Include(t => t.Wing).Take(25);
-        var result = await iFCDbContext.ToListAsync();
-         var TotalRecored=result.Count();
 
-        var ThreatList = _mapper.Map<List<ThreatDTO>>(result);
 
-        return Json(new { Status = true, Data = ThreatList , TotalRecord = TotalRecored , LastRowID = tempLastRowId , Count = ThreatList.Count }, new Newtonsoft.Json.JsonSerializerSettings());
+        var ThreatList = await _unitOfWork.ThreatRepo.GetThreatsAsync();
+        var Total = ThreatList.Count();
+
+        return Json(new { Status = true, Data = ThreatList , TotalRecord = Total, LastRowID = tempLastRowId , Count = Total }, new Newtonsoft.Json.JsonSerializerSettings());
     }
 
     // GET: Threats/Details/5

@@ -1,4 +1,5 @@
-﻿@model IFC.Domain.Entities.Threat
+﻿@using IFC.Application.DTOs.Threat
+@model ThreatDTO
 
 @{
     ViewData["Title"] = "Create";
@@ -23,24 +24,24 @@
                 <span asp-validation-for="ThreatLevel" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WingId" class="control-label"></label>
-                <select asp-for="WingId" class ="form-control" asp-items="ViewBag.WingId"></select>
+                <label asp-for="Wing" class="control-label"></label>
+                <select asp-for="Wing" class ="form-control" asp-items="ViewBag.WingId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="OrganizationId" class="control-label"></label>
-                <select asp-for="OrganizationId" class ="form-control" asp-items="ViewBag.OrganizationId"></select>
+                <label asp-for="Organization" class="control-label"></label>
+                <select asp-for="Organization" class ="form-control" asp-items="ViewBag.OrganizationId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="SuspectsProfileId" class="control-label"></label>
-                <select asp-for="SuspectsProfileId" class ="form-control" asp-items="ViewBag.SuspectsProfileId"></select>
+                <label asp-for="SuspectsProfile" class="control-label"></label>
+                <select asp-for="SuspectsProfile" class ="form-control" asp-items="ViewBag.SuspectsProfileId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="IncidentDate" class="control-label"></label>
-                <select asp-for="IncidentId" class ="form-control" asp-items="ViewBag.IncidentId"></select>
+                <label asp-for="Incident" class="control-label"></label>
+                <select asp-for="Incident" class ="form-control" asp-items="ViewBag.IncidentId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="LocationId" class="control-label"></label>
-                <select asp-for="LocationId" class ="form-control" asp-items="ViewBag.LocationId"></select>
+                <label asp-for="Location" class="control-label"></label>
+                <select asp-for="Location" class ="form-control" asp-items="ViewBag.LocationId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
