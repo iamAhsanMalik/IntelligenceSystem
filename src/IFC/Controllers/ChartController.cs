@@ -14,7 +14,7 @@ public class ChartController : Controller
 
     public IActionResult Index()
     {
-        IFCChartsModel iFCCharts = new IFCChartsModel()
+        var iFCCharts = new IFCChartsModel()
         {
             VerticalBarChart = GenerateVerticalBarChart(),
             HorizontalBarChart = GenerateHorizontalBarChart(),
@@ -30,13 +30,13 @@ public class ChartController : Controller
 
     private static Chart GenerateVerticalBarChart()
     {
-        Chart chart = new Chart();
+        var chart = new Chart();
         chart.Type = Enums.ChartType.Bar;
 
-        Data data = new Data();
+        var data = new Data();
         data.Labels = new List<string>() { "Incidents", "Blue", "Yellow", "Green", "Purple", "Orange" };
 
-        BarDataset dataset = new BarDataset()
+        var dataset = new BarDataset()
         {
             Label = "IFC Overview",
             Data = new List<double?>() { 12, 19, 3, 5, 2, 3 },
@@ -69,7 +69,7 @@ public class ChartController : Controller
         data.Datasets.Add(dataset);
         chart.Data = data;
 
-        var options = new Options
+        chart.Options = new Options
         {
             Scales = new Dictionary<string, Scale>()
                 {
@@ -89,8 +89,6 @@ public class ChartController : Controller
                 }
         };
 
-        chart.Options = options;
-
         chart.Options.Layout = new Layout
         {
             Padding = new Padding
@@ -108,7 +106,7 @@ public class ChartController : Controller
 
     private static Chart GenerateHorizontalBarChart()
     {
-        Chart chart = new Chart();
+        var chart = new Chart();
         chart.Type = Enums.ChartType.Bar;
 
         chart.Data = new Data()
@@ -236,11 +234,11 @@ public class ChartController : Controller
 
     private static Chart GenerateLineChart()
     {
-        Chart chart = new Chart();
+        var chart = new Chart();
 
         chart.Type = Enums.ChartType.Line;
         chart.Options.Scales = new Dictionary<string, Scale>();
-        CartesianScale xAxis = new CartesianScale();
+        var xAxis = new CartesianScale();
         xAxis.Display = true;
         xAxis.Title = new Title
         {
@@ -250,12 +248,12 @@ public class ChartController : Controller
         chart.Options.Scales.Add("x", xAxis);
 
 
-        Data data = new Data
+        var data = new Data
         {
             Labels = new List<string> { "January", "February", "March", "April", "May", "June", "July" }
         };
 
-        LineDataset dataset = new LineDataset()
+        var dataset = new LineDataset()
         {
             Label = "My First dataset",
             Data = new List<double?> { 65, 59, 80, 81, 56, 55, 40 },
@@ -286,7 +284,7 @@ public class ChartController : Controller
 
         chart.Data = data;
 
-        ZoomOptions zoomOptions = new ZoomOptions
+        var zoomOptions = new ZoomOptions
         {
             Zoom = new Zoom
             {
@@ -321,20 +319,20 @@ public class ChartController : Controller
 
     private static Chart GenerateLineScatterChart()
     {
-        Chart chart = new Chart();
+        var chart = new Chart();
         chart.Type = Enums.ChartType.Scatter;
 
-        Data data = new Data();
+        var data = new Data();
 
-        LineScatterDataset dataset = new LineScatterDataset()
+        var dataset = new LineScatterDataset()
         {
             Label = "Scatter Dataset",
             Data = new List<LineScatterData>()
         };
 
-        LineScatterData scatterData1 = new LineScatterData();
-        LineScatterData scatterData2 = new LineScatterData();
-        LineScatterData scatterData3 = new LineScatterData();
+        var scatterData1 = new LineScatterData();
+        var scatterData2 = new LineScatterData();
+        var scatterData3 = new LineScatterData();
 
         scatterData1.X = "-10";
         scatterData1.Y = "0";
@@ -354,18 +352,18 @@ public class ChartController : Controller
 
         chart.Data = data;
 
-        Options options = new Options()
+        var options = new Options()
         {
             Scales = new Dictionary<string, Scale>()
         };
 
-        CartesianLinearScale xAxis = new CartesianLinearScale()
+        var xAxis = new CartesianLinearScale()
         {
             Type = "linear",
             Grace = "50%"
         };
 
-        CartesianLinearScale yAxis = new CartesianLinearScale()
+        var yAxis = new CartesianLinearScale()
         {
             Type = "linear",
             Grace = "50%"
@@ -394,13 +392,13 @@ public class ChartController : Controller
 
     private static Chart GenerateRadarChart()
     {
-        Chart chart = new Chart();
+        var chart = new Chart();
         chart.Type = Enums.ChartType.Radar;
 
-        Data data = new Data();
+        var data = new Data();
         data.Labels = new List<string>() { "Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running" };
 
-        RadarDataset dataset1 = new RadarDataset()
+        var dataset1 = new RadarDataset()
         {
             Label = "My First dataset",
             BackgroundColor = new List<ChartColor> { ChartColor.FromRgba(179, 181, 198, 0.2) },
@@ -412,7 +410,7 @@ public class ChartController : Controller
             Data = new List<double?>() { 65, 59, 80, 81, 56, 55, 40 }
         };
 
-        RadarDataset dataset2 = new RadarDataset()
+        var dataset2 = new RadarDataset()
         {
             Label = "My Second dataset",
             BackgroundColor = new List<ChartColor> { ChartColor.FromRgba(255, 99, 132, 0.2) },
@@ -435,13 +433,13 @@ public class ChartController : Controller
 
     private static Chart GeneratePolarChart()
     {
-        Chart chart = new Chart();
+        var chart = new Chart();
         chart.Type = Enums.ChartType.PolarArea;
 
-        Data data = new Data();
+        var data = new Data();
         data.Labels = new List<string>() { "Red", "Green", "Yellow", "Grey", "Blue" };
 
-        PolarDataset dataset = new PolarDataset()
+        var dataset = new PolarDataset()
         {
             Label = "My dataset",
             BackgroundColor = new List<ChartColor>() {
@@ -464,13 +462,13 @@ public class ChartController : Controller
 
     private static Chart GeneratePieChart()
     {
-        Chart chart = new Chart();
+        var chart = new Chart();
         chart.Type = Enums.ChartType.Pie;
 
-        Data data = new Data();
+        var data = new Data();
         data.Labels = new List<string>() { "Red", "Blue", "Yellow" };
 
-        PieDataset dataset = new PieDataset()
+        var dataset = new PieDataset()
         {
             Label = "My dataset",
             BackgroundColor = new List<ChartColor>() {
@@ -496,10 +494,10 @@ public class ChartController : Controller
 
     private static Chart GenerateNestedDoughnutChart()
     {
-        Chart chart = new Chart();
+        var chart = new Chart();
         chart.Type = Enums.ChartType.Doughnut;
 
-        Data data = new Data();
+        var data = new Data();
         data.Labels = new List<string>() {
             "resource-group-1",
             "resource-group-2",
@@ -509,7 +507,7 @@ public class ChartController : Controller
             "resource-group-2 - Other"
         };
 
-        PieDataset outerDataset = new PieDataset()
+        var outerDataset = new PieDataset()
         {
             BackgroundColor = new List<ChartColor>() {
                 ChartColor.FromHexString("#3366CC"),
@@ -530,7 +528,7 @@ public class ChartController : Controller
             Data = new List<double?>() { 0.0, 0.0, 8.31, 10.43, 84.69, 0.84 }
         };
 
-        PieDataset innerDataset = new PieDataset()
+        var innerDataset = new PieDataset()
         {
             BackgroundColor = new List<ChartColor>() {
                 ChartColor.FromHexString("#3366CC"),
