@@ -8,6 +8,6 @@ public class OrganizationFunder
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
-    public virtual Funder? Funder { get; set; }
-    public virtual Organization? Organization { get; set; }
+    public virtual Funder? Funder { get; set; } = new Funder();
+    public virtual Organization? Organization { get; set; } = new Organization();
 }

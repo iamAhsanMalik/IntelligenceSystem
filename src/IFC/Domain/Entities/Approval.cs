@@ -9,5 +9,5 @@ public class Approval
     public bool? IsDeleted { get; set; }
     public bool? IsActive { get; set; }
 
-    public virtual ApprovalRequestType? ApprovalRequestType { get; set; }
+    public virtual ApprovalRequestType? ApprovalRequestType { get; set; } = new ApprovalRequestType();
 }

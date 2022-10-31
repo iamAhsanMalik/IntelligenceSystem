@@ -1,6 +1,4 @@
-﻿
-using IFC.Application.Contracts.Persistence.Repositries;
-using IFC.Application.DTOs.Threat;
+﻿using IFC.Application.DTOs.Threat;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 

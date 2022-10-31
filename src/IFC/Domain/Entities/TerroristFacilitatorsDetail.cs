@@ -23,7 +23,7 @@ public class TerroristFacilitatorsDetail
     public long? AddressId { get; set; }
     public long? RelationTypeId { get; set; }
 
-    public virtual Address? Address { get; set; }
-    public virtual RelationType? RelationType { get; set; }
+    public virtual Address? Address { get; set; } = new Address();
+    public virtual RelationType? RelationType { get; set; } = new RelationType();
     public virtual ICollection<TerroristProfile> TerroristProfiles { get; set; }
 }

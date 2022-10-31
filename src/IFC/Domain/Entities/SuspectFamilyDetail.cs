@@ -20,6 +20,6 @@ public class SuspectFamilyDetail
 
     public long? RelationTypeId { get; set; }
 
-    public virtual RelationType? RelationType { get; set; }
+    public virtual RelationType? RelationType { get; set; } = new RelationType();
     public virtual ICollection<SuspectProfile> SuspectProfiles { get; set; }
 }

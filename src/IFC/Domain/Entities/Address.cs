@@ -17,8 +17,8 @@ public class Address
     public long? CityId { get; set; }
     public long? DistrictId { get; set; }
 
-    public virtual City? City { get; set; }
-    public virtual District? District { get; set; }
+    public virtual City? City { get; set; } = new City();
+    public virtual District? District { get; set; } = new District();
     public virtual ICollection<SuspectProfile> SuspectProfiles { get; set; }
     public virtual ICollection<TerroristFacilitatorsDetail> TerroristFacilitatorsDetails { get; set; }
     public virtual ICollection<TerroristFamilyDetail> TerroristFamilyDetails { get; set; }

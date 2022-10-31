@@ -1,5 +1,4 @@
-﻿using IFC.Application.Contracts.Persistence.Repositries;
-using IFC.Application.DTOs.Address;
+﻿using IFC.Application.DTOs.Address;
 
 namespace IFC.Infrastructure.Persistence.Repositories;
 
