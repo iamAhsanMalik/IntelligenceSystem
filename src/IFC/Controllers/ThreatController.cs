@@ -1,16 +1,20 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Domain.MODELS;
+
+namespace IFC.Controllers;
 
 public class ThreatController : Controller
 {
     private readonly IFCDbContext _context;
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IDbHelpers _dbHelpers;
 
-    public ThreatController(IFCDbContext context, IMapper mapper, IUnitOfWork unitOfWork)
+    public ThreatController(IFCDbContext context, IMapper mapper, IUnitOfWork unitOfWork, IDbHelpers dbHelpers)
     {
         _context = context;
         _mapper = mapper;
         _unitOfWork = unitOfWork;
+        _dbHelpers = dbHelpers;
     }
 
     // GET: Threats
@@ -21,8 +25,11 @@ public class ThreatController : Controller
 
     public async Task<JsonResult> LoadData(string SearchCriteriaint, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
     {
-        var ThreatList = (await _unitOfWork.ThreatRepo.GetThreatsAsync()).Take(25);
-        return Json(new { Status = true, Data = ThreatList }, new Newtonsoft.Json.JsonSerializerSettings());
+        //var Data =(await _dbHelpers.GetAllByStoreProcedureAsync<Threat,"dfd", "SqlServerConnection">());
+
+        var Data = await _unitOfWork.DbHelpers.GetAllByStoreProcedureAsync<ThreatViewModel, object>(storeProcedureName: "[sp_GetAllThreatList]", new { Searh = SearchCriteriaint, LastRowID = LastRowId, PageSize = PageSize });
+        //var IEnumerable<ThreatDTO>?ThreatList = (await _unitOfWork.ThreatRepo.GetThreatsAsync()).Take(25);
+        return Json(new { Status = true, Data = Data }, new Newtonsoft.Json.JsonSerializerSettings());
     }
 
     // GET: Threats/Details/5

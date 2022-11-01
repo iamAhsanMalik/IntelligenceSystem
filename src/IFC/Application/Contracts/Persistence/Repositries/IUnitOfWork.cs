@@ -25,4 +25,5 @@ public interface IUnitOfWork
     IWingRepo WingRepo { get; }
     ISuspectFamilyDetailRepo SuspectFamilyDetailRepo { get; }
     ISuspectProfileRepo SuspectProfileRepo { get; }
+    IDbHelpers DbHelpers { get; }
 }

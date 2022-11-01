@@ -2,7 +2,7 @@
 
 internal class UnitOfWork : IUnitOfWork
 {
-    public UnitOfWork(IFCDbContext dbContext, IMapper mapper)
+    public UnitOfWork(IFCDbContext dbContext, IMapper mapper,IConfiguration configuration)
     {
         AddressRepo = new AddressRepo(dbContext, mapper);
         AffiliateRepo = new AffiliateRepo(dbContext, mapper);
@@ -28,6 +28,7 @@ internal class UnitOfWork : IUnitOfWork
         SuspectFamilyDetailRepo = new SuspectFamilyDetailRepo(dbContext, mapper);
         ThreatRepo = new ThreatRepo(dbContext, mapper);
         WingRepo = new WingRepo(dbContext, mapper);
+        DbHelpers = new DbHelpers(configuration);
     }
 
     //public UnitOfWork(IAddressRepo addressRepo, IAffiliateRepo affiliateRepo, IApprovalRepo approvalRepo, IApprovalRequestTypeRepo approvalRequestTypeRepo, ICityRepo cityRepo, ICoreHeadQuarterRepo coreHeadQuarterRepo, IDistrictRepo districtRepo, IFunderRepo funderRepo, IIncidentRepo incidentRepo, IInvolvementRepo involvementRepo, ILocationRepo locationRepo, IOperationalBaseRepo operationalBaseRepo, IOrganizationRepo organizationRepo, IRelationTypeRepo relationTypeRepo, ISectorHeadQuarterRepo sectorHeadQuarterRepo, ISocialMediaProfileRepo socialMediaProfileRepo, ITerroristFacilitatorsDetailRepo terroristFacilitatorsDetailRepo, ITerroristFamilyDetailRepo terroristFamilyDetailRepo, ITerroristInvolvementRepo terroristInvolvementRepo, ITerroristProfileRepo terroristProfileRepo, IThreatRepo threatRepo, IWingRepo wingRepo)
@@ -79,4 +80,5 @@ internal class UnitOfWork : IUnitOfWork
     public ISuspectProfileRepo SuspectProfileRepo { get; }
     public IThreatRepo ThreatRepo { get; }
     public IWingRepo WingRepo { get; }
+    public IDbHelpers DbHelpers  { get;  }
 }
