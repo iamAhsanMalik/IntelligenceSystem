@@ -1,4 +1,6 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Domain.MODELS;
+
+namespace IFC.Controllers;
 
 public class IncidentController : Controller
 {
@@ -14,8 +16,10 @@ public class IncidentController : Controller
     // GET: Incidents
     public async Task<IActionResult> Index()
     {
-        var result = await _unitOfWork.IncidentRepo.GetIncidentsAsync();
-        return View(result);
+        //var result = await _unitOfWork.IncidentRepo.GetIncidentsAsync();
+        //return View(result);
+
+        return View(await _unitOfWork.IncidentRepo.GetIncidentsAsync());
     }
 
 
@@ -30,7 +34,28 @@ public class IncidentController : Controller
         return Ok(jsonData);
         //return View();
     }
+    public async Task<JsonResult> LoadData(string SearchCriteriaint, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
+    {
+        int? tempLastRowId = LastRowId;
+        if (Direction < 0)
+        {
+            tempLastRowId = LastRowId - PageSize;
+        }
+        else if (Direction > 0)
+        {
+            tempLastRowId = LastRowId + PageSize;
+        }
+        else
+        {
+            tempLastRowId = LastRowId;
+        }
+        //var Data =(await _dbHelpers.GetAllByStoreProcedureAsync<Threat,"dfd", "SqlServerConnection">());
 
+        var Data = await _unitOfWork.DbHelpers.GetAllByStoreProcedureAsync<IncidentViewModel, object>(storeProcedureName: "sp_GetAllIncidentsList", new { Searh = SearchCriteriaint, LastRowID = LastRowId, PageSize = PageSize });
+        //var IEnumerable<ThreatDTO>?ThreatList = (await _unitOfWork.ThreatRepo.GetThreatsAsync()).Take(25);
+        //return Json(new { Status = true, Data = Data }, new Newtonsoft.Json.JsonSerializerSettings());
+        return Json(new { Status = true, Data = Data, TotalRecord = Data.Count(), LastRowID = tempLastRowId, Count = Data.Count() }, new Newtonsoft.Json.JsonSerializerSettings());
+    }
     // GET: Incidents/Details/5
     public async Task<IActionResult> Details(long? id)
     {
