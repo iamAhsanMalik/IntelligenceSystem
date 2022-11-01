@@ -1,4 +1,6 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Domain.MODELS;
+
+namespace IFC.Controllers;
 
 public class OrganizationController : Controller
 {
@@ -15,7 +17,9 @@ public class OrganizationController : Controller
     public async Task<IActionResult> Index()
     {
         return View(await _unitOfWork.OrganizationRepo.GetOrganizationDetailsAsync());
+
     }
+
 
     // GET: Organizations/Details/5
     public async Task<IActionResult> Details(long? id)
@@ -62,7 +66,28 @@ public class OrganizationController : Controller
         ViewData["SocialMediaProfileId"] = new SelectList(_context.SocialMediaProfiles, "Id", "Id", organization.SocialMediaProfileId);
         return View(organization);
     }
+    public async Task<JsonResult> LoadData(string SearchCriteriaint, int LastRowId = 0, int? PageSize = 25, int? Direction = 0)
+    {
+        int? tempLastRowId = LastRowId;
+        if (Direction < 0)
+        {
+            tempLastRowId = LastRowId - PageSize;
+        }
+        else if (Direction > 0)
+        {
+            tempLastRowId = LastRowId + PageSize;
+        }
+        else
+        {
+            tempLastRowId = LastRowId;
+        }
+        //var Data =(await _dbHelpers.GetAllByStoreProcedureAsync<Threat,"dfd", "SqlServerConnection">());
 
+        var Data = await _unitOfWork.DbHelpers.GetAllByStoreProcedureAsync<OrganizationViewModel, object>(storeProcedureName: "sp_GetAllOrganizationsList", new { Searh = SearchCriteriaint, LastRowID = LastRowId, PageSize = PageSize });
+        //var IEnumerable<ThreatDTO>?ThreatList = (await _unitOfWork.ThreatRepo.GetThreatsAsync()).Take(25);
+        //return Json(new { Status = true, Data = Data }, new Newtonsoft.Json.JsonSerializerSettings());
+        return Json(new { Status = true, Data = Data, TotalRecord = Data.Count(), LastRowID = tempLastRowId, Count = Data.Count() }, new Newtonsoft.Json.JsonSerializerSettings());
+    }
     // GET: Organizations/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {
