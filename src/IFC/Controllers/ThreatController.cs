@@ -39,7 +39,8 @@ public class ThreatController : Controller
 
         var Data = await _unitOfWork.DbHelpers.GetAllByStoreProcedureAsync<ThreatViewModel, object>(storeProcedureName: "[sp_GetAllThreatList]", new { Searh = SearchCriteriaint, LastRowID = LastRowId, PageSize = PageSize });
         //var IEnumerable<ThreatDTO>?ThreatList = (await _unitOfWork.ThreatRepo.GetThreatsAsync()).Take(25);
-        return Json(new { Status = true, Data = Data }, new Newtonsoft.Json.JsonSerializerSettings());
+        //return Json(new { Status = true, Data = Data }, new Newtonsoft.Json.JsonSerializerSettings());
+        return Json(new { Status = true, Data = Data, TotalRecord = Data.Count(), LastRowID = tempLastRowId, Count = Data.Count() }, new Newtonsoft.Json.JsonSerializerSettings());
     }
 
     // GET: Threats/Details/5

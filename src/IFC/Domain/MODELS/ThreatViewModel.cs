@@ -17,4 +17,5 @@ public class ThreatViewModel
     public string?  SuspectProfiles { get; set; }
     public string? IncidentDate { get; set; }
     public string? LocationName { get; set; } 
+    public string? ThreatLevelName { get; set; } 
 }
