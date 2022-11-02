@@ -1,6 +1,6 @@
-namespace IFC.Application.Models;
+namespace IFC.ViewModels.Identity;
 
-public class UserRolesModel
+public class UserRolesViewModel
 {
     public string? RoleName { get; set; }
     public bool Selected { get; set; }

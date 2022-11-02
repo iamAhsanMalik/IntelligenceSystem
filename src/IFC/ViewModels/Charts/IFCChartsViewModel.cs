@@ -1,8 +1,6 @@
-﻿using ChartJSCore.Models;
+﻿namespace IFC.ViewModels.Charts;
 
-namespace IFC.Application.Models;
-
-public class IFCChartsModel
+public class IFCChartsViewModel
 {
     public Chart? VerticalBarChart { get; set; }
     public Chart? HorizontalBarChart { get; set; }

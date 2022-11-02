@@ -1,6 +1,9 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Application.Enums;
+using IFC.ViewModels.Identity;
 
-[Authorize(Roles = nameof(AppRoles.SuperAdmin))]
+namespace IFC.Controllers;
+
+[Authorize(Roles = nameof(AppRole.SuperAdmin))]
 public class UserRoleController : Controller
 {
     private readonly SignInManager<IdentityUser> _signInManager;
@@ -16,18 +19,18 @@ public class UserRoleController : Controller
 
     public async Task<IActionResult> Index(string userId)
     {
-        var viewModel = new List<UserRolesModel>();
+        var viewModel = new List<UserRolesViewModel>();
         var user = await _userManager.FindByIdAsync(userId);
         foreach (var role in _roleManager.Roles.ToList())
         {
-            var userRolesViewModel = new UserRolesModel
+            var userRolesViewModel = new UserRolesViewModel
             {
                 RoleName = role.Name
             };
             userRolesViewModel.Selected = await _userManager.IsInRoleAsync(user, role.Name);
             viewModel.Add(userRolesViewModel);
         }
-        var model = new ManageUserRolesModel()
+        var model = new ManageUserRolesViewModel()
         {
             UserId = userId,
             UserRoles = viewModel
@@ -36,7 +39,7 @@ public class UserRoleController : Controller
         return View(model);
     }
 
-    public async Task<IActionResult> Update(string id, ManageUserRolesModel model)
+    public async Task<IActionResult> Update(string id, ManageUserRolesViewModel model)
     {
         var user = await _userManager.FindByIdAsync(id);
         var roles = await _userManager.GetRolesAsync(user);

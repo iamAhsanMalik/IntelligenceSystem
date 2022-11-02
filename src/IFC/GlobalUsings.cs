@@ -1,4 +1,6 @@
 global using Bogus;
+global using ChartJSCore.Models;
+global using Dapper;
 global using IFC.Application;
 global using IFC.Application.Contracts.Application;
 global using IFC.Application.Contracts.Identity;
@@ -7,7 +9,6 @@ global using IFC.Application.Contracts.Persistence.Repositries;
 global using IFC.Application.DTOs;
 global using IFC.Application.Extensions;
 global using IFC.Application.Helpers;
-global using IFC.Application.Models;
 //Persistence Namespaces
 global using IFC.Domain.Entities;
 global using IFC.Domain.Enums;
@@ -34,4 +35,3 @@ global using System.Reflection;
 global using System.Security.Claims;
 global using System.Text;
 global using System.Text.RegularExpressions;
-global using Dapper;

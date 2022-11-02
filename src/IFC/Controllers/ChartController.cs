@@ -1,6 +1,6 @@
 ﻿using ChartJSCore.Helpers;
-using ChartJSCore.Models;
 using ChartJSCore.Plugins.Zoom;
+using IFC.ViewModels.Charts;
 
 namespace IFC.Controllers;
 public class ChartController : Controller
@@ -14,7 +14,7 @@ public class ChartController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var iFCCharts = new IFCChartsModel()
+        var iFCCharts = new IFCChartsViewModel()
         {
             VerticalBarChart = await GenerateVerticalBarChart(),
             HorizontalBarChart = GenerateHorizontalBarChart(),

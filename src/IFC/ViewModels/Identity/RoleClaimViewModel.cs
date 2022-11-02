@@ -1,5 +1,5 @@
-﻿namespace IFC.Application.Models;
-public class RoleClaimModel
+﻿namespace IFC.ViewModels.Identity;
+public class RoleClaimViewModel
 {
     public string? Type { get; set; }
     public string? Value { get; set; }

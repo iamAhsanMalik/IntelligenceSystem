@@ -1,4 +1,6 @@
-﻿namespace IFC.Infrastructure.Persistence.Seeding;
+﻿using IFC.Application.Enums;
+
+namespace IFC.Infrastructure.Persistence.Seeding;
 
 public class SeedDatabase : ISeedDatabase
 {
@@ -14,9 +16,9 @@ public class SeedDatabase : ISeedDatabase
     }
     private async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
     {
-        await roleManager.CreateAsync(new IdentityRole(nameof(AppRoles.SuperAdmin)));
-        await roleManager.CreateAsync(new IdentityRole(nameof(AppRoles.Admin)));
-        await roleManager.CreateAsync(new IdentityRole(nameof(AppRoles.Basic)));
+        await roleManager.CreateAsync(new IdentityRole(nameof(AppRole.SuperAdmin)));
+        await roleManager.CreateAsync(new IdentityRole(nameof(AppRole.Admin)));
+        await roleManager.CreateAsync(new IdentityRole(nameof(AppRole.Basic)));
     }
     private async Task SeedBasicUserAsync(UserManager<ApplicationUser> userManager)
     {
@@ -37,7 +39,7 @@ public class SeedDatabase : ISeedDatabase
             if (user == null)
             {
                 await userManager.CreateAsync(defaultUser, "123");
-                await userManager.AddToRoleAsync(defaultUser, nameof(AppRoles.Basic));
+                await userManager.AddToRoleAsync(defaultUser, nameof(AppRole.Basic));
             }
         }
     }
@@ -60,9 +62,9 @@ public class SeedDatabase : ISeedDatabase
             if (user == null)
             {
                 await userManager.CreateAsync(defaultUser, "123");
-                await userManager.AddToRoleAsync(defaultUser, nameof(AppRoles.Basic));
-                await userManager.AddToRoleAsync(defaultUser, nameof(AppRoles.Admin));
-                await userManager.AddToRoleAsync(defaultUser, nameof(AppRoles.SuperAdmin));
+                await userManager.AddToRoleAsync(defaultUser, nameof(AppRole.Basic));
+                await userManager.AddToRoleAsync(defaultUser, nameof(AppRole.Admin));
+                await userManager.AddToRoleAsync(defaultUser, nameof(AppRole.SuperAdmin));
             }
             await roleManager.AddPermissionClaimAsync("SuperAdmin", "Product");
         }

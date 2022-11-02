@@ -1,6 +1,8 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Application.Enums;
 
-[Authorize(Roles = nameof(AppRoles.SuperAdmin))]
+namespace IFC.Controllers;
+
+[Authorize(Roles = nameof(AppRole.SuperAdmin))]
 public class RoleManagementController : Controller
 {
     private readonly RoleManager<IdentityRole> _roleManager;

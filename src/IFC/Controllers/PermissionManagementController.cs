@@ -1,6 +1,10 @@
-﻿namespace IFC.Controllers;
+﻿using IFC.Application.Enums;
+using IFC.Application.Modules;
+using IFC.ViewModels.Identity;
 
-[Authorize(Roles = nameof(AppRoles.SuperAdmin))]
+namespace IFC.Controllers;
+
+[Authorize(Roles = nameof(AppRole.SuperAdmin))]
 public class PermissionManagementController : Controller
 {
     private readonly RoleManager<IdentityRole> _roleManager;
@@ -12,10 +16,11 @@ public class PermissionManagementController : Controller
 
     public async Task<ActionResult> Index(string roleId)
     {
-        List<RoleClaimModel> allPermissions = PermissionsHelper.GetPermissions(PermissionsHelper.GeneratePermissionsForModule("Prodcut"));
+        List<RoleClaimViewModel> allPermissions = PermissionsHelper.GetPermissions(PermissionsHelper.GeneratePermissionsForModules(IFCModules.AppModulesList));
         List<string?> allClaimValues = allPermissions.ConvertAll(a => a.Value);
         List<string> roleClaimValues = (await _roleManager.GetClaimsAsync(await _roleManager.FindByIdAsync(roleId))).Select(a => a.Value).ToList();
         var authorizedClaims = allClaimValues.Intersect(roleClaimValues).ToList();
+
         foreach (var permission in allPermissions)
         {
             if (authorizedClaims.Any(a => a == permission.Value))
@@ -23,13 +28,13 @@ public class PermissionManagementController : Controller
                 permission.Selected = true;
             }
         }
-        return View(new PermissionModel()
+        return View(new PermissionViewModel()
         {
             RoleId = roleId,
             RoleClaims = allPermissions
         });
     }
-    public async Task<IActionResult> Update(PermissionModel model)
+    public async Task<IActionResult> Update(PermissionViewModel model)
     {
         var role = await _roleManager.FindByIdAsync(model.RoleId);
         var claims = await _roleManager.GetClaimsAsync(role);

@@ -169,7 +169,7 @@ internal sealed class FileHelpers : IFileHelpers
     public bool IsValidImage(string fileName)
     {
         var extension = Path.GetExtension(fileName);
-        var allowedExtensions = ImageFilters(ImageType.PNG, ImageType.JPG, ImageType.JPEG, ImageType.Gif);
+        var allowedExtensions = ImageFilters(ImageType.PNG, ImageType.JPG, ImageType.JPEG, ImageType.GIF);
 
         return allowedExtensions.Any(e => e.Equals("*.*") || e.EndsWith(extension, StringComparison.OrdinalIgnoreCase));
     }
